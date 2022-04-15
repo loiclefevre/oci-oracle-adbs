@@ -23,3 +23,5 @@
 set -Eeuo pipefail
 
 echo "BUILDER: started"
+
+exit 0;
