@@ -25,7 +25,7 @@ ARG BUILD_MODE
 ENV ORACLE_BASE=/opt/oracle \
     PATH=${PATH}:/opt/oracle
 
-COPY container-entrypoint.sh healthcheck.sh
+COPY container-entrypoint.sh healthcheck.sh install.atpsfree19.sh
 
 RUN /install.atpsfree19.sh
     
