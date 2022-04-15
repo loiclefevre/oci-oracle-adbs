@@ -23,7 +23,7 @@ FROM oraclelinux:8-slim
 ARG BUILD_MODE
 
 ENV ORACLE_BASE=/opt/oracle \
-    PATH=${PATH}
+    PATH=${PATH}:/opt/oracle
 
 COPY container-entrypoint.sh healthcheck.sh
 
