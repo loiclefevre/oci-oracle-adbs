@@ -27,7 +27,7 @@ ENV ORACLE_BASE=/opt/oracle \
 
 COPY container-entrypoint.sh healthcheck.sh install.atpsfree19.sh
 
-RUN ./install.atpsfree19.sh
+RUN install.atpsfree19.sh
     
 USER oracle
 WORKDIR ${ORACLE_BASE}
