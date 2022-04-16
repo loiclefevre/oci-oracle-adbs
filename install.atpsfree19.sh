@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Since: April, 2022
 # Author: loiclefevre
 # Name: install.atpsfree19.sh
