@@ -20,7 +20,7 @@
         <!-- logging -->
         <logback.version>1.2.11</logback.version>
 
-        <graalvm.version>21.2.0</graalvm.version>
+        <graalvm.version>21.3.1</graalvm.version>
 
         <oci.sdk.version>2.23.0</oci.sdk.version>
     </properties>
@@ -128,7 +128,7 @@
             <plugin>
                 <groupId>org.graalvm.nativeimage</groupId>
                 <artifactId>native-image-maven-plugin</artifactId>
-                <version>${graalvm.version}</version>
+                <version>21.2.0</version>
                 <executions>
                     <execution>
                         <goals>
