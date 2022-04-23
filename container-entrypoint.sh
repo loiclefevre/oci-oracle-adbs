@@ -142,6 +142,7 @@ function create_app_user {
 
   # If ORACLE_DATABASE is specified, create user also in app PDB (only applicable >=18c)
   if [ -n "${ORACLE_DATABASE:-}" ]; then
+  	echo "noop"
   fi;
 
 }
@@ -158,12 +159,15 @@ trap stop_database SIGINT SIGTERM
 echo "CONTAINER: starting up..."
 
 # Setup all required environment variables
-setup_env_vars
+#setup_env_vars
 
 # If database does not yet exist, create directory structure
 if [ -z "${DATABASE_ALREADY_EXISTS:-}" ]; then
   echo "CONTAINER: first database startup, initializing..."
-
+  export IP_ADDRESS=`curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'`
+  echo ${IP_ADDRESS} >> "${ORACLE_BASE}/dragon-lite.log"
+  java -jar "${ORACLE_BASE}/dragonlite-1.0.0-SNAPSHOT-jar-with-dependencies.jar" -a start -d AJDSAI2 -p DEFAULT -r eu-frankfurt-1 -sp C0mplex_Passw0rd -w Ajd -v 21c -f -u test -up C0mplex_Passw0rd -i "89.84.109.253,${IP_ADDRESS}" >> "${ORACLE_BASE}/dragon-lite.log" &
+  echo "yes!!"
 # Otherwise check that symlinks are in place
 else
   echo "CONTAINER: database already initialized."
@@ -185,6 +189,7 @@ if healthcheck.sh; then
     # If password is specified
     if [ -n "${ORACLE_PASSWORD:-}" ]; then
       #resetPassword "${ORACLE_PASSWORD}"
+      echo "reset password TODO?"
 
     # Generate random password
     elif [ -n "${ORACLE_RANDOM_PASSWORD:-}" ]; then
@@ -212,6 +217,7 @@ if healthcheck.sh; then
     if [ -n "${APP_USER:-}" ]; then
       create_app_user
     fi;
+  fi;  
 
   echo ""
   echo "#########################"
@@ -226,5 +232,7 @@ else
   exit 1;
 fi;
 
+touch "${ORACLE_BASE}"/dragon-lite.log
+tail -f "${ORACLE_BASE}"/dragon-lite.log &
 childPID=$!
 wait ${childPID}
