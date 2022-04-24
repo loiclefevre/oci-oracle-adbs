@@ -139,7 +139,7 @@
                 </executions>
                 <configuration>
                     <skip>false</skip>
-                    <imageName>dragon-${os.detected.classifier}</imageName>
+                    <imageName>dragonlite-${os.detected.classifier}</imageName>
                     <mainClass>com.oracle.dragonlite.Main</mainClass>
                     <buildArgs>
                         --no-fallback
