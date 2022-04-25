@@ -350,7 +350,7 @@
     "allDeclaredConstructors":true
   },
   {
-    "name":"com.oracle.dragon.rest.ORDSSQLServiceResponseItems[]"
+    "name":"com.oracle.dragonlite.rest.ORDSSQLServiceResponseItems[]"
   },
   {
     "name":"com.sun.crypto.provider.AESCipher$General",
