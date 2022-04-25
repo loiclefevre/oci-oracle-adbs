@@ -68,7 +68,8 @@ echo "BUILDER: building image $IMAGE_NAME"
 
 BUILD_START_TMS=$(date '+%s')
 
-upx --best -k -o dragonlite target/dragonlite-linux-x86_64
+#upx --best -k -o dragonlite target/dragonlite-linux-x86_64
+cp target/dragonlite-linux-x86_64 ./dragonlite
 
 buildah bud -f Dockerfile."${VERSION//./}" -t "${IMAGE_NAME}" --build-arg BUILD_MODE="test"
 
