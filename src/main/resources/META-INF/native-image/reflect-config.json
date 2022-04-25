@@ -3,6 +3,9 @@
   "name":"[Lcom.oracle.dragonlite.rest.ORDSSQLServiceResponseItems;"}
 ,
 {
+  "name":"[Ljava.lang.Class;"}
+,
+{
   "name":"[Ljava.lang.Object;"}
 ,
 {
@@ -71,6 +74,10 @@
 {
   "name":"com.fasterxml.jackson.databind.ext.Java7SupportImpl",
   "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.intellij.rt.execution.application.AppMainV2$Agent",
+  "methods":[{"name":"premain","parameterTypes":["java.lang.String","java.lang.instrument.Instrumentation"] }]}
 ,
 {
   "name":"com.oracle.bmc.database.model.AutonomousDatabase$Builder",
@@ -633,12 +640,7 @@
 {
   "name":"java.lang.Object",
   "allDeclaredFields":true,
-  "allDeclaredMethods":true,
-  "queriedMethods":[
-    {"name":"equals","parameterTypes":["java.lang.Object"] }, 
-    {"name":"hashCode","parameterTypes":[] }, 
-    {"name":"toString","parameterTypes":[] }
-  ]}
+  "allDeclaredMethods":true}
 ,
 {
   "name":"java.lang.Object[]"}
