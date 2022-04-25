@@ -218,8 +218,6 @@ public class Main {
 
 			final String currentIPAddress = responseBody.substring(76, responseBody.indexOf("</body>"));
 
-			System.out.println("currentIPAddress="+currentIPAddress);
-
 			return currentIPAddress;
 		}
 		catch (Exception e) {
