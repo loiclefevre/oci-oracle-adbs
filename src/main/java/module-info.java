@@ -9,6 +9,7 @@ module oci.oracle.adbs {
 	requires oci.java.sdk.workrequests;
 	requires java.annotation;
 	requires org.slf4j;
+	requires jersey.client;
 
 	opens com.oracle.dragonlite.rest to com.fasterxml.jackson.databind;
 }
