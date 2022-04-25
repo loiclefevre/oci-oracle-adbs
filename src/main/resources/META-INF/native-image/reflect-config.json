@@ -85,10 +85,6 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]}
 ,
 {
-  "name":"com.intellij.rt.execution.application.AppMainV2$Agent",
-  "methods":[{"name":"premain","parameterTypes":["java.lang.String","java.lang.instrument.Instrumentation"] }]}
-,
-{
   "name":"com.oracle.bmc.database.model.AutonomousDatabase$Builder",
   "allDeclaredFields":true,
   "allDeclaredMethods":true,
@@ -1508,10 +1504,6 @@
 {
   "name":"org.glassfish.jersey.spi.ThreadPoolExecutorProvider",
   "allDeclaredMethods":true}
-,
-{
-  "name":"org.jboss.resteasy.logging.impl.Slf4jLogger",
-  "methods":[{"name":"<init>","parameterTypes":["java.lang.String"] }]}
 ,
 {
   "name":"org.jvnet.hk2.internal.DynamicConfigurationServiceImpl",
