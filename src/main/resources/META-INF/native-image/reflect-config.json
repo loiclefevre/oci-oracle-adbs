@@ -85,6 +85,12 @@
   "methods":[{"name":"<init>","parameterTypes":[] }]}
 ,
 {
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$AutonomousMaintenanceScheduleType",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"create","parameterTypes":["java.lang.String"] }]}
+,
+{
   "name":"com.oracle.bmc.database.model.AutonomousDatabase$Builder",
   "allDeclaredFields":true,
   "allDeclaredMethods":true,
@@ -94,6 +100,21 @@
   "name":"com.oracle.bmc.database.model.AutonomousDatabase$DataSafeStatus",
   "allDeclaredFields":true,
   "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$DatabaseEdition",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$DatabaseManagementStatus",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$DataguardRegionType",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true}
 ,
 {
   "name":"com.oracle.bmc.database.model.AutonomousDatabase$DbWorkload",
@@ -285,6 +306,12 @@
   "name":"com.oracle.bmc.database.model.CreateAutonomousDatabaseBase",
   "allDeclaredFields":true,
   "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.CreateAutonomousDatabaseBase$AutonomousMaintenanceScheduleType",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"getValue","parameterTypes":[] }]}
 ,
 {
   "name":"com.oracle.bmc.database.model.CreateAutonomousDatabaseBase$DbWorkload",
@@ -632,6 +659,12 @@
   "allDeclaredMethods":true}
 ,
 {
+  "name":"java.lang.Float",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true}
+,
+{
   "name":"java.lang.Integer",
   "allDeclaredFields":true,
   "allDeclaredMethods":true,
@@ -662,6 +695,14 @@
 {
   "name":"java.lang.Throwable",
   "methods":[{"name":"addSuppressed","parameterTypes":["java.lang.Throwable"] }]}
+,
+{
+  "name":"java.lang.constant.Constable",
+  "queryAllDeclaredMethods":true}
+,
+{
+  "name":"java.lang.constant.ConstantDesc",
+  "queryAllDeclaredMethods":true}
 ,
 {
   "name":"java.lang.reflect.Method",

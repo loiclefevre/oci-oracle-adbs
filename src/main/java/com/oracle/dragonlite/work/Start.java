@@ -151,9 +151,9 @@ public class Start {
 
 			final ADBRESTService adminORDS = new ADBRESTService(alreadyExistADB.getConnectionUrls().getSqlDevWebUrl(),
 					"ADMIN", session.getSystemPassword());
-
+			
 			try {
-				adminORDS.execute("SELECT 1 FROM DUAL");
+				adminORDS.execute("SELECT 1 FROM DUAL;");
 			}
 			catch (DLException dle) {
 				// Stop, wrong database!
@@ -223,11 +223,14 @@ public class Start {
 			// - ADMIN password
 
 			// Test application user exists
+			System.out.println("Test application user exists - "+alreadyExistADB.getConnectionUrls().getSqlDevWebUrl()+": "+session.getUsername().toUpperCase() +" / "+ session.getUserPassword());
+
 			final ADBRESTService userORDS = new ADBRESTService(alreadyExistADB.getConnectionUrls().getSqlDevWebUrl(),
-					session.getUsername(), session.getUserPassword());
+					session.getUsername().toUpperCase(), session.getUserPassword());
+
 
 			try {
-				userORDS.execute("SELECT 1 FROM DUAL");
+				userORDS.execute("SELECT 1 FROM DUAL;");
 			}
 			catch (DLException dle) {
 				createApplicationUser(session, alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
@@ -287,6 +290,7 @@ public class Start {
 					.whitelistedIps(Arrays.stream(session.getInvokerIPAddress().split(",")).toList())
 					// no wallets
 					.isMtlsConnectionRequired(false)
+					.autonomousMaintenanceScheduleType(CreateAutonomousDatabaseBase.AutonomousMaintenanceScheduleType.Regular)
 					.build();
 
 			String workRequestId = null;

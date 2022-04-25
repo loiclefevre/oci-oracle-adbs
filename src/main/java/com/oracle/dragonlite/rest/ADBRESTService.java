@@ -68,6 +68,8 @@ public class ADBRESTService {
 	public String execute(final String command) {
 		// https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/20.2/aelig/rest-enabled-sql-service.html
 		try {
+			System.out.println("Calling: "+urlSQLService);
+
 			final HttpRequest request = HttpRequest.newBuilder()
 					.uri(new URI(urlSQLService))
 					.headers("Content-Type", "application/sql",

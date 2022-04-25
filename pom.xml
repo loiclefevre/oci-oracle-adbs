@@ -22,7 +22,7 @@
 
         <graalvm.version>21.3.1</graalvm.version>
 
-        <oci.sdk.version>2.23.0</oci.sdk.version>
+        <oci.sdk.version>2.24.0</oci.sdk.version>
     </properties>
 
     <dependencies>

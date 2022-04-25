@@ -216,7 +216,11 @@ public class Main {
 
 			final String responseBody = response.body();
 
-			return responseBody.substring(76, responseBody.indexOf("</body>"));
+			final String currentIPAddress = responseBody.substring(76, responseBody.indexOf("</body>"));
+
+			System.out.println("currentIPAddress="+currentIPAddress);
+
+			return currentIPAddress;
 		}
 		catch (Exception e) {
 			throw new DLException(DLException.UNKNOWN_CURRENT_IP_ADDRESS, e);
