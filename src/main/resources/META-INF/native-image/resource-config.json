@@ -1,14 +1,43 @@
 {
   "resources":{
-    "includes":[
-      {"pattern":"\\QMETA-INF/services/org.glassfish.hk2.extension.ServiceLocatorGenerator\\E"},
-      {"pattern":"\\QMETA-INF/services/org.glassfish.jersey.internal.inject.InjectionManagerFactory\\E"},
-      {"pattern":"\\QMETA-INF/services/org.glassfish.jersey.internal.spi.AutoDiscoverable\\E"},
-      {"pattern":"\\Qcom/oracle/bmc/sdk.properties\\E"},
-      {"pattern":"\\Qorg/slf4j/impl/StaticLoggerBinder.class\\E"}
-    ]},
+  "includes":[
+    {
+      "pattern":"\\QMETA-INF/services/javax.ws.rs.client.ClientBuilder\\E"
+    }, 
+    {
+      "pattern":"\\QMETA-INF/services/javax.ws.rs.ext.RuntimeDelegate\\E"
+    }, 
+    {
+      "pattern":"\\QMETA-INF/services/org.glassfish.hk2.extension.ServiceLocatorGenerator\\E"
+    }, 
+    {
+      "pattern":"\\QMETA-INF/services/org.glassfish.jersey.internal.inject.InjectionManagerFactory\\E"
+    }, 
+    {
+      "pattern":"\\QMETA-INF/services/org.glassfish.jersey.internal.spi.AutoDiscoverable\\E"
+    }, 
+    {
+      "pattern":"\\Qcom/oracle/bmc/sdk.properties\\E"
+    }, 
+    {
+      "pattern":"\\Qlogback.xml\\E"
+    }, 
+    {
+      "pattern":"\\Qmozilla/public-suffix-list.txt\\E"
+    }, 
+    {
+      "pattern":"\\Qorg/apache/http/client/version.properties\\E"
+    }, 
+    {
+      "pattern":"\\Qorg/slf4j/impl/StaticLoggerBinder.class\\E"
+    }
+  ]},
   "bundles":[
-    {"name":"org.glassfish.jersey.client.internal.localization"},
-    {"name":"org.glassfish.jersey.internal.localization"}
+    {
+      "name":"org.glassfish.jersey.client.internal.localization"
+    }, 
+    {
+      "name":"org.glassfish.jersey.internal.localization"
+    }
   ]
 }

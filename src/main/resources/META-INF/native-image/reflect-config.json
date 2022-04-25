@@ -1,1311 +1,1717 @@
 [
-  {
-    "name":"byte[]"
-  },
-  {
-    "name":"com.fasterxml.jackson.databind.deser.Deserializers[]"
-  },
-  {
-    "name":"com.fasterxml.jackson.databind.ext.Java7HandlersImpl",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"com.fasterxml.jackson.databind.ext.Java7SupportImpl",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabase$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabase$DataSafeStatus",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabase$DbWorkload",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabase$InfrastructureType",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabase$LicenseModel",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabase$LifecycleState",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabase$OpenMode",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabase$OperationsInsightsStatus",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabase$PermissionLevel",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabase$RefreshableMode",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabase$RefreshableStatus",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabase$Role",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseApex$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseBackupConfig$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseBackupConfig$ManualBackupType",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseConnectionStrings$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseConnectionUrls$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseStandbySummary$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseStandbySummary$LifecycleState",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$DataSafeStatus",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$DbWorkload",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$InfrastructureType",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$LicenseModel",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$LifecycleState",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$OpenMode",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$OperationsInsightsStatus",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$PermissionLevel",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$RefreshableMode",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$RefreshableStatus",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$Role",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.CreateAutonomousDatabaseBase",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.CreateAutonomousDatabaseBase$DbWorkload",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.CreateAutonomousDatabaseBase$LicenseModel",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.CreateAutonomousDatabaseDetails",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.CustomerContact",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.CustomerContact$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.GenerateAutonomousDatabaseWalletDetails",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.database.model.GenerateAutonomousDatabaseWalletDetails$GenerateType",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.http.internal.ResponseHelper$ErrorCodeAndMessage$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.identity.model.User$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.identity.model.User$LifecycleState",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.identity.model.UserCapabilities$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.limits.model.ResourceAvailability$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.objectstorage.model.Bucket$AutoTiering",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.objectstorage.model.Bucket$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.objectstorage.model.Bucket$PublicAccessType",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.objectstorage.model.Bucket$StorageTier",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.objectstorage.model.Bucket$Versioning",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.objectstorage.model.BucketSummary$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.objectstorage.model.CreateBucketDetails",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.objectstorage.model.CreateBucketDetails$PublicAccessType",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.objectstorage.model.CreateBucketDetails$StorageTier",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.objectstorage.model.CreateBucketDetails$Versioning",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.objectstorage.requests.PutObjectRequest",
-    "methods":[
-      {"name":"getContentEncoding","parameterTypes":[] },
-      {"name":"getContentLanguage","parameterTypes":[] },
-      {"name":"getContentType","parameterTypes":[] }
-    ]
-  },
-  {
-    "name":"com.oracle.bmc.workrequests.model.WorkRequest$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.workrequests.model.WorkRequest$Status",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.workrequests.model.WorkRequestError$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.bmc.workrequests.model.WorkRequestResource$ActionType",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"com.oracle.bmc.workrequests.model.WorkRequestResource$Builder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.dragonlite.rest.ORDSSQLServiceResponse",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.dragonlite.rest.ORDSSQLServiceResponseItems",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.dragonlite.rest.ORDSSQLServiceResponseItems[]"
-  },
-  {
-    "name":"com.sun.crypto.provider.AESCipher$General",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"com.sun.crypto.provider.DHParameters",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"com.sun.crypto.provider.HmacCore$HmacSHA256",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"com.sun.crypto.provider.TlsKeyMaterialGenerator",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"com.sun.crypto.provider.TlsMasterSecretGenerator",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"com.sun.crypto.provider.TlsPrfGenerator$V12",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"java.awt.image.RenderedImage"
-  },
-  {
-    "name":"java.io.Serializable",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"java.lang.Boolean",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"java.lang.Class[]"
-  },
-  {
-    "name":"java.lang.Comparable",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"java.lang.Enum",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"java.lang.Integer",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"java.lang.Number",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"java.lang.Object",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"java.lang.Object[]"
-  },
-  {
-    "name":"java.lang.String"
-  },
-  {
-    "name":"java.lang.String[]"
-  },
-  {
-    "name":"java.lang.Throwable",
-    "methods":[{"name":"addSuppressed","parameterTypes":["java.lang.Throwable"] }]
-  },
-  {
-    "name":"java.lang.reflect.Method",
-    "methods":[{"name":"isVarArgs","parameterTypes":[] }]
-  },
-  {
-    "name":"java.nio.Buffer"
-  },
-  {
-    "name":"java.security.AlgorithmParametersSpi"
-  },
-  {
-    "name":"java.security.KeyStoreSpi"
-  },
-  {
-    "name":"java.security.MessageDigestSpi"
-  },
-  {
-    "name":"java.security.SecureRandomParameters"
-  },
-  {
-    "name":"java.security.cert.CertStoreParameters"
-  },
-  {
-    "name":"java.security.cert.PKIXRevocationChecker"
-  },
-  {
-    "name":"java.security.interfaces.DSAPrivateKey"
-  },
-  {
-    "name":"java.security.interfaces.DSAPublicKey"
-  },
-  {
-    "name":"java.security.interfaces.ECPrivateKey"
-  },
-  {
-    "name":"java.security.interfaces.ECPublicKey"
-  },
-  {
-    "name":"java.security.interfaces.RSAPrivateKey"
-  },
-  {
-    "name":"java.security.interfaces.RSAPublicKey"
-  },
-  {
-    "name":"java.security.spec.DSAParameterSpec"
-  },
-  {
-    "name":"java.util.Date"
-  },
-  {
-    "name":"java.util.concurrent.LinkedTransferQueue",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"javax.activation.DataSource"
-  },
-  {
-    "name":"javax.crypto.spec.GCMParameterSpec"
-  },
-  {
-    "name":"javax.inject.Named",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"javax.inject.Singleton",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"javax.naming.InitialContext",
-    "methods":[
-      {"name":"<init>","parameterTypes":[] },
-      {"name":"lookup","parameterTypes":["java.lang.String"] }
-    ]
-  },
-  {
-    "name":"javax.security.auth.x500.X500Principal",
-    "fields":[{"name":"thisX500Name"}],
-    "methods":[{"name":"<init>","parameterTypes":["sun.security.x509.X500Name"] }]
-  },
-  {
-    "name":"javax.xml.transform.Source"
-  },
-  {
-    "name":"javax.xml.transform.dom.DOMSource"
-  },
-  {
-    "name":"javax.xml.transform.sax.SAXSource"
-  },
-  {
-    "name":"javax.xml.transform.stream.StreamSource"
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.asymmetric.COMPOSITE$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.asymmetric.DH$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.asymmetric.DSA$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.asymmetric.DSTU4145$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.asymmetric.EC$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.asymmetric.ECGOST$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.asymmetric.EdEC$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.asymmetric.ElGamal$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.asymmetric.GM$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.asymmetric.GOST$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.asymmetric.IES$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.asymmetric.RSA$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.asymmetric.X509$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.asymmetric.rsa.KeyPairGeneratorSpi",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.Blake2b$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.Blake2s$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.DSTU7564$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.GOST3411$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.Haraka$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.Keccak$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.MD2$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.MD4$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.MD5$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.RIPEMD128$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.RIPEMD160$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.RIPEMD256$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.RIPEMD320$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.SHA1$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.SHA224$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.SHA256$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.SHA3$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.SHA384$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.SHA512$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.SM3$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.Skein$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.Tiger$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.digest.Whirlpool$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.drbg.DRBG$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.keystore.BC$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.keystore.BCFKS$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.keystore.PKCS12$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.AES$ECB",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.AES$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.ARC4$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.ARIA$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.Blowfish$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.CAST5$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.CAST6$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.Camellia$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.ChaCha$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.DES$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.DESede$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.DSTU7624$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.GOST28147$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.GOST3412_2015$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.Grain128$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.Grainv1$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.HC128$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.HC256$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.IDEA$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.Noekeon$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.OpenSSLPBKDF$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.OpenSSLPBKDF$PBKDF",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.PBEPBKDF1$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.PBEPBKDF2$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.PBEPKCS12$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.Poly1305$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.RC2$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.RC5$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.RC6$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.Rijndael$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.SCRYPT$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.SEED$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.SM4$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.Salsa20$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.Serpent$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.Shacal2$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.SipHash$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.SipHash128$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.Skipjack$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.TEA$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.TLSKDF$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.Threefish$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.Twofish$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.VMPC$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.VMPCKSA3$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.XSalsa20$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.XTEA$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jcajce.provider.symmetric.Zuc$Mappings",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.bouncycastle.jce.provider.BouncyCastleProvider",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.glassfish.hk2.internal.PerThreadContext",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.client.ChunkedInputReader",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.client.ClientAsyncExecutor",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.glassfish.jersey.client.ClientBackgroundScheduler",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.glassfish.jersey.client.DefaultClientAsyncExecutorProvider",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.glassfish.jersey.client.DefaultClientBackgroundSchedulerProvider",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.glassfish.jersey.client.JerseyClientBuilder",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.glassfish.jersey.inject.hk2.ContextInjectionResolverImpl",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.inject.hk2.Hk2InjectionManagerFactory",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.glassfish.jersey.inject.hk2.Hk2RequestScope",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.inject.hk2.InstanceSupplierFactoryBridge",
-    "methods":[{"name":"provide","parameterTypes":[] }]
-  },
-  {
-    "name":"org.glassfish.jersey.inject.hk2.JerseyErrorService",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.inject.hk2.RequestContext",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.internal.RuntimeDelegateImpl",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"org.glassfish.jersey.internal.config.ExternalPropertiesAutoDiscoverable",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.internal.config.ExternalPropertiesConfigurationFeature",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.internal.inject.Custom",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.glassfish.jersey.jackson.JacksonFeature",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.jackson.internal.JacksonAutoDiscoverable",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.logging.LoggingFeatureAutoDiscoverable",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.AbstractFormProvider",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.AbstractMessageReaderWriterProvider",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.BasicTypesMessageProvider",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.ByteArrayProvider",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.DataSourceProvider",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.EnumMessageProvider",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.FileProvider",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.FormMultivaluedMapProvider",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.FormProvider",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.InputStreamProvider",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.ReaderProvider",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.RenderedImageProvider",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.SourceProvider$DomSourceReader",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.SourceProvider$SaxSourceReader",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.SourceProvider$SourceWriter",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.SourceProvider$StreamSourceReader",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.StreamingOutputProvider",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.message.internal.StringMessageProvider",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.glassfish.jersey.process.internal.RequestScope",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.glassfish.jersey.spi.AbstractThreadPoolProvider",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.glassfish.jersey.spi.ScheduledThreadPoolExecutorProvider",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.glassfish.jersey.spi.ThreadPoolExecutorProvider",
-    "allDeclaredMethods":true
-  },
-  {
-    "name":"org.jvnet.hk2.internal.DynamicConfigurationServiceImpl",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.jvnet.hk2.internal.ServiceLocatorRuntimeImpl",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"sun.misc.Unsafe",
-    "allDeclaredFields":true
-  },
-  {
-    "name":"sun.security.pkcs.SignerInfo[]"
-  },
-  {
-    "name":"sun.security.pkcs12.PKCS12KeyStore",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.pkcs12.PKCS12KeyStore$DualFormatPKCS12",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.DRBG",
-    "methods":[{"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]
-  },
-  {
-    "name":"sun.security.provider.DSA$SHA1withDSA",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.DSA$SHA224withDSA",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.DSA$SHA256withDSA",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.DSAKeyFactory",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.DSAParameters",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.JavaKeyStore$DualFormatJKS",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.JavaKeyStore$JKS",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.MD5",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.SHA",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.SHA2$SHA224",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.SHA2$SHA256",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.SHA5$SHA384",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.SHA5$SHA512",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.SecureRandom",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.Sun",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.X509Factory",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.certpath.CollectionCertStore",
-    "methods":[{"name":"<init>","parameterTypes":["java.security.cert.CertStoreParameters"] }]
-  },
-  {
-    "name":"sun.security.provider.certpath.PKIXCertPathValidator",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.provider.certpath.SunCertPathBuilder",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.rsa.RSAKeyFactory$Legacy",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.rsa.RSAPSSSignature",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.rsa.RSASignature$SHA1withRSA",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.rsa.RSASignature$SHA224withRSA",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.rsa.RSASignature$SHA256withRSA",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.rsa.RSASignature$SHA512withRSA",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.ssl.KeyManagerFactoryImpl$SunX509",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.ssl.SSLContextImpl$DefaultSSLContext",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.ssl.SSLContextImpl$TLSContext",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.ssl.TrustManagerFactoryImpl$PKIXFactory",
-    "methods":[{"name":"<init>","parameterTypes":[] }]
-  },
-  {
-    "name":"sun.security.util.ObjectIdentifier"
-  },
-  {
-    "name":"sun.security.x509.AuthorityInfoAccessExtension",
-    "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
-  },
-  {
-    "name":"sun.security.x509.AuthorityKeyIdentifierExtension",
-    "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
-  },
-  {
-    "name":"sun.security.x509.BasicConstraintsExtension",
-    "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
-  },
-  {
-    "name":"sun.security.x509.CRLDistributionPointsExtension",
-    "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
-  },
-  {
-    "name":"sun.security.x509.CertificateExtensions"
-  },
-  {
-    "name":"sun.security.x509.CertificatePoliciesExtension",
-    "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
-  },
-  {
-    "name":"sun.security.x509.ExtendedKeyUsageExtension",
-    "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
-  },
-  {
-    "name":"sun.security.x509.IssuerAlternativeNameExtension",
-    "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
-  },
-  {
-    "name":"sun.security.x509.KeyUsageExtension",
-    "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
-  },
-  {
-    "name":"sun.security.x509.NetscapeCertTypeExtension",
-    "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
-  },
-  {
-    "name":"sun.security.x509.PrivateKeyUsageExtension",
-    "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
-  },
-  {
-    "name":"sun.security.x509.SubjectAlternativeNameExtension",
-    "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
-  },
-  {
-    "name":"sun.security.x509.SubjectKeyIdentifierExtension",
-    "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
-  }
+{
+  "name":"[Lcom.oracle.dragonlite.rest.ORDSSQLServiceResponseItems;"}
+,
+{
+  "name":"[Ljava.lang.Object;"}
+,
+{
+  "name":"[Ljava.lang.annotation.Annotation;"}
+,
+{
+  "name":"[Ljavax.ws.rs.client.ClientRequestFilter;"}
+,
+{
+  "name":"[Ljavax.ws.rs.client.ClientResponseFilter;"}
+,
+{
+  "name":"[Ljavax.ws.rs.ext.ReaderInterceptor;"}
+,
+{
+  "name":"[Lorg.apache.http.Header;"}
+,
+{
+  "name":"byte[]"}
+,
+{
+  "name":"ch.qos.logback.classic.encoder.PatternLayoutEncoder",
+  "queryAllPublicMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"ch.qos.logback.classic.pattern.DateConverter",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"ch.qos.logback.classic.pattern.LevelConverter",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"ch.qos.logback.classic.pattern.LineSeparatorConverter",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"ch.qos.logback.classic.pattern.MessageConverter",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"ch.qos.logback.core.ConsoleAppender",
+  "queryAllPublicMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"ch.qos.logback.core.OutputStreamAppender",
+  "methods":[{"name":"setEncoder","parameterTypes":["ch.qos.logback.core.encoder.Encoder"] }]}
+,
+{
+  "name":"ch.qos.logback.core.encoder.LayoutWrappingEncoder",
+  "methods":[{"name":"setParent","parameterTypes":["ch.qos.logback.core.spi.ContextAware"] }]}
+,
+{
+  "name":"ch.qos.logback.core.pattern.PatternLayoutEncoderBase",
+  "methods":[{"name":"setPattern","parameterTypes":["java.lang.String"] }]}
+,
+{
+  "name":"com.fasterxml.jackson.databind.deser.Deserializers[]"}
+,
+{
+  "name":"com.fasterxml.jackson.databind.ext.Java7HandlersImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.fasterxml.jackson.databind.ext.Java7SupportImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.intellij.rt.execution.application.AppMainV2$Agent",
+  "methods":[{"name":"premain","parameterTypes":["java.lang.String","java.lang.instrument.Instrumentation"] }]}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$DataSafeStatus",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$DbWorkload",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$InfrastructureType",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$LicenseModel",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$LifecycleState",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$OpenMode",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$OperationsInsightsStatus",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$PermissionLevel",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$RefreshableMode",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$RefreshableStatus",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabase$Role",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseApex$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseBackupConfig$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseBackupConfig$ManualBackupType",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseConnectionStrings$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseConnectionUrls$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseKeyHistoryEntry$Builder",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"build","parameterTypes":[] }, 
+    {"name":"id","parameterTypes":["java.lang.String"] }, 
+    {"name":"kmsKeyVersionId","parameterTypes":["java.lang.String"] }, 
+    {"name":"timeActivated","parameterTypes":["java.util.Date"] }, 
+    {"name":"vaultId","parameterTypes":["java.lang.String"] }
+  ]}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseStandbySummary$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseStandbySummary$LifecycleState",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$AutonomousMaintenanceScheduleType",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"create","parameterTypes":["java.lang.String"] }]}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$DataSafeStatus",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$DatabaseEdition",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$DatabaseManagementStatus",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$DataguardRegionType",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$DbWorkload",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$InfrastructureType",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$LicenseModel",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$LifecycleState",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$OpenMode",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$OperationsInsightsStatus",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$PermissionLevel",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$RefreshableMode",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$RefreshableStatus",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.AutonomousDatabaseSummary$Role",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.CreateAutonomousDatabaseBase",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.CreateAutonomousDatabaseBase$DbWorkload",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.CreateAutonomousDatabaseBase$LicenseModel",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.CreateAutonomousDatabaseDetails",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.CustomerContact",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.CustomerContact$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.DatabaseConnectionStringProfile$Builder",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"build","parameterTypes":[] }, 
+    {"name":"consumerGroup","parameterTypes":["com.oracle.bmc.database.model.DatabaseConnectionStringProfile$ConsumerGroup"] }, 
+    {"name":"displayName","parameterTypes":["java.lang.String"] }, 
+    {"name":"hostFormat","parameterTypes":["com.oracle.bmc.database.model.DatabaseConnectionStringProfile$HostFormat"] }, 
+    {"name":"protocol","parameterTypes":["com.oracle.bmc.database.model.DatabaseConnectionStringProfile$Protocol"] }, 
+    {"name":"sessionMode","parameterTypes":["com.oracle.bmc.database.model.DatabaseConnectionStringProfile$SessionMode"] }, 
+    {"name":"syntaxFormat","parameterTypes":["com.oracle.bmc.database.model.DatabaseConnectionStringProfile$SyntaxFormat"] }, 
+    {"name":"tlsAuthentication","parameterTypes":["com.oracle.bmc.database.model.DatabaseConnectionStringProfile$TlsAuthentication"] }, 
+    {"name":"value","parameterTypes":["java.lang.String"] }
+  ]}
+,
+{
+  "name":"com.oracle.bmc.database.model.DatabaseConnectionStringProfile$ConsumerGroup",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"create","parameterTypes":["java.lang.String"] }]}
+,
+{
+  "name":"com.oracle.bmc.database.model.DatabaseConnectionStringProfile$HostFormat",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"create","parameterTypes":["java.lang.String"] }]}
+,
+{
+  "name":"com.oracle.bmc.database.model.DatabaseConnectionStringProfile$Protocol",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"create","parameterTypes":["java.lang.String"] }]}
+,
+{
+  "name":"com.oracle.bmc.database.model.DatabaseConnectionStringProfile$SessionMode",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"create","parameterTypes":["java.lang.String"] }]}
+,
+{
+  "name":"com.oracle.bmc.database.model.DatabaseConnectionStringProfile$SyntaxFormat",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"create","parameterTypes":["java.lang.String"] }]}
+,
+{
+  "name":"com.oracle.bmc.database.model.DatabaseConnectionStringProfile$TlsAuthentication",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "methods":[{"name":"create","parameterTypes":["java.lang.String"] }]}
+,
+{
+  "name":"com.oracle.bmc.database.model.DayOfWeek$Builder",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.DayOfWeek$Name",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.GenerateAutonomousDatabaseWalletDetails",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.GenerateAutonomousDatabaseWalletDetails$GenerateType",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.database.model.ScheduledOperationDetails$Builder",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.http.internal.AuthnClientFilter",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.http.internal.ClientIdFilter",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.http.internal.ContentLengthFilter",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.http.internal.LogHeadersFilter",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.http.internal.ResponseHelper$ErrorCodeAndMessage$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.identity.model.User$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.identity.model.User$LifecycleState",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.identity.model.UserCapabilities$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.limits.model.ResourceAvailability$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.objectstorage.model.Bucket$AutoTiering",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.objectstorage.model.Bucket$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.objectstorage.model.Bucket$PublicAccessType",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.objectstorage.model.Bucket$StorageTier",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.objectstorage.model.Bucket$Versioning",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.objectstorage.model.BucketSummary$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.objectstorage.model.CreateBucketDetails",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.objectstorage.model.CreateBucketDetails$PublicAccessType",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.objectstorage.model.CreateBucketDetails$StorageTier",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.objectstorage.model.CreateBucketDetails$Versioning",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.objectstorage.requests.PutObjectRequest",
+  "methods":[
+    {"name":"getContentEncoding","parameterTypes":[] }, 
+    {"name":"getContentLanguage","parameterTypes":[] }, 
+    {"name":"getContentType","parameterTypes":[] }
+  ]}
+,
+{
+  "name":"com.oracle.bmc.workrequests.model.WorkRequest$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.workrequests.model.WorkRequest$Status",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.workrequests.model.WorkRequestError$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.bmc.workrequests.model.WorkRequestResource$ActionType",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"com.oracle.bmc.workrequests.model.WorkRequestResource$Builder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.dragonlite.rest.ORDSSQLServiceResponse",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.dragonlite.rest.ORDSSQLServiceResponseItems",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"com.oracle.dragonlite.rest.ORDSSQLServiceResponseItems[]"}
+,
+{
+  "name":"com.sun.crypto.provider.AESCipher$General",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.sun.crypto.provider.ARCFOURCipher",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.sun.crypto.provider.ChaCha20Cipher$ChaCha20Poly1305",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.sun.crypto.provider.DESCipher",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.sun.crypto.provider.DESedeCipher",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.sun.crypto.provider.DHParameters",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.sun.crypto.provider.GaloisCounterMode$AESGCM",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.sun.crypto.provider.HmacCore$HmacSHA256",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.sun.crypto.provider.TlsKeyMaterialGenerator",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.sun.crypto.provider.TlsMasterSecretGenerator",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.sun.crypto.provider.TlsPrfGenerator$V12",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"java.awt.image.RenderedImage"}
+,
+{
+  "name":"java.io.Closeable",
+  "queriedMethods":[{"name":"close","parameterTypes":[] }]}
+,
+{
+  "name":"java.io.FilePermission"}
+,
+{
+  "name":"java.io.Serializable",
+  "allDeclaredMethods":true}
+,
+{
+  "name":"java.lang.Boolean",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"java.lang.Class"}
+,
+{
+  "name":"java.lang.Class[]"}
+,
+{
+  "name":"java.lang.Comparable",
+  "allDeclaredMethods":true}
+,
+{
+  "name":"java.lang.Enum",
+  "allDeclaredMethods":true}
+,
+{
+  "name":"java.lang.Integer",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"java.lang.Number",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"java.lang.Object",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "queriedMethods":[
+    {"name":"equals","parameterTypes":["java.lang.Object"] }, 
+    {"name":"hashCode","parameterTypes":[] }, 
+    {"name":"toString","parameterTypes":[] }
+  ]}
+,
+{
+  "name":"java.lang.Object[]"}
+,
+{
+  "name":"java.lang.RuntimePermission"}
+,
+{
+  "name":"java.lang.String"}
+,
+{
+  "name":"java.lang.String[]"}
+,
+{
+  "name":"java.lang.Throwable",
+  "methods":[{"name":"addSuppressed","parameterTypes":["java.lang.Throwable"] }]}
+,
+{
+  "name":"java.lang.reflect.Method",
+  "methods":[{"name":"isVarArgs","parameterTypes":[] }]}
+,
+{
+  "name":"java.lang.reflect.Type"}
+,
+{
+  "name":"java.net.NetPermission"}
+,
+{
+  "name":"java.net.SocketPermission"}
+,
+{
+  "name":"java.net.URLPermission",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.String","java.lang.String"] }]}
+,
+{
+  "name":"java.nio.Buffer"}
+,
+{
+  "name":"java.security.AlgorithmParametersSpi"}
+,
+{
+  "name":"java.security.AllPermission"}
+,
+{
+  "name":"java.security.KeyStoreSpi"}
+,
+{
+  "name":"java.security.MessageDigestSpi"}
+,
+{
+  "name":"java.security.SecureRandomParameters"}
+,
+{
+  "name":"java.security.SecurityPermission"}
+,
+{
+  "name":"java.security.cert.CertStoreParameters"}
+,
+{
+  "name":"java.security.cert.PKIXRevocationChecker"}
+,
+{
+  "name":"java.security.interfaces.DSAPrivateKey"}
+,
+{
+  "name":"java.security.interfaces.DSAPublicKey"}
+,
+{
+  "name":"java.security.interfaces.ECPrivateKey"}
+,
+{
+  "name":"java.security.interfaces.ECPublicKey"}
+,
+{
+  "name":"java.security.interfaces.RSAPrivateKey"}
+,
+{
+  "name":"java.security.interfaces.RSAPublicKey"}
+,
+{
+  "name":"java.security.spec.DSAParameterSpec"}
+,
+{
+  "name":"java.util.Date"}
+,
+{
+  "name":"java.util.Locale"}
+,
+{
+  "name":"java.util.PropertyPermission"}
+,
+{
+  "name":"java.util.concurrent.LinkedTransferQueue",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"javax.activation.DataSource"}
+,
+{
+  "name":"javax.crypto.spec.GCMParameterSpec"}
+,
+{
+  "name":"javax.inject.Named",
+  "allDeclaredMethods":true}
+,
+{
+  "name":"javax.inject.Singleton",
+  "allDeclaredMethods":true}
+,
+{
+  "name":"javax.management.ObjectName"}
+,
+{
+  "name":"javax.naming.InitialContext",
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"lookup","parameterTypes":["java.lang.String"] }
+  ]}
+,
+{
+  "name":"javax.security.auth.x500.X500Principal",
+  "fields":[{"name":"thisX500Name"}],
+  "methods":[{"name":"<init>","parameterTypes":["sun.security.x509.X500Name"] }]}
+,
+{
+  "name":"javax.ws.rs.core.MediaType"}
+,
+{
+  "name":"javax.ws.rs.ext.Providers",
+  "queriedMethods":[
+    {"name":"getContextResolver","parameterTypes":["java.lang.Class","javax.ws.rs.core.MediaType"] }, 
+    {"name":"getExceptionMapper","parameterTypes":["java.lang.Class"] }, 
+    {"name":"getMessageBodyReader","parameterTypes":["java.lang.Class","java.lang.reflect.Type","java.lang.annotation.Annotation[]","javax.ws.rs.core.MediaType"] }, 
+    {"name":"getMessageBodyWriter","parameterTypes":["java.lang.Class","java.lang.reflect.Type","java.lang.annotation.Annotation[]","javax.ws.rs.core.MediaType"] }
+  ]}
+,
+{
+  "name":"javax.xml.transform.Source"}
+,
+{
+  "name":"javax.xml.transform.dom.DOMSource"}
+,
+{
+  "name":"javax.xml.transform.sax.SAXSource"}
+,
+{
+  "name":"javax.xml.transform.stream.StreamSource"}
+,
+{
+  "name":"org.apache.commons.logging.LogFactory"}
+,
+{
+  "name":"org.apache.commons.logging.impl.Jdk14Logger",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.String"] }]}
+,
+{
+  "name":"org.apache.commons.logging.impl.Log4JLogger"}
+,
+{
+  "name":"org.apache.commons.logging.impl.LogFactoryImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.apache.commons.logging.impl.WeakHashtable",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.apache.http.Header"}
+,
+{
+  "name":"org.apache.http.HttpEntity"}
+,
+{
+  "name":"org.apache.http.HttpMessage",
+  "methods":[{"name":"getAllHeaders","parameterTypes":[] }],
+  "queriedMethods":[
+    {"name":"addHeader","parameterTypes":["java.lang.String","java.lang.String"] }, 
+    {"name":"addHeader","parameterTypes":["org.apache.http.Header"] }, 
+    {"name":"containsHeader","parameterTypes":["java.lang.String"] }, 
+    {"name":"getFirstHeader","parameterTypes":["java.lang.String"] }, 
+    {"name":"getHeaders","parameterTypes":["java.lang.String"] }, 
+    {"name":"getLastHeader","parameterTypes":["java.lang.String"] }, 
+    {"name":"getParams","parameterTypes":[] }, 
+    {"name":"getProtocolVersion","parameterTypes":[] }, 
+    {"name":"headerIterator","parameterTypes":[] }, 
+    {"name":"headerIterator","parameterTypes":["java.lang.String"] }, 
+    {"name":"removeHeader","parameterTypes":["org.apache.http.Header"] }, 
+    {"name":"removeHeaders","parameterTypes":["java.lang.String"] }, 
+    {"name":"setHeader","parameterTypes":["java.lang.String","java.lang.String"] }, 
+    {"name":"setHeader","parameterTypes":["org.apache.http.Header"] }, 
+    {"name":"setHeaders","parameterTypes":["org.apache.http.Header[]"] }, 
+    {"name":"setParams","parameterTypes":["org.apache.http.params.HttpParams"] }
+  ]}
+,
+{
+  "name":"org.apache.http.HttpResponse",
+  "methods":[
+    {"name":"getEntity","parameterTypes":[] }, 
+    {"name":"getStatusLine","parameterTypes":[] }
+  ],
+  "queriedMethods":[
+    {"name":"getLocale","parameterTypes":[] }, 
+    {"name":"setEntity","parameterTypes":["org.apache.http.HttpEntity"] }, 
+    {"name":"setLocale","parameterTypes":["java.util.Locale"] }, 
+    {"name":"setReasonPhrase","parameterTypes":["java.lang.String"] }, 
+    {"name":"setStatusCode","parameterTypes":["int"] }, 
+    {"name":"setStatusLine","parameterTypes":["org.apache.http.ProtocolVersion","int"] }, 
+    {"name":"setStatusLine","parameterTypes":["org.apache.http.ProtocolVersion","int","java.lang.String"] }, 
+    {"name":"setStatusLine","parameterTypes":["org.apache.http.StatusLine"] }
+  ]}
+,
+{
+  "name":"org.apache.http.ProtocolVersion"}
+,
+{
+  "name":"org.apache.http.StatusLine"}
+,
+{
+  "name":"org.apache.http.client.config.RequestConfig"}
+,
+{
+  "name":"org.apache.http.client.methods.CloseableHttpResponse"}
+,
+{
+  "name":"org.apache.http.params.HttpParams"}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.asymmetric.COMPOSITE$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.asymmetric.DH$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.asymmetric.DSA$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.asymmetric.DSTU4145$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.asymmetric.EC$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.asymmetric.ECGOST$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.asymmetric.EdEC$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.asymmetric.ElGamal$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.asymmetric.GM$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.asymmetric.GOST$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.asymmetric.IES$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.asymmetric.RSA$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.asymmetric.X509$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.asymmetric.rsa.KeyPairGeneratorSpi",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.Blake2b$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.Blake2s$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.DSTU7564$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.GOST3411$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.Haraka$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.Keccak$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.MD2$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.MD4$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.MD5$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.RIPEMD128$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.RIPEMD160$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.RIPEMD256$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.RIPEMD320$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.SHA1$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.SHA224$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.SHA256$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.SHA3$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.SHA384$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.SHA512$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.SM3$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.Skein$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.Tiger$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.digest.Whirlpool$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.drbg.DRBG$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.keystore.BC$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.keystore.BCFKS$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.keystore.PKCS12$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.AES$ECB",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.AES$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.ARC4$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.ARIA$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.Blowfish$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.CAST5$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.CAST6$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.Camellia$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.ChaCha$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.DES$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.DESede$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.DSTU7624$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.GOST28147$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.GOST3412_2015$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.Grain128$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.Grainv1$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.HC128$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.HC256$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.IDEA$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.Noekeon$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.OpenSSLPBKDF$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.OpenSSLPBKDF$PBKDF",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.PBEPBKDF1$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.PBEPBKDF2$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.PBEPKCS12$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.Poly1305$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.RC2$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.RC5$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.RC6$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.Rijndael$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.SCRYPT$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.SEED$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.SM4$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.Salsa20$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.Serpent$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.Shacal2$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.SipHash$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.SipHash128$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.Skipjack$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.TEA$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.TLSKDF$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.Threefish$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.Twofish$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.VMPC$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.VMPCKSA3$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.XSalsa20$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.XTEA$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jcajce.provider.symmetric.Zuc$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.jce.provider.BouncyCastleProvider",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.pqc.jcajce.provider.LMS$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.pqc.jcajce.provider.McEliece$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.pqc.jcajce.provider.NH$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.pqc.jcajce.provider.QTESLA$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.pqc.jcajce.provider.Rainbow$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.pqc.jcajce.provider.SPHINCS$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.bouncycastle.pqc.jcajce.provider.XMSS$Mappings",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.glassfish.hk2.internal.PerThreadContext",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.apache.connector.ApacheConnector"}
+,
+{
+  "name":"org.glassfish.jersey.client.ChunkedInputReader",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.client.ClientAsyncExecutor",
+  "allDeclaredMethods":true}
+,
+{
+  "name":"org.glassfish.jersey.client.ClientBackgroundScheduler",
+  "allDeclaredMethods":true}
+,
+{
+  "name":"org.glassfish.jersey.client.DefaultClientAsyncExecutorProvider",
+  "allDeclaredMethods":true}
+,
+{
+  "name":"org.glassfish.jersey.client.DefaultClientBackgroundSchedulerProvider",
+  "allDeclaredMethods":true}
+,
+{
+  "name":"org.glassfish.jersey.client.JerseyClientBuilder",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.glassfish.jersey.inject.hk2.ContextInjectionResolverImpl",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.inject.hk2.Hk2InjectionManagerFactory",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.glassfish.jersey.inject.hk2.Hk2RequestScope",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.inject.hk2.InstanceSupplierFactoryBridge",
+  "methods":[{"name":"provide","parameterTypes":[] }]}
+,
+{
+  "name":"org.glassfish.jersey.inject.hk2.JerseyErrorService",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.inject.hk2.RequestContext",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.internal.RuntimeDelegateImpl",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"org.glassfish.jersey.internal.config.ExternalPropertiesAutoDiscoverable",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.internal.config.ExternalPropertiesConfigurationFeature",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.internal.inject.Custom",
+  "allDeclaredMethods":true}
+,
+{
+  "name":"org.glassfish.jersey.jackson.JacksonFeature",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.jackson.internal.JacksonAutoDiscoverable",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.jackson.internal.jackson.jaxrs.base.ProviderBase",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true}
+,
+{
+  "name":"org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJaxbJsonProvider",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true}
+,
+{
+  "name":"org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJsonProvider",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true}
+,
+{
+  "name":"org.glassfish.jersey.logging.LoggingFeatureAutoDiscoverable",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.AbstractFormProvider",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.AbstractMessageReaderWriterProvider",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.BasicTypesMessageProvider",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.ByteArrayProvider",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.DataSourceProvider",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.EnumMessageProvider",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.FileProvider",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.FormMultivaluedMapProvider",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.FormProvider",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.InputStreamProvider",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.ReaderProvider",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.RenderedImageProvider",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.SourceProvider$DomSourceReader",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.SourceProvider$SaxSourceReader",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.SourceProvider$SourceWriter",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.SourceProvider$StreamSourceReader",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.StreamingOutputProvider",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.message.internal.StringMessageProvider",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.glassfish.jersey.process.internal.RequestScope",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true}
+,
+{
+  "name":"org.glassfish.jersey.spi.AbstractThreadPoolProvider",
+  "allDeclaredMethods":true}
+,
+{
+  "name":"org.glassfish.jersey.spi.ScheduledThreadPoolExecutorProvider",
+  "allDeclaredMethods":true}
+,
+{
+  "name":"org.glassfish.jersey.spi.ThreadPoolExecutorProvider",
+  "allDeclaredMethods":true}
+,
+{
+  "name":"org.jboss.resteasy.logging.impl.Slf4jLogger",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.String"] }]}
+,
+{
+  "name":"org.jvnet.hk2.internal.DynamicConfigurationServiceImpl",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.jvnet.hk2.internal.ServiceLocatorRuntimeImpl",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true}
+,
+{
+  "name":"org.slf4j.Logger"}
+,
+{
+  "name":"sun.misc.Unsafe",
+  "allDeclaredFields":true}
+,
+{
+  "name":"sun.security.pkcs.SignerInfo[]"}
+,
+{
+  "name":"sun.security.pkcs12.PKCS12KeyStore",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.pkcs12.PKCS12KeyStore$DualFormatPKCS12",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.DRBG",
+  "methods":[{"name":"<init>","parameterTypes":["java.security.SecureRandomParameters"] }]}
+,
+{
+  "name":"sun.security.provider.DSA$SHA1withDSA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.DSA$SHA224withDSA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.DSA$SHA256withDSA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.DSAKeyFactory",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.DSAParameters",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.JavaKeyStore$DualFormatJKS",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.JavaKeyStore$JKS",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.MD5",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.SHA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.SHA2$SHA224",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.SHA2$SHA256",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.SHA5$SHA384",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.SHA5$SHA512",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.SecureRandom",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.Sun",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.X509Factory",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.certpath.CollectionCertStore",
+  "methods":[{"name":"<init>","parameterTypes":["java.security.cert.CertStoreParameters"] }]}
+,
+{
+  "name":"sun.security.provider.certpath.PKIXCertPathValidator",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.provider.certpath.SunCertPathBuilder",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.rsa.PSSParameters",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.rsa.RSAKeyFactory$Legacy",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.rsa.RSAPSSSignature",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.rsa.RSASignature$SHA1withRSA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.rsa.RSASignature$SHA224withRSA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.rsa.RSASignature$SHA256withRSA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.rsa.RSASignature$SHA512withRSA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.ssl.KeyManagerFactoryImpl$SunX509",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.ssl.SSLContextImpl$DefaultSSLContext",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.ssl.SSLContextImpl$TLSContext",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.ssl.TrustManagerFactoryImpl$PKIXFactory",
+  "methods":[{"name":"<init>","parameterTypes":[] }]}
+,
+{
+  "name":"sun.security.util.ObjectIdentifier"}
+,
+{
+  "name":"sun.security.x509.AuthorityInfoAccessExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
+,
+{
+  "name":"sun.security.x509.AuthorityKeyIdentifierExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
+,
+{
+  "name":"sun.security.x509.BasicConstraintsExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
+,
+{
+  "name":"sun.security.x509.CRLDistributionPointsExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
+,
+{
+  "name":"sun.security.x509.CertificateExtensions"}
+,
+{
+  "name":"sun.security.x509.CertificatePoliciesExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
+,
+{
+  "name":"sun.security.x509.ExtendedKeyUsageExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
+,
+{
+  "name":"sun.security.x509.IssuerAlternativeNameExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
+,
+{
+  "name":"sun.security.x509.KeyUsageExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
+,
+{
+  "name":"sun.security.x509.NetscapeCertTypeExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
+,
+{
+  "name":"sun.security.x509.PrivateKeyUsageExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
+,
+{
+  "name":"sun.security.x509.SubjectAlternativeNameExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
+,
+{
+  "name":"sun.security.x509.SubjectKeyIdentifierExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]}
+
 ]

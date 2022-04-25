@@ -1,2 +1,8 @@
 [
+  {
+    "interfaces":["javax.ws.rs.ext.Providers"]}
+  ,
+  {
+    "interfaces":["org.apache.http.client.methods.CloseableHttpResponse"]}
+  
 ]
