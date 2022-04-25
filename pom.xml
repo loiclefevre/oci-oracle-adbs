@@ -166,6 +166,7 @@
                         --initialize-at-build-time=sun.instrument.InstrumentationImpl
                         -H:+TraceNativeToolUsage
                         -H:-CheckToolchain
+                        --static --libc=musl
                     </buildArgs>
                 </configuration>
             </plugin>
