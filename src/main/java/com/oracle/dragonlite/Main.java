@@ -12,6 +12,12 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.ProxySelector;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class Main {
 	private static final Logger logger = LoggerFactory.getLogger("Dragon Lite");
@@ -32,23 +38,6 @@ public class Main {
 			session.initializeOCIClients();
 
 			session.work();
-
-/*			session.createDatabase();
-
-			GetResourceAvailabilityRequest getResourceAvailabilityRequest =
-					GetResourceAvailabilityRequest.builder()
-							.compartmentId(provider.getTenantId())
-							.serviceName("database")
-							.limitName("adb-free-count")
-							.build();
-			GetResourceAvailabilityResponse resourceAvailabilityResponse = limitsClient.getResourceAvailability(getResourceAvailabilityRequest);
-
-			if (resourceAvailabilityResponse.getResourceAvailability().getAvailable() <= 0) {
-				logger.error("No more free database possible");
-			} else {
-				logger.error("Now deploying ATPS FREE");
-			}
-*/
 		}
 		catch (DLException e) {
 			status = e.getErrorCode();
@@ -59,7 +48,7 @@ public class Main {
 	}
 
 	private void work() {
-		logger.info(this.toString());
+		// logger.info(this.toString());
 
 		switch (action) {
 			case "start":
@@ -108,13 +97,6 @@ public class Main {
 	}
 
 	private void analyzeCommandLineParameters(String[] args) {
-		try {
-			Class.forName("org.glassfish.jersey.client.JerseyClientBuilder");
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
 		for (int i = 0; i < args.length; i++) {
 			String arg = args[i].toLowerCase();
 
@@ -183,14 +165,42 @@ public class Main {
 
 				case "-i":
 					if (i + 1 < args.length) {
-						invokerIPAddress = args[++i];
+						invokerIPAddress = args[++i] + "," + retrieveCurrentIPAddress();
 					}
 					break;
 
 				default:
 					displayUsage();
-					throw new DLException( DLException.UNKNOWN_COMMAND_LINE_ARGUMENT );
+					throw new DLException(DLException.UNKNOWN_COMMAND_LINE_ARGUMENT);
 			}
+		}
+	}
+
+	private String retrieveCurrentIPAddress() {
+		try {
+			final HttpRequest request = HttpRequest.newBuilder()
+					.uri(new URI("checkip.dyndns.org"))
+					.GET()
+					.build();
+
+			final HttpResponse<String> response = HttpClient
+					.newBuilder()
+					.version(HttpClient.Version.HTTP_1_1)
+					.proxy(ProxySelector.getDefault())
+					.build()
+					.send(request, HttpResponse.BodyHandlers.ofString());
+
+
+			if (response.statusCode() != 200) {
+				throw new RuntimeException("Request for self IP address was not successful (" + response.statusCode() + ")");
+			}
+
+			final String responseBody = response.body();
+
+			return responseBody.substring(76, responseBody.indexOf("</body>"));
+		}
+		catch (Exception e) {
+			throw new DLException(DLException.UNKNOWN_CURRENT_IP_ADDRESS, e);
 		}
 	}
 
