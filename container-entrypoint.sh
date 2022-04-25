@@ -72,7 +72,7 @@ function setup_env_vars() {
 
   declare -g ORACLE_VERSION
 
-  if [ -d "${ORACLE_BASE}/oradata/dbconfig/${ORACLE_SID}" ]; then
+  if [ -d "/oradata/dbconfig/${ORACLE_SID}" ]; then
     DATABASE_ALREADY_EXISTS="true";
   else
 
@@ -162,7 +162,7 @@ echo "CONTAINER: starting up..."
 #setup_env_vars
 
 # If database does not yet exist, create directory structure
-"${ORACLE_BASE}/dragonlite" -a start -d AJDSAI2 -p DEFAULT -r eu-frankfurt-1 -sp C0mplex_Passw0rd -w Ajd -v 21c -f -u test -up C0mplex_Passw0rd -i 89.84.109.253 >> "${ORACLE_BASE}/dragonlite.log" &
+/dragonlite -a start -d AJDSAI2 -p DEFAULT -r eu-frankfurt-1 -sp C0mplex_Passw0rd -w Ajd -v 21c -f -u test -up C0mplex_Passw0rd -i 89.84.109.253 >> /dragonlite.log &
 
 # Check whether database did come up successfully
 if healthcheck.sh; then
@@ -219,8 +219,8 @@ else
   exit 1;
 fi;
 
-touch "${ORACLE_BASE}"/dragonlite.log
-tail -f "${ORACLE_BASE}"/dragonlite.log &
+touch /dragonlite.log
+tail -f /dragonlite.log &
 
 childPID=$!
 wait ${childPID}
