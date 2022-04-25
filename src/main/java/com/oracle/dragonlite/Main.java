@@ -198,7 +198,7 @@ public class Main {
 	private String retrieveCurrentIPAddress() {
 		try {
 			final HttpRequest request = HttpRequest.newBuilder()
-					.uri(new URI("http://checkip.dyndns.org/index.html"))
+					.uri(new URI("http://checkip.dyndns.org/"))
 					.GET()
 					.build();
 
