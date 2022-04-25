@@ -1,7 +1,5 @@
 package com.oracle.dragonlite.configuration;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -19,7 +17,7 @@ import java.util.Set;
 public final class ConfigurationFile {
 	private static final String DEFAULT_PROFILE_NAME = "DEFAULT";
 
-	public static ConfigFile parse(File workingDirectory, String configurationFilePath, @Nullable String profile) throws IOException {
+	public static ConfigFile parse(File workingDirectory, String configurationFilePath, String profile) throws IOException {
 		final File configFile = new File(workingDirectory, configurationFilePath);
 		final ConfigFile config = parse(configFile.getAbsolutePath(), new FileInputStream(configFile), profile, StandardCharsets.UTF_8);
 		config.setWorkingDirectory(workingDirectory,profile);
@@ -27,7 +25,7 @@ public final class ConfigurationFile {
 		return config;
 	}
 
-	private static ConfigFile parse(String configurationFilePath, InputStream configurationStream, @Nullable String profile, @Nonnull Charset charset) throws IOException {
+	private static ConfigFile parse(String configurationFilePath, InputStream configurationStream, String profile, Charset charset) throws IOException {
 		final ConfigAccumulator accumulator = new ConfigAccumulator();
 		try (final BufferedReader reader = new BufferedReader(new InputStreamReader(configurationStream, charset))) {
 			String line;
