@@ -18,20 +18,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+FROM alpine:3
 #FROM oraclelinux:8-slim
-FROM openjdk:17.0.2
+#FROM debian:bullseye-slim
+#FROM openjdk:17.0.2
 
 ARG BUILD_MODE
 
 ENV ORACLE_BASE=/opt/oracle \
     PATH=${PATH}:/opt/oracle
 
-COPY container-entrypoint.sh healthcheck.sh dragonlite-1.0.0-SNAPSHOT-jar-with-dependencies.jar adbs.ini privateKey ${ORACLE_BASE} 
+COPY container-entrypoint.sh healthcheck.sh dragonlite adbs.ini privateKey ${ORACLE_BASE}
+#COPY container-entrypoint.sh healthcheck.sh dragonlite-1.0.0-SNAPSHOT-jar-with-dependencies.jar adbs.ini privateKey ${ORACLE_BASE}
 
 WORKDIR ${ORACLE_BASE}
 
 HEALTHCHECK CMD "${ORACLE_BASE}"/healthcheck.sh >/dev/null || exit 1
 
 ENTRYPOINT ["container-entrypoint.sh"]
-
-

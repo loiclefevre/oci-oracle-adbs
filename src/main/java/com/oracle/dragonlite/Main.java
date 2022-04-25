@@ -14,11 +14,26 @@ import java.io.File;
 import java.io.IOException;
 import java.net.ProxySelector;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+/**
+ * Use cases:
+ * REUSE == FALSE
+ * -1- no database: create it and configure it (e.g. create application user)
+ * -2- terminate database upon stopping container
+ *
+ * REUSE == TRUE
+ * -1- no database: create it and configure it (e.g. create application user)
+ * -2- no termination upon stopping container
+ *
+ * -1- a database exists, connect to app user (check it exists)
+ * -2- no termination upon stopping container
+ *
+ * REUSE == TRUE
+ * MULTITENANT == TRUE
+ */
 public class Main {
 	private static final Logger logger = LoggerFactory.getLogger("Dragon Lite");
 
@@ -27,8 +42,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-
-		int status = 0;
+		int exitStatus = 0;
 
 		try {
 			final Main session = new Main(args);
@@ -40,11 +54,11 @@ public class Main {
 			session.work();
 		}
 		catch (DLException e) {
-			status = e.getErrorCode();
+			exitStatus = e.getErrorCode();
 			logger.error("Error", e);
 		}
 
-		System.exit(status);
+		System.exit(exitStatus);
 	}
 
 	private void work() {
@@ -54,6 +68,11 @@ public class Main {
 			case "start":
 				logger.info("start");
 				Start.work(this);
+				break;
+
+			case "stop":
+				logger.info("stop");
+				//Stop.work(this);
 				break;
 		}
 	}

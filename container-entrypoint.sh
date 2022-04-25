@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # Since: April, 2022
 # Author: loic.lefevre
@@ -21,7 +21,7 @@
 
 # Exit on errors
 # Great explanation on https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
-set -Eeuo pipefail
+set -euo pipefail
 
 # Stop container when SIGINT or SIGTERM is received
 ########### stop database helper function ############
@@ -162,20 +162,7 @@ echo "CONTAINER: starting up..."
 #setup_env_vars
 
 # If database does not yet exist, create directory structure
-if [ -z "${DATABASE_ALREADY_EXISTS:-}" ]; then
-  echo "CONTAINER: first database startup, initializing..."
-  export IP_ADDRESS=`curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'`
-  echo ${IP_ADDRESS} >> "${ORACLE_BASE}/dragon-lite.log"
-  java -jar "${ORACLE_BASE}/dragonlite-1.0.0-SNAPSHOT-jar-with-dependencies.jar" -a start -d AJDSAI2 -p DEFAULT -r eu-frankfurt-1 -sp C0mplex_Passw0rd -w Ajd -v 21c -f -u test -up C0mplex_Passw0rd -i "89.84.109.253,${IP_ADDRESS}" >> "${ORACLE_BASE}/dragon-lite.log" &
-  echo "yes!!"
-# Otherwise check that symlinks are in place
-else
-  echo "CONTAINER: database already initialized."
-fi;
-
-# Startup database
-echo "CONTAINER: starting up Oracle Database..."
-echo ""
+"${ORACLE_BASE}/dragonlite" -a start -d AJDSAI2 -p DEFAULT -r eu-frankfurt-1 -sp C0mplex_Passw0rd -w Ajd -v 21c -f -u test -up C0mplex_Passw0rd -i 89.84.109.253 >> "${ORACLE_BASE}/dragonlite.log" &
 
 # Check whether database did come up successfully
 if healthcheck.sh; then
@@ -202,7 +189,7 @@ if healthcheck.sh; then
     # Should not happen unless script logic changes
     else
       echo "SCRIPT ERROR: Unspecified password!"
-      echo "Please report a bug at https://github.com/gvenzl/oci-oracle-xe/issues with your environment details."
+      echo "Please report a bug at https://github.com/loiclefevre/oci-oracle-adbs/issues with your environment details."
       exit 1;
     fi;
 
@@ -232,7 +219,8 @@ else
   exit 1;
 fi;
 
-touch "${ORACLE_BASE}"/dragon-lite.log
-tail -f "${ORACLE_BASE}"/dragon-lite.log &
+touch "${ORACLE_BASE}"/dragonlite.log
+tail -f "${ORACLE_BASE}"/dragonlite.log &
+
 childPID=$!
 wait ${childPID}

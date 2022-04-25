@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Since: April, 2022
 # Author: loic.lefevre
 # Name: healthcheck.sh
@@ -20,7 +20,7 @@
 
 # Exit on errors
 # Great explanation on https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
-set -Eeuo pipefail
+set -euo pipefail
 
 exit 0;
 

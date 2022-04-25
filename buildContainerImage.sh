@@ -22,8 +22,8 @@
 # Great explanation on https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
 set -Eeuo pipefail
 
-VERSION="ATPSFree19"
-IMAGE_NAME="loiclefevre/oracle-atps"
+VERSION="19.0.0"
+IMAGE_NAME="loiclefevre/oracle-adbs"
 
 function usage() {
     cat << EOF
@@ -31,7 +31,7 @@ Usage: buildContainerImage.sh [-v version] [-o] [container build option]
 Builds a container image for Oracle Autonomous Database Shared infrastructure.
 Parameters:
    -v: version of Oracle Autonomous Database to build
-       Choose one of: ATPSFree19, ATPSFree21
+       Choose one of: 19.0.0, 21.0.0
    -o: passes on container build option
 Apache License, Version 2.0
 Copyright (c) 2022 Loïc Lefèvre
@@ -67,6 +67,8 @@ IMAGE_NAME="${IMAGE_NAME}:${VERSION}"
 echo "BUILDER: building image $IMAGE_NAME"
 
 BUILD_START_TMS=$(date '+%s')
+
+upx --best -k -o dragonlite target/dragonlite-linux-x86_64
 
 buildah bud -f Dockerfile."${VERSION//./}" -t "${IMAGE_NAME}" --build-arg BUILD_MODE="test"
 
