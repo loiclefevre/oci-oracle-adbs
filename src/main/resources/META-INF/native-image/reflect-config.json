@@ -14,10 +14,6 @@
     "methods":[{"name":"<init>","parameterTypes":[] }]
   },
   {
-    "name":"com.intellij.rt.execution.application.AppMainV2$Agent",
-    "methods":[{"name":"premain","parameterTypes":["java.lang.String","java.lang.instrument.Instrumentation"] }]
-  },
-  {
     "name":"com.oracle.bmc.database.model.AutonomousDatabase$Builder",
     "allDeclaredFields":true,
     "allDeclaredMethods":true,
@@ -342,44 +338,19 @@
     "allDeclaredConstructors":true
   },
   {
-    "name":"com.oracle.dragon.model.LocalDragonConfiguration",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true,
-    "methods":[
-      {"name":"getDatabaseServiceURL","parameterTypes":[] },
-      {"name":"getDbUserName","parameterTypes":[] },
-      {"name":"getDbUserPassword","parameterTypes":[] },
-      {"name":"getExtractedWallet","parameterTypes":[] },
-      {"name":"getSodaAPI","parameterTypes":[] },
-      {"name":"getSqlAPI","parameterTypes":[] },
-      {"name":"getSqlDevWeb","parameterTypes":[] },
-      {"name":"getWalletFile","parameterTypes":[] }
-    ]
-  },
-  {
-    "name":"com.oracle.dragon.model.ORDSSQLServiceResponse",
+    "name":"com.oracle.dragonlite.rest.ORDSSQLServiceResponse",
     "allDeclaredFields":true,
     "allDeclaredMethods":true,
     "allDeclaredConstructors":true
   },
   {
-    "name":"com.oracle.dragon.model.ORDSSQLServiceResponseItems",
+    "name":"com.oracle.dragonlite.rest.ORDSSQLServiceResponseItems",
     "allDeclaredFields":true,
     "allDeclaredMethods":true,
     "allDeclaredConstructors":true
   },
   {
-    "name":"com.oracle.dragon.model.ORDSSQLServiceResponseItems[]"
-  },
-  {
-    "name":"com.oracle.dragon.model.StackMetadata",
-    "allDeclaredFields":true,
-    "allDeclaredMethods":true,
-    "allDeclaredConstructors":true
-  },
-  {
-    "name":"com.oracle.dragon.stacks.EnvironmentRequirement[]"
+    "name":"com.oracle.dragon.rest.ORDSSQLServiceResponseItems[]"
   },
   {
     "name":"com.sun.crypto.provider.AESCipher$General",
@@ -996,20 +967,6 @@
     "allDeclaredMethods":true
   },
   {
-    "name":"org.glassfish.jersey.internal.util.collection.ConcurrentHashMapV8",
-    "fields":[
-      {"name":"baseCount", "allowUnsafeAccess":true},
-      {"name":"cellsBusy", "allowUnsafeAccess":true},
-      {"name":"sizeCtl", "allowUnsafeAccess":true},
-      {"name":"transferIndex", "allowUnsafeAccess":true},
-      {"name":"transferOrigin", "allowUnsafeAccess":true}
-    ]
-  },
-  {
-    "name":"org.glassfish.jersey.internal.util.collection.ConcurrentHashMapV8$CounterCell",
-    "fields":[{"name":"value", "allowUnsafeAccess":true}]
-  },
-  {
     "name":"org.glassfish.jersey.jackson.JacksonFeature",
     "allDeclaredFields":true,
     "allDeclaredMethods":true,
@@ -1161,10 +1118,6 @@
     "allDeclaredFields":true,
     "allDeclaredMethods":true,
     "allDeclaredConstructors":true
-  },
-  {
-    "name":"org.stringtemplate.v4.misc.ObjectModelAdaptor",
-    "fields":[{"name":"INVALID_MEMBER"}]
   },
   {
     "name":"sun.misc.Unsafe",
