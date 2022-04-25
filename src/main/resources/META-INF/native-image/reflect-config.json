@@ -1,5 +1,8 @@
 [
 {
+  "name":"[B"}
+,
+{
   "name":"[Lcom.oracle.dragonlite.rest.ORDSSQLServiceResponseItems;"}
 ,
 {
@@ -7,6 +10,9 @@
 ,
 {
   "name":"[Ljava.lang.Object;"}
+,
+{
+  "name":"[Ljava.lang.String;"}
 ,
 {
   "name":"[Ljava.lang.annotation.Annotation;"}
@@ -22,6 +28,9 @@
 ,
 {
   "name":"[Lorg.apache.http.Header;"}
+,
+{
+  "name":"[Lsun.security.pkcs.SignerInfo;"}
 ,
 {
   "name":"byte[]"}
