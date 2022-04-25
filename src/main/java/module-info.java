@@ -10,7 +10,6 @@ module oci.oracle.adbs {
 	requires java.annotation;
 	requires org.slf4j;
 	requires jersey.client;
-	requires java.ws.rs;
 
 	opens com.oracle.dragonlite.rest to com.fasterxml.jackson.databind;
 }
