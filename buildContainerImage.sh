@@ -23,7 +23,7 @@
 set -Eeuo pipefail
 
 VERSION="19.0.0"
-IMAGE_NAME="loiclefevre/oracle-adbs"
+IMAGE_NAME="loiclefevre/oracle-adb"
 
 function usage() {
     cat << EOF
