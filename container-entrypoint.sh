@@ -26,9 +26,9 @@ set -euo pipefail
 # Stop container when SIGINT or SIGTERM is received
 ########### stop database helper function ############
 function stop_database() {
-  echo `date +"%H:%M:%S.%3N"`" WARN  🐳 org.testcontainers.containers.OracleADBContainer - shutting down database."
+  echo `date +"%H:%M:%S.000"`" WARN  🐳 org.testcontainers.containers.OracleADBContainer - shutting down database."
 
-  echo `date +"%H:%M:%S.%3N"`" INFO  🐳 org.testcontainers.containers.OracleADBContainer - shutting down container."
+  echo `date +"%H:%M:%S.000"`" INFO  🐳 org.testcontainers.containers.OracleADBContainer - shutting down container."
 }
 
 # Retrieve value from ENV[_FILE] variable
@@ -155,7 +155,7 @@ function create_app_user {
 # Set SIGINT & SIGTERM handlers
 trap stop_database SIGINT SIGTERM
 
-echo `date +"%H:%M:%S.%3N"`" INFO  🐳 org.testcontainers.containers.OracleADBContainer - starting up..."
+echo `date +"%H:%M:%S.000"`" INFO  🐳 org.testcontainers.containers.OracleADBContainer - starting up..."
 
 # Setup all required environment variables
 #setup_env_vars
