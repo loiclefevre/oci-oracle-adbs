@@ -160,7 +160,8 @@ echo `date +"%H:%M:%S.%3N"`" INFO  🐳 org.testcontainers.containers.OracleADBC
 # Setup all required environment variables
 #setup_env_vars
 
-# If database does not yet exist, create directory structure
+# Let's start the autonomous database management...
+touch /opt/oracle/dragonlite.log
 dragonlite -a start -d AJDSAI2 -p DEFAULT -r eu-frankfurt-1 -sp C0mplex_Passw0rd -w Ajd -v 21c -f -u test -up C0mplex_Passw0rd -i 89.84.109.253 &
 
 echo "DATABASE IS READY TO USE!"
