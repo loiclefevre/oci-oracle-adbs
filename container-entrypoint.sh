@@ -26,10 +26,9 @@ set -euo pipefail
 # Stop container when SIGINT or SIGTERM is received
 ########### stop database helper function ############
 function stop_database() {
-  echo "CONTAINER: shutdown request received."
-  echo "CONTAINER: shutting down database!"
+  echo `date +"%H:%M:%S.%3N"`" WARN  🐳 org.testcontainers.containers.OracleADBContainer - shutting down database."
 
-  echo "CONTAINER: stopping container."
+  echo `date +"%H:%M:%S.%3N"`" INFO  🐳 org.testcontainers.containers.OracleADBContainer - shutting down container."
 }
 
 # Retrieve value from ENV[_FILE] variable
@@ -156,69 +155,15 @@ function create_app_user {
 # Set SIGINT & SIGTERM handlers
 trap stop_database SIGINT SIGTERM
 
-echo "CONTAINER: starting up..."
+echo `date +"%H:%M:%S.%3N"`" INFO  🐳 org.testcontainers.containers.OracleADBContainer - starting up..."
 
 # Setup all required environment variables
 #setup_env_vars
 
 # If database does not yet exist, create directory structure
-touch /opt/oracle/dragonlite.log
-dragonlite -a start -d AJDSAI2 -p DEFAULT -r eu-frankfurt-1 -sp C0mplex_Passw0rd -w Ajd -v 21c -f -u test -up C0mplex_Passw0rd -i 89.84.109.253 >> dragonlite.log &
+dragonlite -a start -d AJDSAI2 -p DEFAULT -r eu-frankfurt-1 -sp C0mplex_Passw0rd -w Ajd -v 21c -f -u test -up C0mplex_Passw0rd -i 89.84.109.253 &
 
-# Check whether database did come up successfully
-if healthcheck.sh; then
-
-  # First database startup / initialization
-  if [ -z "${DATABASE_ALREADY_EXISTS:-}" ]; then
-
-    # Set Oracle password if it's the first DB startup
-    echo "CONTAINER: Resetting SYS and SYSTEM passwords."
-
-    # If password is specified
-    if [ -n "${ORACLE_PASSWORD:-}" ]; then
-      #resetPassword "${ORACLE_PASSWORD}"
-      echo "reset password TODO?"
-
-    # Generate random password
-    elif [ -n "${ORACLE_RANDOM_PASSWORD:-}" ]; then
-      RANDOM_PASSWORD=$(date +%s | sha256sum | base64 | head -c 8)
-      #resetPassword "${RANDOM_PASSWORD}"
-      echo "############################################"
-      echo "ORACLE PASSWORD FOR SYS AND SYSTEM: ${RANDOM_PASSWORD}"
-      echo "############################################"
-
-    # Should not happen unless script logic changes
-    else
-      echo "SCRIPT ERROR: Unspecified password!"
-      echo "Please report a bug at https://github.com/loiclefevre/oci-oracle-adbs/issues with your environment details."
-      exit 1;
-    fi;
-
-    # Check whether user PDB should be created
-    # setup_env_vars has already validated >=18c requirement
-    if [ -n "${ORACLE_DATABASE:-}" ]; then
-      create_database
-    fi;
-
-    # Check whether app user should be created
-    # setup_env_vars has already validated environment variables
-    if [ -n "${APP_USER:-}" ]; then
-      create_app_user
-    fi;
-  fi;  
-
-  echo ""
-  echo "#########################"
-  echo "DATABASE IS READY TO USE!"
-  echo "#########################"
-  echo ""
-else
-  echo "############################################"
-  echo "DATABASE STARTUP FAILED!"
-  echo "CHECK LOG OUTPUT ABOVE FOR MORE INFORMATION!"
-  echo "############################################"
-  exit 1;
-fi;
+echo "DATABASE IS READY TO USE!"
 
 tail -f /opt/oracle/dragonlite.log &
 
