@@ -164,8 +164,6 @@ echo `date +"%H:%M:%S.000"`" INFO  🐳 org.testcontainers.containers.OracleADBC
 touch /opt/oracle/dragonlite.log
 dragonlite -a start -d AJDSAI2 -p DEFAULT -r eu-frankfurt-1 -sp C0mplex_Passw0rd -w Ajd -v 21c -f -u test -up C0mplex_Passw0rd -i 89.84.109.253 &
 
-echo "DATABASE IS READY TO USE!"
-
 tail -f /opt/oracle/dragonlite.log &
 
 childPID=$!

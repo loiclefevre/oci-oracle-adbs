@@ -232,6 +232,8 @@ public class Start {
 			catch (DLException dle) {
 				createApplicationUser(session, alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
 			}
+
+			System.out.println("JDBC URL: "+alreadyExistADB.getConnectionStrings().getLow());
 		}
 		else {
 			if (freeTiersDatabaseResourceExhausted) {
@@ -376,8 +378,11 @@ public class Start {
 			}
 
 			createApplicationUser(session, autonomousDatabase.getConnectionUrls().getSqlDevWebUrl());
+
+			System.out.println("JDBC URL: "+autonomousDatabase.getConnectionStrings().getLow());
 		}
 
+		System.out.println("DATABASE IS READY TO USE!");
 	}
 
 	private static void createApplicationUser(Main session, String sqlDevWebURL) {

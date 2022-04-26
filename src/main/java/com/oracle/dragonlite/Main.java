@@ -17,6 +17,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 
 /**
  * Use cases:
@@ -199,16 +200,17 @@ public class Main {
 		try {
 			final HttpRequest request = HttpRequest.newBuilder()
 					.uri(new URI("http://checkip.dyndns.org/"))
+					.headers("Accept", "*/*")
 					.GET()
 					.build();
 
 			final HttpResponse<String> response = HttpClient
 					.newBuilder()
+//					.connectTimeout(Duration.ofSeconds(20))
 					.version(HttpClient.Version.HTTP_1_1)
 					.proxy(ProxySelector.getDefault())
 					.build()
 					.send(request, HttpResponse.BodyHandlers.ofString());
-
 
 			if (response.statusCode() != 200) {
 				throw new RuntimeException("Request for self IP address was not successful (" + response.statusCode() + ")");
