@@ -157,8 +157,6 @@ trap stop_database SIGINT SIGTERM
 
 echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - starting up..."
 
-echo ${ACTION} ${DATABASE_NAME} ${SYSTEM_PASSWORD} ${USER} ${USER_PASSWORD}
-
 # Setup all required environment variables
 #setup_env_vars
 
