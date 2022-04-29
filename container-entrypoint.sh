@@ -26,9 +26,9 @@ set -euo pipefail
 # Stop container when SIGINT or SIGTERM is received
 ########### stop database helper function ############
 function stop_database() {
-  echo `date +"%H:%M:%S.000"`" WARN  🐳 org.testcontainers.containers.OracleADBContainer - shutting down database."
+  echo `date +"%H:%M:%S.000"`" WARN  🐳 Container - shutting down database."
 
-  echo `date +"%H:%M:%S.000"`" INFO  🐳 org.testcontainers.containers.OracleADBContainer - shutting down container."
+  echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - shutting down container."
 }
 
 # Retrieve value from ENV[_FILE] variable
@@ -155,14 +155,14 @@ function create_app_user {
 # Set SIGINT & SIGTERM handlers
 trap stop_database SIGINT SIGTERM
 
-echo `date +"%H:%M:%S.000"`" INFO  🐳 org.testcontainers.containers.OracleADBContainer - starting up..."
+echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - starting up..."
 
 # Setup all required environment variables
 #setup_env_vars
 
 # Let's start the autonomous database management...
 touch /opt/oracle/dragonlite.log
-dragonlite -a start -d AJDSAI2 -p DEFAULT -r eu-frankfurt-1 -sp C0mplex_Passw0rd -w Ajd -v 21c -f -u test -up C0mplex_Passw0rd -i 89.84.109.253 &
+dragonlite -a ${ACTION} -d ${DATABASE_NAME} -p DEFAULT -r eu-frankfurt-1 -sp C0mplex_Passw0rd -w Ajd -v 21c -f -u test -up C0mplex_Passw0rd -i 89.84.109.253 &
 
 tail -f /opt/oracle/dragonlite.log &
 

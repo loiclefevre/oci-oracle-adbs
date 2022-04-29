@@ -65,7 +65,7 @@
   "name":"ch.qos.logback.core.FileAppender",
   "queryAllPublicMethods":true,
   "methods":[
-    {"name":"<init>","parameterTypes":[] },
+    {"name":"<init>","parameterTypes":[] }, 
     {"name":"setFile","parameterTypes":["java.lang.String"] }
   ]}
 ,

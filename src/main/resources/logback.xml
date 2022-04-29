@@ -2,7 +2,7 @@
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>dragonlite.log</file>
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} %-5level: %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} %-5level 🐳 Container - %msg%n</pattern>
         </encoder>
     </appender>
 

@@ -2,8 +2,10 @@ package com.oracle.dragonlite.configuration;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Supplier;
-import com.oracle.bmc.ConfigFileReader;
-import com.oracle.bmc.auth.*;
+import com.oracle.bmc.auth.BasicAuthenticationDetailsProvider;
+import com.oracle.bmc.auth.BasicConfigFileAuthenticationProvider;
+import com.oracle.bmc.auth.SimpleAuthenticationDetailsProvider;
+import com.oracle.bmc.auth.SimplePrivateKeySupplier;
 import com.oracle.bmc.http.ClientConfigurator;
 
 import java.io.IOException;
@@ -11,26 +13,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConfigurationFileAuthenticationDetailsProvider extends ConfigFileAuthenticationDetailsProvider implements BasicAuthenticationDetailsProvider {
-	private ConfigurationFile.ConfigFile configFile;
+public class ConfigurationFileAuthenticationDetailsProvider implements BasicAuthenticationDetailsProvider {
 	private BasicConfigFileAuthenticationProvider delegate;
 
-	public ConfigurationFileAuthenticationDetailsProvider(String profile) throws IOException {
-		super(profile);
-	}
-
-	public ConfigurationFileAuthenticationDetailsProvider(String configurationFilePath, String profile) throws IOException {
-		super(configurationFilePath, profile);
-	}
-
-	public ConfigurationFileAuthenticationDetailsProvider(ConfigFileReader.ConfigFile configFile) {
-		super(configFile);
-	}
-
-	public ConfigurationFileAuthenticationDetailsProvider(String configurationFilePath, String profile, ConfigurationFile.ConfigFile configFile) throws IOException {
-		this(configurationFilePath, profile);
-
-		this.configFile = configFile;
+	public ConfigurationFileAuthenticationDetailsProvider(ConfigurationFile.ConfigFile configFile) throws IOException {
 		this.delegate = new ConfigurationFileSimpleAuthenticationDetailsProvider(configFile);
 	}
 
@@ -75,7 +61,7 @@ public class ConfigurationFileAuthenticationDetailsProvider extends ConfigFileAu
 	}
 
 	public String toString() {
-		return "ConfigurationFileAuthenticationDetailsProvider(delegate=" + this.delegate + ", region=" + this.getRegion() + ")";
+		return "ConfigurationFileAuthenticationDetailsProvider(delegate=" + this.delegate + ")";
 	}
 
 	private static class ConfigurationFileSimpleAuthenticationDetailsProvider implements BasicConfigFileAuthenticationProvider {
@@ -84,13 +70,14 @@ public class ConfigurationFileAuthenticationDetailsProvider extends ConfigFileAu
 		private final List<ClientConfigurator> clientConfigurators;
 
 		private ConfigurationFileSimpleAuthenticationDetailsProvider(ConfigurationFile.ConfigFile configFile) {
-			String fingerprint = (String) Preconditions.checkNotNull(configFile.get("fingerprint"), "missing fingerprint in config");
-			String tenantId = (String) Preconditions.checkNotNull(configFile.get("tenancy"), "missing tenancy in config");
-			String userId = (String) Preconditions.checkNotNull(configFile.get("user"), "missing user in config");
-			String pemFilePath = (String) Preconditions.checkNotNull(configFile.get("key_file"), "missing key_file in config");
+			String fingerprint = Preconditions.checkNotNull(configFile.get("fingerprint"), "missing fingerprint in config");
+			String tenantId = Preconditions.checkNotNull(configFile.get("tenancy"), "missing tenancy in config");
+			String userId = Preconditions.checkNotNull(configFile.get("user"), "missing user in config");
+			String pemFilePath = Preconditions.checkNotNull(configFile.get("key_file"), "missing key_file in config");
 			String passPhrase = configFile.get("pass_phrase");
 			Supplier<InputStream> privateKeySupplier = new SimplePrivateKeySupplier(pemFilePath);
-			SimpleAuthenticationDetailsProvider.SimpleAuthenticationDetailsProviderBuilder builder = SimpleAuthenticationDetailsProvider.builder().privateKeySupplier(privateKeySupplier).fingerprint(fingerprint).userId(userId).tenantId(tenantId);
+			SimpleAuthenticationDetailsProvider.SimpleAuthenticationDetailsProviderBuilder builder = SimpleAuthenticationDetailsProvider.builder().
+					privateKeySupplier(privateKeySupplier).fingerprint(fingerprint).userId(userId).tenantId(tenantId);
 			if (passPhrase != null) {
 				builder = builder.passphraseCharacters(passPhrase.toCharArray());
 			}

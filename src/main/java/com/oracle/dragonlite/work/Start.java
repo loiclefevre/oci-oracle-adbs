@@ -6,6 +6,7 @@ import com.oracle.bmc.database.model.AutonomousDatabaseSummary;
 import com.oracle.bmc.database.model.CreateAutonomousDatabaseBase;
 import com.oracle.bmc.database.model.CreateAutonomousDatabaseDetails;
 import com.oracle.bmc.database.model.CustomerContact;
+import com.oracle.bmc.database.model.DatabaseConnectionStringProfile;
 import com.oracle.bmc.database.requests.CreateAutonomousDatabaseRequest;
 import com.oracle.bmc.database.requests.GetAutonomousDatabaseRequest;
 import com.oracle.bmc.database.requests.ListAutonomousDatabasesRequest;
@@ -34,6 +35,11 @@ import com.oracle.dragonlite.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.ProxySelector;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,22 +48,7 @@ public class Start {
 	private static final Logger logger = LoggerFactory.getLogger("Dragon Lite");
 
 	public static void work(Main session) {
-		boolean freeTiersDatabaseResourceExhausted = false;
-
-		// -1- validate if Free tiers that the limit is OK
-		GetResourceAvailabilityRequest getResourceAvailabilityRequest =
-				GetResourceAvailabilityRequest.builder()
-						.compartmentId(session.getProvider().getTenantId())
-						.serviceName("database")
-						.limitName("adb-free-count")
-						.build();
-		GetResourceAvailabilityResponse resourceAvailabilityResponse = session.getLimitsClient().getResourceAvailability(getResourceAvailabilityRequest);
-
-		if (resourceAvailabilityResponse.getResourceAvailability().getAvailable() <= 0) {
-			freeTiersDatabaseResourceExhausted = true;
-		}
-
-		// -2- validate the database with the wanted name doesn't exist already
+		// -2- validate the database with the wanted name doesn't exist already inside the given compartment
 		final ListAutonomousDatabasesRequest listADB = ListAutonomousDatabasesRequest.builder().compartmentId(session.getConfigFile().get("compartment_id")).build();
 		final ListAutonomousDatabasesResponse listADBResponse = session.getDbClient().listAutonomousDatabases(listADB);
 		boolean dbNameAlreadyExists = false;
@@ -74,11 +65,11 @@ public class Start {
 		}
 
 		if (dbNameAlreadyExists) {
-			logger.warn("database already exists " + alreadyExistADB);
+			logger.warn("database already exists");
 
 			// if it exists already, validate this matches the one wanted!
 			if (!alreadyExistADB.getDbVersion().equals(session.getVersion())) {
-				if (freeTiersDatabaseResourceExhausted) {
+				if (session.isFreeTiersDatabaseResourceExhausted()) {
 					logger.error("FREE_TIERS_DATABASE_RESOURCE_EXHAUSTED");
 					throw new DLException(DLException.FREE_TIERS_DATABASE_RESOURCE_EXHAUSTED);
 				}
@@ -86,8 +77,8 @@ public class Start {
 				throw new DLException(DLException.EXISTING_DB_DOESNT_MATCH_VERSION);
 			}
 
-			if (alreadyExistADB.getDbWorkload() != AutonomousDatabaseSummary.DbWorkload.valueOf(session.getWorkloadType())) {
-				if (freeTiersDatabaseResourceExhausted) {
+			if (!alreadyExistADB.getDbWorkload().toString().equals(session.getWorkloadType().toString())) {
+				if (session.isFreeTiersDatabaseResourceExhausted()) {
 					logger.error("FREE_TIERS_DATABASE_RESOURCE_EXHAUSTED");
 					throw new DLException(DLException.FREE_TIERS_DATABASE_RESOURCE_EXHAUSTED);
 				}
@@ -206,7 +197,7 @@ public class Start {
 					throw new DLException(DLException.WAIT_FOR_STOP_FAILURE, e);
 				}
 
-				if (freeTiersDatabaseResourceExhausted) {
+				if (session.isFreeTiersDatabaseResourceExhausted()) {
 					logger.error("FREE_TIERS_DATABASE_RESOURCE_EXHAUSTED");
 					throw new DLException(DLException.FREE_TIERS_DATABASE_RESOURCE_EXHAUSTED);
 				}
@@ -233,10 +224,14 @@ public class Start {
 				createApplicationUser(session, alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
 			}
 
-			System.out.println("JDBC URL: "+alreadyExistADB.getConnectionStrings().getLow());
+			for (DatabaseConnectionStringProfile dcsp : alreadyExistADB.getConnectionStrings().getProfiles()) {
+				if (dcsp.getDisplayName().toLowerCase().endsWith("_low") && dcsp.getTlsAuthentication() == DatabaseConnectionStringProfile.TlsAuthentication.Server) {
+					System.out.println("CONNECTION_STRING=" + dcsp.getValue());
+				}
+			}
 		}
 		else {
-			if (freeTiersDatabaseResourceExhausted) {
+			if (session.isFreeTiersDatabaseResourceExhausted()) {
 				logger.error("FREE_TIERS_DATABASE_RESOURCE_EXHAUSTED");
 				throw new DLException(DLException.FREE_TIERS_DATABASE_RESOURCE_EXHAUSTED);
 			}
@@ -250,23 +245,7 @@ public class Start {
 				customerContacts.add(CustomerContact.builder().email(userResponse.getUser().getEmail()).build());
 			}
 
-			CreateAutonomousDatabaseBase.DbWorkload databaseType = null;
-			switch (session.getWorkloadType()) {
-				case "Ajd":
-					databaseType = CreateAutonomousDatabaseBase.DbWorkload.Ajd;
-					break;
-				case "Oltp":
-					databaseType = CreateAutonomousDatabaseBase.DbWorkload.Oltp;
-					break;
-				case "Dw":
-					databaseType = CreateAutonomousDatabaseBase.DbWorkload.Dw;
-					break;
-				case "Apex":
-					databaseType = CreateAutonomousDatabaseBase.DbWorkload.Apex;
-					break;
-				default:
-					throw new DLException(DLException.UNKNOWN_WORKLOAD_TYPE);
-			}
+			CreateAutonomousDatabaseBase.DbWorkload databaseType = session.getWorkloadType();
 
 			CreateAutonomousDatabaseDetails createFreeRequest = CreateAutonomousDatabaseDetails.builder()
 					.dbVersion(session.getVersion())
@@ -286,7 +265,7 @@ public class Start {
 					.customerContacts(customerContacts)
 					// ACLs
 					.arePrimaryWhitelistedIpsUsed(true)
-					.whitelistedIps(Arrays.stream(session.getInvokerIPAddress().split(",")).toList())
+					.whitelistedIps(Arrays.stream((session.getInvokerIPAddress() + "," + retrieveCurrentIPAddress()).split(",")).toList())
 					// no wallets
 					.isMtlsConnectionRequired(false)
 					.autonomousMaintenanceScheduleType(CreateAutonomousDatabaseBase.AutonomousMaintenanceScheduleType.Regular)
@@ -379,7 +358,11 @@ public class Start {
 
 			createApplicationUser(session, autonomousDatabase.getConnectionUrls().getSqlDevWebUrl());
 
-			System.out.println("JDBC URL: "+autonomousDatabase.getConnectionStrings().getLow());
+			for (DatabaseConnectionStringProfile dcsp : autonomousDatabase.getConnectionStrings().getProfiles()) {
+				if (dcsp.getDisplayName().toLowerCase().endsWith("_low") && dcsp.getTlsAuthentication() == DatabaseConnectionStringProfile.TlsAuthentication.Server) {
+					System.out.println("CONNECTION_STRING=" + dcsp.getValue());
+				}
+			}
 		}
 
 		System.out.println("DATABASE IS READY TO USE!");
@@ -455,6 +438,54 @@ public class Start {
 			// TODO destroy database in this case?
 			logger.warn("Can't create application user", dle);
 			throw dle;
+		}
+	}
+
+	private static String retrieveCurrentIPAddress() {
+		try {
+			final HttpRequest request = HttpRequest.newBuilder()
+					.uri(new URI("http://checkip.dyndns.org/"))
+					.headers("Accept", "*/*")
+					.headers("Keep-Alive", "timeout=5, max=100")
+					.GET()
+					.build();
+
+			HttpResponse<String> response;
+
+			int tries = 0;
+
+			do {
+				response = HttpClient
+						.newBuilder()
+//					.connectTimeout(Duration.ofSeconds(20))
+						.version(HttpClient.Version.HTTP_1_1)
+						.proxy(ProxySelector.getDefault())
+						.build()
+						.send(request, HttpResponse.BodyHandlers.ofString());
+
+				if (response.statusCode() == 200) {
+					break;
+				}
+
+				// sleep 1 second
+				Thread.sleep(1000L);
+
+				tries++;
+
+				logger.debug("Get current IP address, try #" + (tries + 1));
+
+			}
+			while (tries < 10);
+
+			if (tries >= 10 && response.statusCode() != 200) {
+				throw new RuntimeException("Request for self IP address was not successful (" + response.statusCode() + ")");
+			}
+			final String responseBody = response.body();
+
+			return responseBody.substring(76, responseBody.indexOf("</body>"));
+		}
+		catch (Exception e) {
+			throw new DLException(DLException.UNKNOWN_CURRENT_IP_ADDRESS, e);
 		}
 	}
 }

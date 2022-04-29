@@ -1,8 +1,11 @@
 package com.oracle.dragonlite;
 
 import com.oracle.bmc.database.DatabaseClient;
+import com.oracle.bmc.database.model.CreateAutonomousDatabaseBase;
 import com.oracle.bmc.identity.IdentityClient;
 import com.oracle.bmc.limits.LimitsClient;
+import com.oracle.bmc.limits.requests.GetResourceAvailabilityRequest;
+import com.oracle.bmc.limits.responses.GetResourceAvailabilityResponse;
 import com.oracle.dragonlite.configuration.ConfigurationFile;
 import com.oracle.dragonlite.configuration.ConfigurationFileAuthenticationDetailsProvider;
 import com.oracle.dragonlite.exception.DLException;
@@ -12,26 +15,20 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.ProxySelector;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
 
 /**
  * Use cases:
  * REUSE == FALSE
  * -1- no database: create it and configure it (e.g. create application user)
  * -2- terminate database upon stopping container
- *
+ * <p>
  * REUSE == TRUE
  * -1- no database: create it and configure it (e.g. create application user)
  * -2- no termination upon stopping container
- *
+ * <p>
  * -1- a database exists, connect to app user (check it exists)
  * -2- no termination upon stopping container
- *
+ * <p>
  * REUSE == TRUE
  * MULTITENANT == TRUE
  */
@@ -93,7 +90,7 @@ public class Main {
 	private String version;
 	private String workloadType;
 	private String username;
-	private boolean freeDatabase;
+	private boolean freeDatabase = true;
 	private boolean byol;
 	private String invokerIPAddress;
 
@@ -108,12 +105,16 @@ public class Main {
 	private void loadConfiguration() {
 		try {
 			configurationFile = ConfigurationFile.parse(workingDirectory, "adbs.ini", "DEFAULT");
-			provider = new ConfigurationFileAuthenticationDetailsProvider(configurationFile.getConfigurationFilePath(),
-					configurationFile.getProfile(), configurationFile);
+			provider = new ConfigurationFileAuthenticationDetailsProvider(configurationFile);
 		}
 		catch (IOException e) {
 			throw new DLException(DLException.CANT_LOAD_CONFIGURATION_FILE, e);
 		}
+	}
+
+	private void displayUsage() {
+		System.out.println("Usage: dragonlite -a <start|stop> -p <OCI configuration profile> -r <OCI region> -d <database name> -u <user name>" +
+				" -p <password> -sp <ADMIN password> -v <19c|21c> -w <json|oltp|dw|apex> -i <IPv4[,IPv4]*> [-b] [-nf]");
 	}
 
 	private void analyzeCommandLineParameters(String[] args) {
@@ -157,8 +158,8 @@ public class Main {
 					}
 					break;
 
-				case "-f":
-					freeDatabase = true;
+				case "-nf":
+					freeDatabase = false;
 					break;
 
 				case "-v":
@@ -185,7 +186,7 @@ public class Main {
 
 				case "-i":
 					if (i + 1 < args.length) {
-						invokerIPAddress = args[++i] + "," + retrieveCurrentIPAddress();
+						invokerIPAddress = args[++i];
 					}
 					break;
 
@@ -196,49 +197,32 @@ public class Main {
 		}
 	}
 
-	private String retrieveCurrentIPAddress() {
-		try {
-			final HttpRequest request = HttpRequest.newBuilder()
-					.uri(new URI("http://checkip.dyndns.org/"))
-					.headers("Accept", "*/*")
-					.GET()
-					.build();
-
-			final HttpResponse<String> response = HttpClient
-					.newBuilder()
-//					.connectTimeout(Duration.ofSeconds(20))
-					.version(HttpClient.Version.HTTP_1_1)
-					.proxy(ProxySelector.getDefault())
-					.build()
-					.send(request, HttpResponse.BodyHandlers.ofString());
-
-			if (response.statusCode() != 200) {
-				throw new RuntimeException("Request for self IP address was not successful (" + response.statusCode() + ")");
-			}
-
-			final String responseBody = response.body();
-
-			final String currentIPAddress = responseBody.substring(76, responseBody.indexOf("</body>"));
-
-			return currentIPAddress;
-		}
-		catch (Exception e) {
-			throw new DLException(DLException.UNKNOWN_CURRENT_IP_ADDRESS, e);
-		}
-	}
-
 	private void initializeOCIClients() {
 		dbClient = new DatabaseClient(provider);
 		dbClient.setRegion(region);
-
-		limitsClient = new LimitsClient(provider);
-		limitsClient.setRegion(region);
-
-		identityClient = new IdentityClient(provider);
-		identityClient.setRegion(region);
 	}
 
-	private void displayUsage() {
+	private Boolean freeTiersDatabaseResourceExhausted = null;
+
+	public boolean isFreeTiersDatabaseResourceExhausted() {
+		if (freeTiersDatabaseResourceExhausted == null) {
+			// lazy initialization of limitsClient
+			limitsClient = new LimitsClient(provider);
+			limitsClient.setRegion(region);
+
+			GetResourceAvailabilityRequest getResourceAvailabilityRequest =
+					GetResourceAvailabilityRequest.builder()
+							.compartmentId(getProvider().getTenantId())
+							.serviceName("database")
+							.limitName("adb-free-count")
+							.build();
+			GetResourceAvailabilityResponse resourceAvailabilityResponse = limitsClient.getResourceAvailability(getResourceAvailabilityRequest);
+
+			return freeTiersDatabaseResourceExhausted = resourceAvailabilityResponse.getResourceAvailability().getAvailable() <= 0;
+		}
+		else {
+			return freeTiersDatabaseResourceExhausted;
+		}
 	}
 
 	public String getDbName() {
@@ -247,10 +231,6 @@ public class Main {
 
 	public DatabaseClient getDbClient() {
 		return dbClient;
-	}
-
-	public LimitsClient getLimitsClient() {
-		return limitsClient;
 	}
 
 	public ConfigurationFileAuthenticationDetailsProvider getProvider() {
@@ -269,11 +249,29 @@ public class Main {
 		return version;
 	}
 
-	public String getWorkloadType() {
-		return workloadType;
+	public CreateAutonomousDatabaseBase.DbWorkload getWorkloadType() {
+		switch (workloadType.toLowerCase()) {
+			case "ajd":
+			case "json":
+				return CreateAutonomousDatabaseBase.DbWorkload.Ajd;
+			case "oltp":
+				return CreateAutonomousDatabaseBase.DbWorkload.Oltp;
+			case "dw":
+				return CreateAutonomousDatabaseBase.DbWorkload.Dw;
+			case "apex":
+				return CreateAutonomousDatabaseBase.DbWorkload.Apex;
+			default:
+				throw new DLException(DLException.UNKNOWN_WORKLOAD_TYPE);
+		}
 	}
 
 	public IdentityClient getIdentityClient() {
+		// initialize only in the case of database creation
+		if (identityClient == null) {
+			identityClient = new IdentityClient(provider);
+			identityClient.setRegion(region);
+		}
+
 		return identityClient;
 	}
 
