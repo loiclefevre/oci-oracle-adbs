@@ -162,7 +162,7 @@ echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - starting up..."
 
 # Let's start the autonomous database management...
 touch /opt/oracle/dragonlite.log
-dragonlite -a ${ACTION} -d ${DATABASE_NAME} -p DEFAULT -r eu-frankfurt-1 -sp C0mplex_Passw0rd -w json -v 21c -u test -up C0mplex_Passw0rd -i 89.84.109.253 &
+dragonlite -a ${ACTION} -d ${DATABASE_NAME} -p DEFAULT -r eu-frankfurt-1 -sp ${SYSTEM_PASSWORD} -w json -v 21c -u ${USER} -up ${USER_PASSWORD} -i 89.84.109.253 &
 
 tail -f /opt/oracle/dragonlite.log &
 
