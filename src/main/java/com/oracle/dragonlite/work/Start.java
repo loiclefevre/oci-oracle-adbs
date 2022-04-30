@@ -365,6 +365,12 @@ public class Start {
 			}
 		}
 
+		try {
+			Thread.sleep(100L);
+		}
+		catch (InterruptedException e) {
+		}
+
 		System.out.println("DATABASE IS READY TO USE!");
 	}
 

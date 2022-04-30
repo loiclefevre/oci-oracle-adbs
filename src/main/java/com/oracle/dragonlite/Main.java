@@ -104,7 +104,7 @@ public class Main {
 
 	private void loadConfiguration() {
 		try {
-			configurationFile = ConfigurationFile.parse(workingDirectory, "adbs.ini", "DEFAULT");
+			configurationFile = ConfigurationFile.parse(workingDirectory, "config", "DEFAULT");
 			provider = new ConfigurationFileAuthenticationDetailsProvider(configurationFile);
 		}
 		catch (IOException e) {
