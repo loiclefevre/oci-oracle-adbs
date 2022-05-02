@@ -72,7 +72,7 @@ public final class ConfigurationFile {
 		public String get(String key) {
 			if (profile != null && (accumulator.configurationsByProfile.get(profile).containsKey(key))) {
 				if("key_file".equals(key)) {
-					/*
+/*
 					String keyFilename = accumulator.configurationsByProfile.get(profile).get(key);
 
 					keyFilename = keyFilename.replace('\\', '/');

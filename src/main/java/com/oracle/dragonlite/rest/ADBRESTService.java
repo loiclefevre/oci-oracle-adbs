@@ -91,14 +91,16 @@ public class ADBRESTService {
 					break;
 				}
 
+				//System.out.println(response.statusCode());
+
 				// sleep 1 second
 				Thread.sleep(1000L);
 
 				tries++;
 
-			} while( tries < 10 );
+			} while( tries < 60 );
 
-			if( tries >= 10 && response.statusCode() != 200) {
+			if( tries >= 60 && response.statusCode() != 200) {
 				throw new RuntimeException("Request was not successful (" + response.statusCode() + ") after "+tries+" tries!");
 			}
 

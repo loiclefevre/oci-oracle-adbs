@@ -91,6 +91,7 @@ public class Start {
 			if (alreadyExistADB.getLifecycleState() != AutonomousDatabaseSummary.LifecycleState.Available) {
 				// Start!
 				WorkRequestClient workRequestClient = new WorkRequestClient(session.getProvider());
+				workRequestClient.setRegion(session.getProvider().getRegion());
 				StartAutonomousDatabaseResponse responseTerminate = session.getDbClient().startAutonomousDatabase(StartAutonomousDatabaseRequest.builder().autonomousDatabaseId(alreadyExistADB.getId()).build());
 				String workRequestId = responseTerminate.getOpcWorkRequestId();
 
@@ -151,6 +152,7 @@ public class Start {
 			catch (DLException dle) {
 				// Stop, wrong database!
 				WorkRequestClient workRequestClient = new WorkRequestClient(session.getProvider());
+				workRequestClient.setRegion(session.getProvider().getRegion());
 				StopAutonomousDatabaseResponse responseTerminate = session.getDbClient().stopAutonomousDatabase(StopAutonomousDatabaseRequest.builder().autonomousDatabaseId(alreadyExistADB.getId()).build());
 				String workRequestId = responseTerminate.getOpcWorkRequestId();
 
@@ -272,6 +274,7 @@ public class Start {
 			String workRequestId = null;
 			AutonomousDatabase autonomousDatabase = null;
 			WorkRequestClient workRequestClient = new WorkRequestClient(session.getProvider());
+			workRequestClient.setRegion(session.getProvider().getRegion());
 
 			BmcException creationException = null;
 
@@ -475,6 +478,7 @@ public class Start {
 					break;
 				}
 
+				//System.out.println("retrieveCurrentIPAddress: "+response.statusCode());
 				// sleep 1 second
 				Thread.sleep(1000L);
 
@@ -483,9 +487,9 @@ public class Start {
 				logger.debug("Get current IP address, try #" + (tries + 1));
 
 			}
-			while (tries < 10);
+			while (tries < 60);
 
-			if (tries >= 10 && response.statusCode() != 200) {
+			if (tries >= 60 && response.statusCode() != 200) {
 				throw new RuntimeException("Request for self IP address was not successful (" + response.statusCode() + ")");
 			}
 			final String responseBody = response.body();

@@ -54,7 +54,7 @@ public class Main {
 		}
 		catch (DLException e) {
 			exitStatus = e.getErrorCode();
-			logger.error("Error", e);
+			logger.error("Error: "+e.getMessage());
 		}
 
 		System.exit(exitStatus);
