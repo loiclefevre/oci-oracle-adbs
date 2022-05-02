@@ -30,8 +30,8 @@ function stop_database() {
 
   if [[ "${REUSE}" = "false" ]]; then
      # terminate database
-     echo "terminating instance..."
      echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - terminating database."
+     dragonlite -a terminate -d ${DATABASE_NAME} -p ${PROFILE_NAME} -sp ${SYSTEM_PASSWORD} -w ${WORKLOAD_TYPE} -v 19c -u ${USER} -up ${USER_PASSWORD} -i 89.84.109.253 &
   fi;
 
   echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - shutting down container."
@@ -169,8 +169,14 @@ echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - starting up..."
 # Let's start the autonomous database management...
 touch /opt/oracle/dragonlite.log
 dragonlite -a ${ACTION} -d ${DATABASE_NAME} -p ${PROFILE_NAME} -sp ${SYSTEM_PASSWORD} -w ${WORKLOAD_TYPE} -v 19c -u ${USER} -up ${USER_PASSWORD} -i 89.84.109.253 &
+mainChildPID=$!
 
-tail -f /opt/oracle/dragonlite.log &
+if [[ "${mainChildPID}" = "0" ]]; then
+  tail -f /opt/oracle/dragonlite.log &
 
-childPID=$!
-wait ${childPID}
+  childPID=$!
+  wait ${childPID}
+else
+  echo "DATABASE STARTUP FAILED!"
+  echo "CHECK LOG OUTPUT ABOVE FOR MORE INFORMATION!"
+fi;

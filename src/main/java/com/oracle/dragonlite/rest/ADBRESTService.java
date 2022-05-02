@@ -3,6 +3,7 @@ package com.oracle.dragonlite.rest;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oracle.dragonlite.exception.DLException;
+import com.oracle.dragonlite.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +15,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+
+import static com.oracle.dragonlite.Main.MAX_TRIES;
 
 /**
  * Runs SQL queries using the REST service of Autonomous Databases (ADBs).
@@ -94,13 +97,13 @@ public class ADBRESTService {
 				//System.out.println(response.statusCode());
 
 				// sleep 1 second
-				Thread.sleep(1000L);
+				Utils.sleep(1000L);
 
 				tries++;
 
-			} while( tries < 60 );
+			} while( tries < MAX_TRIES );
 
-			if( tries >= 60 && response.statusCode() != 200) {
+			if( tries >= MAX_TRIES && response.statusCode() != 200) {
 				throw new RuntimeException("Request was not successful (" + response.statusCode() + ") after "+tries+" tries!");
 			}
 

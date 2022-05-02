@@ -35,6 +35,7 @@ import java.io.IOException;
  */
 public class Main {
 	private static final Logger logger = LoggerFactory.getLogger("Dragon Lite");
+	public static final int MAX_TRIES = 30;
 
 	static {
 		System.setProperty("java.net.useSystemProxies", "true");

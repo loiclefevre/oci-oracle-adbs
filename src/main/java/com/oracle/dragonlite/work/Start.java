@@ -45,6 +45,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.oracle.dragonlite.Main.MAX_TRIES;
+
 public class Start {
 	private static final Logger logger = LoggerFactory.getLogger("Dragon Lite");
 
@@ -487,9 +489,9 @@ public class Start {
 				logger.debug("Get current IP address, try #" + (tries + 1));
 
 			}
-			while (tries < 60);
+			while (tries < MAX_TRIES);
 
-			if (tries >= 60 && response.statusCode() != 200) {
+			if (tries >= MAX_TRIES && response.statusCode() != 200) {
 				throw new RuntimeException("Request for self IP address was not successful (" + response.statusCode() + ")");
 			}
 			final String responseBody = response.body();
