@@ -177,6 +177,6 @@ if [[ "${mainChildPID}" = "0" ]]; then
   childPID=$!
   wait ${childPID}
 else
-  echo "DATABASE STARTUP FAILED!"
+  echo "DATABASE STARTUP FAILED: ${mainChildPID}"
   echo "CHECK LOG OUTPUT ABOVE FOR MORE INFORMATION!"
 fi;
