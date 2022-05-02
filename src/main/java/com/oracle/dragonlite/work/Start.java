@@ -2,6 +2,7 @@ package com.oracle.dragonlite.work;
 
 import com.oracle.bmc.database.DatabaseWaiters;
 import com.oracle.bmc.database.model.AutonomousDatabase;
+import com.oracle.bmc.database.model.AutonomousDatabaseConnectionStrings;
 import com.oracle.bmc.database.model.AutonomousDatabaseSummary;
 import com.oracle.bmc.database.model.CreateAutonomousDatabaseBase;
 import com.oracle.bmc.database.model.CreateAutonomousDatabaseDetails;
@@ -35,6 +36,8 @@ import com.oracle.dragonlite.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ProxySelector;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -224,11 +227,7 @@ public class Start {
 				createApplicationUser(session, alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
 			}
 
-			for (DatabaseConnectionStringProfile dcsp : alreadyExistADB.getConnectionStrings().getProfiles()) {
-				if (dcsp.getDisplayName().toLowerCase().endsWith("_low") && dcsp.getTlsAuthentication() == DatabaseConnectionStringProfile.TlsAuthentication.Server) {
-					System.out.println("CONNECTION_STRING=" + dcsp.getValue());
-				}
-			}
+			generateDatabaseConfiguration(alreadyExistADB.getConnectionStrings());
 		}
 		else {
 			if (session.isFreeTiersDatabaseResourceExhausted()) {
@@ -358,20 +357,24 @@ public class Start {
 
 			createApplicationUser(session, autonomousDatabase.getConnectionUrls().getSqlDevWebUrl());
 
-			for (DatabaseConnectionStringProfile dcsp : autonomousDatabase.getConnectionStrings().getProfiles()) {
-				if (dcsp.getDisplayName().toLowerCase().endsWith("_low") && dcsp.getTlsAuthentication() == DatabaseConnectionStringProfile.TlsAuthentication.Server) {
-					System.out.println("CONNECTION_STRING=" + dcsp.getValue());
-				}
-			}
-		}
-
-		try {
-			Thread.sleep(100L);
-		}
-		catch (InterruptedException e) {
+			generateDatabaseConfiguration(autonomousDatabase.getConnectionStrings());
 		}
 
 		System.out.println("DATABASE IS READY TO USE!");
+	}
+
+	private static void generateDatabaseConfiguration(AutonomousDatabaseConnectionStrings connectionStrings) {
+		for (DatabaseConnectionStringProfile dcsp : connectionStrings.getProfiles()) {
+			if (dcsp.getDisplayName().toLowerCase().endsWith("_low") && dcsp.getTlsAuthentication() == DatabaseConnectionStringProfile.TlsAuthentication.Server) {
+				try (PrintWriter out = new PrintWriter("database.json")) {
+					out.printf("{\"connectionString\": \"%s\"}", dcsp.getValue().replaceAll("\"", "\\\\\""));
+				}
+				catch(IOException ioe) {
+					throw new DLException(DLException.CANT_WRITE_DATABASE_CONFIGURATION);
+				}
+				break;
+			}
+		}
 	}
 
 	private static void createApplicationUser(Main session, String sqlDevWebURL) {

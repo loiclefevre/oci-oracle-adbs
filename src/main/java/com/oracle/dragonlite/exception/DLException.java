@@ -19,6 +19,7 @@ public class DLException extends RuntimeException {
 	public static final int CANT_STOP_ADBS = 16;
 	public static final int WAIT_FOR_STOP_FAILURE = 17;
 	public static final int UNKNOWN_CURRENT_IP_ADDRESS = 18;
+	public static final int CANT_WRITE_DATABASE_CONFIGURATION = 19;
 
 
 	private final int errorCode;
