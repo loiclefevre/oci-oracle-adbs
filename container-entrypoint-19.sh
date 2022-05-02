@@ -171,12 +171,14 @@ touch /opt/oracle/dragonlite.log
 dragonlite -a ${ACTION} -d ${DATABASE_NAME} -p ${PROFILE_NAME} -sp ${SYSTEM_PASSWORD} -w ${WORKLOAD_TYPE} -v 19c -u ${USER} -up ${USER_PASSWORD} -i 89.84.109.253 &
 mainChildPID=$!
 
-if [[ "${mainChildPID}" = "0" ]]; then
-  tail -f /opt/oracle/dragonlite.log &
+echo "mainChildPID = ${mainChildPID}"
 
-  childPID=$!
-  wait ${childPID}
-else
-  echo "DATABASE STARTUP FAILED: ${mainChildPID}"
-  echo "CHECK LOG OUTPUT ABOVE FOR MORE INFORMATION!"
-fi;
+#if [[ "${mainChildPID}" = "0" ]]; then
+tail -f /opt/oracle/dragonlite.log &
+
+childPID=$!
+wait ${childPID}
+#else
+#  echo "DATABASE STARTUP FAILED: ${mainChildPID}"
+#  echo "CHECK LOG OUTPUT ABOVE FOR MORE INFORMATION!"
+#fi;
