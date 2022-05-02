@@ -28,6 +28,14 @@ set -euo pipefail
 function stop_database() {
   echo `date +"%H:%M:%S.000"`" WARN  🐳 Container - shutting down database."
 
+  if [[ "${REUSE}" = "false" ]]; then
+     # terminate database
+     echo "terminating instance..."
+  else
+     echo "keeping instance..."
+  fi;
+
+
   echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - shutting down container."
 }
 
