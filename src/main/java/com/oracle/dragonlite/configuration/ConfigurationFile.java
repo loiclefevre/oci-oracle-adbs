@@ -72,7 +72,8 @@ public final class ConfigurationFile {
 		public String get(String key) {
 			if (profile != null && (accumulator.configurationsByProfile.get(profile).containsKey(key))) {
 				if("key_file".equals(key)) {
-					/*String keyFilename = accumulator.configurationsByProfile.get(profile).get(key);
+					/*
+					String keyFilename = accumulator.configurationsByProfile.get(profile).get(key);
 
 					keyFilename = keyFilename.replace('\\', '/');
 					if (keyFilename.startsWith("~/")) {
@@ -85,7 +86,12 @@ public final class ConfigurationFile {
 							}
 						}
 					}
+
+					accumulator.configurationsByProfile.get(profile).put("key_file",keyFilename);
+
+					return keyFilename;
 */
+
 					accumulator.configurationsByProfile.get(profile).put("key_file","/opt/oracle/key");
 
 					return "/opt/oracle/key";

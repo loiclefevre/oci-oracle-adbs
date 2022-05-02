@@ -20,8 +20,6 @@ import com.oracle.bmc.database.responses.StartAutonomousDatabaseResponse;
 import com.oracle.bmc.database.responses.StopAutonomousDatabaseResponse;
 import com.oracle.bmc.identity.requests.GetUserRequest;
 import com.oracle.bmc.identity.responses.GetUserResponse;
-import com.oracle.bmc.limits.requests.GetResourceAvailabilityRequest;
-import com.oracle.bmc.limits.responses.GetResourceAvailabilityResponse;
 import com.oracle.bmc.model.BmcException;
 import com.oracle.bmc.workrequests.WorkRequestClient;
 import com.oracle.bmc.workrequests.model.WorkRequestError;
@@ -63,6 +61,7 @@ public class Start {
 				if (adb.getDbName().equals(session.getDbName())) {
 					dbNameAlreadyExists = true;
 					alreadyExistADB = adb;
+					break;
 				}
 			}
 		}
@@ -369,7 +368,7 @@ public class Start {
 				try (PrintWriter out = new PrintWriter("database.json")) {
 					out.printf("{\"connectionString\": \"%s\"}", dcsp.getValue().replaceAll("\"", "\\\\\""));
 				}
-				catch(IOException ioe) {
+				catch (IOException ioe) {
 					throw new DLException(DLException.CANT_WRITE_DATABASE_CONFIGURATION);
 				}
 				break;

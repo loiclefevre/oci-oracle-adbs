@@ -26,15 +26,13 @@ set -euo pipefail
 # Stop container when SIGINT or SIGTERM is received
 ########### stop database helper function ############
 function stop_database() {
-  echo `date +"%H:%M:%S.000"`" WARN  🐳 Container - shutting down database."
+  #echo `date +"%H:%M:%S.000"`" WARN  🐳 Container - shutting down database."
 
   if [[ "${REUSE}" = "false" ]]; then
      # terminate database
      echo "terminating instance..."
-  else
-     echo "keeping instance..."
+     echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - terminating database."
   fi;
-
 
   echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - shutting down container."
 }
@@ -170,7 +168,7 @@ echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - starting up..."
 
 # Let's start the autonomous database management...
 touch /opt/oracle/dragonlite.log
-dragonlite -a ${ACTION} -d ${DATABASE_NAME} -p DEFAULT -r eu-frankfurt-1 -sp ${SYSTEM_PASSWORD} -w json -v 21c -u ${USER} -up ${USER_PASSWORD} -i 89.84.109.253 &
+dragonlite -a ${ACTION} -d ${DATABASE_NAME} -p ${PROFILE_NAME} -sp ${SYSTEM_PASSWORD} -w ${WORKLOAD_TYPE} -v 19c -u ${USER} -up ${USER_PASSWORD} -i 89.84.109.253 &
 
 tail -f /opt/oracle/dragonlite.log &
 

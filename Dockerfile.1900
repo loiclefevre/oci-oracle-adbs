@@ -27,11 +27,11 @@ ARG BUILD_MODE
 
 ENV PATH="${PATH}":/opt/oracle
 
-COPY container-entrypoint.sh dragonlite /opt/oracle
+COPY container-entrypoint-19.sh dragonlite /opt/oracle
 
 WORKDIR /opt/oracle
 
 #HEALTHCHECK CMD /opt/oracle/healthcheck.sh >/dev/null || exit 1
 
-ENTRYPOINT ["container-entrypoint.sh"]
+ENTRYPOINT ["container-entrypoint-19.sh"]
 

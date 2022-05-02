@@ -10,6 +10,7 @@ import com.oracle.dragonlite.configuration.ConfigurationFile;
 import com.oracle.dragonlite.configuration.ConfigurationFileAuthenticationDetailsProvider;
 import com.oracle.dragonlite.exception.DLException;
 import com.oracle.dragonlite.work.Start;
+import com.oracle.dragonlite.work.Terminate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,9 +69,9 @@ public class Main {
 				Start.work(this);
 				break;
 
-			case "stop":
-				logger.info("stop");
-				//Stop.work(this);
+			case "terminate":
+				logger.info("terminate");
+				Terminate.work(this);
 				break;
 		}
 	}
@@ -84,7 +85,6 @@ public class Main {
 
 	private String dbName;
 	private String profileName;
-	private String region;
 	private String userPassword;
 	private String systemPassword;
 	private String version;
@@ -113,7 +113,7 @@ public class Main {
 	}
 
 	private void displayUsage() {
-		System.out.println("Usage: dragonlite -a <start|stop> -p <OCI configuration profile> -r <OCI region> -d <database name> -u <user name>" +
+		System.out.println("Usage: dragonlite -a <start|stop> -p <OCI configuration profile> -d <database name> -u <user name>" +
 				" -p <password> -sp <ADMIN password> -v <19c|21c> -w <json|oltp|dw|apex> -i <IPv4[,IPv4]*> [-b] [-nf]");
 	}
 
@@ -137,12 +137,6 @@ public class Main {
 				case "-p":
 					if (i + 1 < args.length) {
 						profileName = args[++i];
-					}
-					break;
-
-				case "-r":
-					if (i + 1 < args.length) {
-						region = args[++i];
 					}
 					break;
 
@@ -199,7 +193,7 @@ public class Main {
 
 	private void initializeOCIClients() {
 		dbClient = new DatabaseClient(provider);
-		dbClient.setRegion(region);
+		dbClient.setRegion(provider.getRegion());
 	}
 
 	private Boolean freeTiersDatabaseResourceExhausted = null;
@@ -208,7 +202,7 @@ public class Main {
 		if (freeTiersDatabaseResourceExhausted == null) {
 			// lazy initialization of limitsClient
 			limitsClient = new LimitsClient(provider);
-			limitsClient.setRegion(region);
+			limitsClient.setRegion(provider.getRegion());
 
 			GetResourceAvailabilityRequest getResourceAvailabilityRequest =
 					GetResourceAvailabilityRequest.builder()
@@ -269,7 +263,7 @@ public class Main {
 		// initialize only in the case of database creation
 		if (identityClient == null) {
 			identityClient = new IdentityClient(provider);
-			identityClient.setRegion(region);
+			identityClient.setRegion(provider.getRegion());
 		}
 
 		return identityClient;
@@ -302,7 +296,7 @@ public class Main {
 				", action='" + action + '\'' +
 				", dbName='" + dbName + '\'' +
 				", profileName='" + profileName + '\'' +
-				", region='" + region + '\'' +
+				", region='" + provider.getRegion() + '\'' +
 				", userPassword='" + userPassword + '\'' +
 				", systemPassword='" + systemPassword + '\'' +
 				", version='" + version + '\'' +

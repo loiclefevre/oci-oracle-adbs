@@ -2,6 +2,7 @@ package com.oracle.dragonlite.configuration;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Supplier;
+import com.oracle.bmc.Region;
 import com.oracle.bmc.auth.BasicAuthenticationDetailsProvider;
 import com.oracle.bmc.auth.BasicConfigFileAuthenticationProvider;
 import com.oracle.bmc.auth.SimpleAuthenticationDetailsProvider;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConfigurationFileAuthenticationDetailsProvider implements BasicAuthenticationDetailsProvider {
-	private BasicConfigFileAuthenticationProvider delegate;
+	private ConfigurationFileSimpleAuthenticationDetailsProvider delegate;
 
 	public ConfigurationFileAuthenticationDetailsProvider(ConfigurationFile.ConfigFile configFile) throws IOException {
 		this.delegate = new ConfigurationFileSimpleAuthenticationDetailsProvider(configFile);
@@ -30,6 +31,10 @@ public class ConfigurationFileAuthenticationDetailsProvider implements BasicAuth
 
 	public String getUserId() {
 		return this.delegate.getUserId();
+	}
+
+	public String getRegion() {
+		return this.delegate.getRegion();
 	}
 
 	public List<ClientConfigurator> getClientConfigurators() {
@@ -75,9 +80,10 @@ public class ConfigurationFileAuthenticationDetailsProvider implements BasicAuth
 			String userId = Preconditions.checkNotNull(configFile.get("user"), "missing user in config");
 			String pemFilePath = Preconditions.checkNotNull(configFile.get("key_file"), "missing key_file in config");
 			String passPhrase = configFile.get("pass_phrase");
+			String region = configFile.get("region");
 			Supplier<InputStream> privateKeySupplier = new SimplePrivateKeySupplier(pemFilePath);
 			SimpleAuthenticationDetailsProvider.SimpleAuthenticationDetailsProviderBuilder builder = SimpleAuthenticationDetailsProvider.builder().
-					privateKeySupplier(privateKeySupplier).fingerprint(fingerprint).userId(userId).tenantId(tenantId);
+					privateKeySupplier(privateKeySupplier).fingerprint(fingerprint).userId(userId).tenantId(tenantId).region(Region.valueOf(region));
 			if (passPhrase != null) {
 				builder = builder.passphraseCharacters(passPhrase.toCharArray());
 			}
@@ -97,6 +103,10 @@ public class ConfigurationFileAuthenticationDetailsProvider implements BasicAuth
 
 		public String getUserId() {
 			return this.delegate.getUserId();
+		}
+
+		public String getRegion() {
+			return this.delegate.getRegion().getRegionId();
 		}
 
 		/**
