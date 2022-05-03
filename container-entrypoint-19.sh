@@ -29,8 +29,7 @@ function stop_database() {
   if [[ "${REUSE}" = "false" ]]; then
      # terminate database
      echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - terminating database."
-     #dragonlite -a terminate -d ${DATABASE_NAME} -p ${PROFILE_NAME} -sp ${SYSTEM_PASSWORD} -w ${WORKLOAD_TYPE} -v 19c -u ${USER} -up ${USER_PASSWORD} -i 89.84.109.253 &
-     sleep 20
+     dragonlite -a terminate -d ${DATABASE_NAME} -p ${PROFILE_NAME} -sp ${SYSTEM_PASSWORD} -w ${WORKLOAD_TYPE} -v 19c
   fi;
 
   echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - shutting down container."

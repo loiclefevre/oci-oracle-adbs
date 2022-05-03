@@ -3,3 +3,5 @@ notes.txt
 target/*
 .idea/*
 /dragonlite.log
+/config
+/database.json
