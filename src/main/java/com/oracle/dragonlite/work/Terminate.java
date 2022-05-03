@@ -21,6 +21,8 @@ import com.oracle.dragonlite.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+
 public class Terminate {
 	private static final Logger logger = LoggerFactory.getLogger("Dragon Lite");
 
@@ -89,6 +91,9 @@ public class Terminate {
 			}
 			catch (Exception e) {
 				throw new DLException(DLException.WAIT_FOR_TERMINATION_FAILURE, e);
+			} finally {
+				// delete database information (connectionString...)
+				new File("database.json").delete();
 			}
 		}
 	}

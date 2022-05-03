@@ -482,7 +482,7 @@ public class Start {
 
 				//System.out.println("retrieveCurrentIPAddress: "+response.statusCode());
 				// sleep 1 second
-				Thread.sleep(1000L);
+				Utils.sleep(1000L);
 
 				tries++;
 

@@ -9,6 +9,7 @@ import com.oracle.bmc.limits.responses.GetResourceAvailabilityResponse;
 import com.oracle.dragonlite.configuration.ConfigurationFile;
 import com.oracle.dragonlite.configuration.ConfigurationFileAuthenticationDetailsProvider;
 import com.oracle.dragonlite.exception.DLException;
+import com.oracle.dragonlite.util.Utils;
 import com.oracle.dragonlite.work.Start;
 import com.oracle.dragonlite.work.Terminate;
 import org.slf4j.Logger;
@@ -41,6 +42,8 @@ public class Main {
 		System.setProperty("java.net.useSystemProxies", "true");
 	}
 
+	static boolean stayAlive = true;
+
 	public static void main(String[] args) {
 		int exitStatus = 0;
 
@@ -51,38 +54,50 @@ public class Main {
 
 			session.initializeOCIClients();
 
-			session.work();
+			Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+				try {
+					// some cleaning up code...
+					session.terminate();
+
+					System.out.println("INFO  \uD83D\uDC33 Container - shutting down container.");
+				} catch (Exception e) {
+					logger.error("Error: "+e.getMessage());
+				}
+				finally {
+					stayAlive = false;
+				}
+			}));
+
+			session.start();
+
+			while(stayAlive) {
+				Utils.sleep(1000L);
+			}
 		}
 		catch (DLException e) {
 			exitStatus = e.getErrorCode();
+			System.out.printf("DATABASE STARTUP FAILED (%d)!%nCHECK LOG OUTPUT FOR MORE INFORMATION!%n", exitStatus);
 			logger.error("Error: "+e.getMessage());
 		}
 
 		System.exit(exitStatus);
 	}
 
-	private void work() {
-		// logger.info(this.toString());
-
-		switch (action) {
-			case "start":
-				logger.info("start");
-				Start.work(this);
-				break;
-
-			case "terminate":
-				logger.info("terminate");
-				Terminate.work(this);
-				break;
-		}
+	private void start() {
+		logger.info("start");
+		Start.work(this);
 	}
 
+	private void terminate() {
+		if(!reuse) {
+			logger.info("terminate");
+			Terminate.work(this);
+		}
+	}
 
 	private final File workingDirectory = new File(".");
 	private ConfigurationFile.ConfigFile configurationFile;
 	private ConfigurationFileAuthenticationDetailsProvider provider;
-
-	private String action;
 
 	private String dbName;
 	private String profileName;
@@ -94,6 +109,7 @@ public class Main {
 	private boolean freeDatabase = true;
 	private boolean byol;
 	private String invokerIPAddress;
+	private boolean reuse;
 
 	private DatabaseClient dbClient;
 	private LimitsClient limitsClient;
@@ -114,7 +130,7 @@ public class Main {
 	}
 
 	private void displayUsage() {
-		System.out.println("Usage: dragonlite -a <start|stop> -p <OCI configuration profile> -d <database name> -u <user name>" +
+		System.out.println("Usage: dragonlite -r <true|false> -p <OCI configuration profile> -d <database name> -u <user name>" +
 				" -p <password> -sp <ADMIN password> -v <19c|21c> -w <json|oltp|dw|apex> -i <IPv4[,IPv4]*> [-b] [-nf]");
 	}
 
@@ -123,12 +139,6 @@ public class Main {
 			String arg = args[i].toLowerCase();
 
 			switch (arg) {
-				case "-a":
-					if (i + 1 < args.length) {
-						action = args[++i];
-					}
-					break;
-
 				case "-d":
 					if (i + 1 < args.length) {
 						dbName = args[++i];
@@ -182,6 +192,12 @@ public class Main {
 				case "-i":
 					if (i + 1 < args.length) {
 						invokerIPAddress = args[++i];
+					}
+					break;
+
+				case "-r":
+					if (i + 1 < args.length) {
+						reuse = args[++i].equalsIgnoreCase("true");
 					}
 					break;
 
@@ -294,7 +310,6 @@ public class Main {
 	public String toString() {
 		return "Main{" +
 				"workingDirectory=" + workingDirectory +
-				", action='" + action + '\'' +
 				", dbName='" + dbName + '\'' +
 				", profileName='" + profileName + '\'' +
 				", region='" + provider.getRegion() + '\'' +
