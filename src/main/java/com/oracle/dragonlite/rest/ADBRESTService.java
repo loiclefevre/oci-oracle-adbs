@@ -68,7 +68,7 @@ public class ADBRESTService {
 		return urlSODAService;
 	}
 
-	public String execute(final String command) {
+	public String execute(final String command, int retryNumber) {
 		// https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/20.2/aelig/rest-enabled-sql-service.html
 		try {
 			final HttpRequest request = HttpRequest.newBuilder()
@@ -101,9 +101,9 @@ public class ADBRESTService {
 
 				tries++;
 
-			} while( tries < MAX_TRIES );
+			} while( tries < retryNumber );
 
-			if( tries >= MAX_TRIES && response.statusCode() != 200) {
+			if( tries >= retryNumber && response.statusCode() != 200) {
 				throw new RuntimeException("Request was not successful (" + response.statusCode() + ") after "+tries+" tries!");
 			}
 
@@ -137,7 +137,7 @@ public class ADBRESTService {
 				throw new DLException(DLException.UNPARSABLE_ORDS_RESPONSE,e);
 			}
 		} catch (Exception e) {
-			throw new RuntimeException("REST SQL Service could not run " + command, e);
+			throw new DLException(DLException.ORDS_ERROR, e);
 		}
 	}
 

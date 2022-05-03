@@ -149,7 +149,7 @@ public class Start {
 					"ADMIN", session.getSystemPassword());
 
 			try {
-				adminORDS.execute("SELECT 1 FROM DUAL");
+				adminORDS.execute("SELECT 1 FROM DUAL", 30);
 			}
 			catch (DLException dle) {
 				// Stop, wrong database!
@@ -224,7 +224,7 @@ public class Start {
 					session.getUsername().toUpperCase(), session.getUserPassword());
 
 			try {
-				userORDS.execute("SELECT 1 FROM DUAL");
+				userORDS.execute("SELECT 1 FROM DUAL", 1);
 			}
 			catch (DLException dle) {
 				createApplicationUser(session, alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
@@ -445,7 +445,8 @@ public class Start {
 				""";
 
 		try {
-			adminORDS.execute(String.format(createUserScript, session.getUsername(), session.getUserPassword()));
+			logger.info(String.format("Creating application user %s",session.getUsername()));
+			adminORDS.execute(String.format(createUserScript, session.getUsername(), session.getUserPassword()), 1);
 		}
 		catch (DLException dle) {
 			// TODO destroy database in this case?

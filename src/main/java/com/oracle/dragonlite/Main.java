@@ -90,13 +90,11 @@ public class Main {
 	}
 
 	private void start() {
-		logger.info("start");
 		Start.work(this);
 	}
 
 	private void terminate() {
 		if (!reuse) {
-			logger.info("terminate");
 			Terminate.work(this);
 		}
 	}
