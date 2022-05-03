@@ -68,6 +68,7 @@ echo "BUILDER: building image $IMAGE_NAME"
 
 BUILD_START_TMS=$(date '+%s')
 
+rm -f dragonlite
 upx --best -k -o dragonlite target/dragonlite-linux-x86_64
 #cp target/dragonlite-linux-x86_64 ./dragonlite
 
