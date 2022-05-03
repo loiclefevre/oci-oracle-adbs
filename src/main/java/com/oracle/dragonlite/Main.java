@@ -47,14 +47,14 @@ public class Main {
 	public static void main(String[] args) {
 		int exitStatus = 0;
 
-		try {
-			final Main session = new Main(args);
+		final Main session = new Main(args);
 
+		try {
 			session.loadConfiguration();
 
 			session.initializeOCIClients();
 
-			Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+/*			Runtime.getRuntime().addShutdownHook(new Thread(() -> {
 				try {
 					// some cleaning up code...
 					session.terminate();
@@ -67,17 +67,23 @@ public class Main {
 					stayAlive = false;
 				}
 			}));
+*/
 
-			session.start();
+			if (session.terminate) {
+				Terminate.work(session);
+			}
+			else {
+				session.start();
 
-			while(stayAlive) {
-				Utils.sleep(1000L);
+				while (stayAlive) {
+					Utils.sleep(1000L);
+				}
 			}
 		}
 		catch (DLException e) {
 			exitStatus = e.getErrorCode();
-			System.out.printf("DATABASE STARTUP FAILED (%d)!%nCHECK LOG OUTPUT FOR MORE INFORMATION!%n", exitStatus);
-			logger.error("Error: "+e.getMessage());
+			System.out.printf("DATABASE %s FAILED (%d)!%nCHECK LOG OUTPUT FOR MORE INFORMATION!%n", session.terminate ? "TERMINATION" : "STARTUP", exitStatus);
+			logger.error("Error: " + e.getMessage());
 		}
 
 		System.exit(exitStatus);
@@ -89,7 +95,7 @@ public class Main {
 	}
 
 	private void terminate() {
-		if(!reuse) {
+		if (!reuse) {
 			logger.info("terminate");
 			Terminate.work(this);
 		}
@@ -110,6 +116,7 @@ public class Main {
 	private boolean byol;
 	private String invokerIPAddress;
 	private boolean reuse;
+	private boolean terminate;
 
 	private DatabaseClient dbClient;
 	private LimitsClient limitsClient;
@@ -130,8 +137,8 @@ public class Main {
 	}
 
 	private void displayUsage() {
-		System.out.println("Usage: dragonlite -r <true|false> -p <OCI configuration profile> -d <database name> -u <user name>" +
-				" -p <password> -sp <ADMIN password> -v <19c|21c> -w <json|oltp|dw|apex> -i <IPv4[,IPv4]*> [-b] [-nf]");
+		System.out.println("Usage: dragonlite -r [true|false*] -p <OCI configuration profile> -d <database name> -u <user name>" +
+				" -p <password> -sp <ADMIN password> -v <19c|21c> -w <json|oltp|dw|apex> -i <IPv4[,IPv4]*> [-b] [-nf] [-t]");
 	}
 
 	private void analyzeCommandLineParameters(String[] args) {
@@ -199,6 +206,10 @@ public class Main {
 					if (i + 1 < args.length) {
 						reuse = args[++i].equalsIgnoreCase("true");
 					}
+					break;
+
+				case "-t":
+					terminate = true;
 					break;
 
 				default:
