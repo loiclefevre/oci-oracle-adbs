@@ -9,4 +9,6 @@
     <root level="info">
         <appender-ref ref="FILE"/>
     </root>
+
+    <logger name="com.oracle.bmc" level="ERROR"/>
 </configuration>
