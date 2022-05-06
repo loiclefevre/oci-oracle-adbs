@@ -67,6 +67,8 @@ public class Start {
 			}
 		}
 
+		String infoPanel = null;
+
 		if (dbNameAlreadyExists) {
 			logger.warn("database already exists");
 
@@ -229,8 +231,12 @@ public class Start {
 				CreateDatabaseUser.createApplicationUser(session, alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
 			}
 
+			infoPanel = generateInfoPanel(alreadyExistADB);
+
 			generateDatabaseConfiguration(alreadyExistADB.getConnectionStrings(),alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
 		}
+		//--------------------------------------------------------------------------------------------------------------
+		// Database does not exist:
 		else {
 			if (session.isFreeTiersDatabaseResourceExhausted()) {
 				logger.error("FREE_TIERS_DATABASE_RESOURCE_EXHAUSTED");
@@ -360,10 +366,78 @@ public class Start {
 
 			CreateDatabaseUser.createApplicationUser(session, autonomousDatabase.getConnectionUrls().getSqlDevWebUrl());
 
+			infoPanel = generateInfoPanel(autonomousDatabase);
+
 			generateDatabaseConfiguration(autonomousDatabase.getConnectionStrings(), autonomousDatabase.getConnectionUrls().getSqlDevWebUrl());
 		}
 
 		System.out.printf("DATABASE IS READY TO USE! [%s]%n", Utils.getDurationSince(processStartTime));
+
+		if(infoPanel != null) {
+			System.out.println(infoPanel);
+		}
+	}
+
+	private static String generateInfoPanel(AutonomousDatabaseSummary adb) {
+		final StringBuilder sb = new StringBuilder("Database: ").append(adb.getDbName()).append("\n")
+				.append("| \\_ version: ").append(adb.getDbVersion()).append("\n").append("| \\_ type: Autonomous ").append(getWorkloadType(adb.getDbWorkload()))
+				.append(adb.getIsFreeTier() ? " (FREE TIERS)" : "").append("\n")
+				.append("| \\_ consumer groups: LOW, MEDIUM, HIGH").append(adb.getDbWorkload() != AutonomousDatabaseSummary.DbWorkload.Dw ? ", TP, TPURGENT" :"").append("\n")
+				.append("| \\_ auto-scaling CPU: ").append(adb.getIsAutoScalingEnabled()?"on":"off").append(", Storage: ").append(adb.getIsAutoScalingForStorageEnabled()?"on":"off").append("\n|\n")
+				.append("|- Service console\n")
+				.append("|  \\_ ").append(adb.getServiceConsoleUrl()).append("\n")
+				.append("|- SQL Dev web (ORDS v").append(adb.getApexDetails().getOrdsVersion()).append(")\n")
+				.append("|  \\_ ").append(adb.getConnectionUrls().getSqlDevWebUrl()).append("\n")
+				.append("|- Application Express (APEX v").append(adb.getApexDetails().getApexVersion()).append(")\n")
+				.append("|  \\_ ").append(adb.getConnectionUrls().getApexUrl()).append("\n")
+				.append("|- Machine Learning users management\n")
+				.append("|  \\_ ").append(adb.getConnectionUrls().getMachineLearningUserManagementUrl()).append("\n")
+				.append("|- Graph Studio\n")
+				.append("   \\_ ").append(adb.getConnectionUrls().getGraphStudioUrl())
+				;
+
+		return sb.toString();
+	}
+
+	private static String getWorkloadType(AutonomousDatabaseSummary.DbWorkload dbWorkload) {
+		return switch(dbWorkload) {
+			case Ajd -> "JSON";
+			case Apex -> "APEX";
+			case Oltp -> "Transaction Processing";
+			case Dw -> "Data Warehouse";
+			default -> throw new IllegalStateException("Unexpected value: " + dbWorkload);
+		};
+	}
+
+	private static String generateInfoPanel(AutonomousDatabase adb) {
+		final StringBuilder sb = new StringBuilder("Database: ").append(adb.getDbName()).append("\n")
+				.append("| \\_ version: ").append(adb.getDbVersion()).append("\n").append("| \\_ type: Autonomous ").append(getWorkloadType(adb.getDbWorkload()))
+				.append(adb.getIsFreeTier() ? " (FREE TIERS)" : "").append("\n")
+				.append("| \\_ consumer groups: LOW, MEDIUM, HIGH").append(adb.getDbWorkload() != AutonomousDatabase.DbWorkload.Dw ? ", TP, TPURGENT" :"").append("\n")
+				.append("| \\_ auto-scaling CPU: ").append(adb.getIsAutoScalingEnabled()?"on":"off").append(", Storage: ").append(adb.getIsAutoScalingForStorageEnabled()?"on":"off").append("\n|\n")
+				.append("|- Service console\n")
+				.append("|  \\_ ").append(adb.getServiceConsoleUrl()).append("\n")
+				.append("|- SQL Dev web (ORDS v").append(adb.getApexDetails().getOrdsVersion()).append(")\n")
+				.append("|  \\_ ").append(adb.getConnectionUrls().getSqlDevWebUrl()).append("\n")
+				.append("|- Application Express (APEX v").append(adb.getApexDetails().getApexVersion()).append(")\n")
+				.append("|  \\_ ").append(adb.getConnectionUrls().getApexUrl()).append("\n")
+				.append("|- Machine Learning users management\n")
+				.append("|  \\_ ").append(adb.getConnectionUrls().getMachineLearningUserManagementUrl()).append("\n")
+				.append("|- Graph Studio\n")
+				.append("   \\_ ").append(adb.getConnectionUrls().getGraphStudioUrl())
+				;
+
+		return sb.toString();
+	}
+
+	private static String getWorkloadType(AutonomousDatabase.DbWorkload dbWorkload) {
+		return switch(dbWorkload) {
+			case Ajd -> "JSON";
+			case Apex -> "APEX";
+			case Oltp -> "Transaction Processing";
+			case Dw -> "Data Warehouse";
+			default -> throw new IllegalStateException("Unexpected value: " + dbWorkload);
+		};
 	}
 
 	private static void generateDatabaseConfiguration(AutonomousDatabaseConnectionStrings connectionStrings, String SqlDevWebUrl) {
