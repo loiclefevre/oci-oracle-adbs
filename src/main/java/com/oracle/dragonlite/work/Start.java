@@ -379,20 +379,20 @@ public class Start {
 	}
 
 	private static String generateInfoPanel(AutonomousDatabaseSummary adb) {
-		final StringBuilder sb = new StringBuilder("Database: ").append(adb.getDbName()).append("\n")
+		final StringBuilder sb = new StringBuilder("\nDatabase: ").append(adb.getDbName()).append("\n")
 				.append("| \\_ version: ").append(adb.getDbVersion()).append("\n").append("| \\_ type: Autonomous ").append(getWorkloadType(adb.getDbWorkload()))
 				.append(adb.getIsFreeTier() ? " (FREE TIERS)" : "").append("\n")
 				.append("| \\_ consumer groups: LOW, MEDIUM, HIGH").append(adb.getDbWorkload() != AutonomousDatabaseSummary.DbWorkload.Dw ? ", TP, TPURGENT" :"").append("\n")
 				.append("| \\_ auto-scaling CPU: ").append(adb.getIsAutoScalingEnabled()?"on":"off").append(", Storage: ").append(adb.getIsAutoScalingForStorageEnabled()?"on":"off").append("\n|\n")
-				.append("|- Service console\n")
+				.append("| \\_ Service console\n")
 				.append("|  \\_ ").append(adb.getServiceConsoleUrl()).append("\n")
-				.append("|- SQL Dev web (ORDS v").append(adb.getApexDetails().getOrdsVersion()).append(")\n")
+				.append("| \\_ SQL Dev web (ORDS v").append(adb.getApexDetails().getOrdsVersion()).append(")\n")
 				.append("|  \\_ ").append(adb.getConnectionUrls().getSqlDevWebUrl()).append("\n")
-				.append("|- Application Express (APEX v").append(adb.getApexDetails().getApexVersion()).append(")\n")
+				.append("| \\_ Application Express (APEX v").append(adb.getApexDetails().getApexVersion()).append(")\n")
 				.append("|  \\_ ").append(adb.getConnectionUrls().getApexUrl()).append("\n")
-				.append("|- Machine Learning users management\n")
+				.append("| \\_ Machine Learning users management\n")
 				.append("|  \\_ ").append(adb.getConnectionUrls().getMachineLearningUserManagementUrl()).append("\n")
-				.append("|- Graph Studio\n")
+				.append("| \\_ Graph Studio\n")
 				.append("   \\_ ").append(adb.getConnectionUrls().getGraphStudioUrl())
 				;
 
@@ -410,20 +410,20 @@ public class Start {
 	}
 
 	private static String generateInfoPanel(AutonomousDatabase adb) {
-		final StringBuilder sb = new StringBuilder("Database: ").append(adb.getDbName()).append("\n")
+		final StringBuilder sb = new StringBuilder("\nDatabase: ").append(adb.getDbName()).append("\n")
 				.append("| \\_ version: ").append(adb.getDbVersion()).append("\n").append("| \\_ type: Autonomous ").append(getWorkloadType(adb.getDbWorkload()))
 				.append(adb.getIsFreeTier() ? " (FREE TIERS)" : "").append("\n")
 				.append("| \\_ consumer groups: LOW, MEDIUM, HIGH").append(adb.getDbWorkload() != AutonomousDatabase.DbWorkload.Dw ? ", TP, TPURGENT" :"").append("\n")
 				.append("| \\_ auto-scaling CPU: ").append(adb.getIsAutoScalingEnabled()?"on":"off").append(", Storage: ").append(adb.getIsAutoScalingForStorageEnabled()?"on":"off").append("\n|\n")
-				.append("|- Service console\n")
+				.append("| \\_ Service console\n")
 				.append("|  \\_ ").append(adb.getServiceConsoleUrl()).append("\n")
-				.append("|- SQL Dev web (ORDS v").append(adb.getApexDetails().getOrdsVersion()).append(")\n")
+				.append("| \\_ SQL Dev web (ORDS v").append(adb.getApexDetails().getOrdsVersion()).append(")\n")
 				.append("|  \\_ ").append(adb.getConnectionUrls().getSqlDevWebUrl()).append("\n")
-				.append("|- Application Express (APEX v").append(adb.getApexDetails().getApexVersion()).append(")\n")
+				.append("| \\_ Application Express (APEX v").append(adb.getApexDetails().getApexVersion()).append(")\n")
 				.append("|  \\_ ").append(adb.getConnectionUrls().getApexUrl()).append("\n")
-				.append("|- Machine Learning users management\n")
+				.append("| \\_ Machine Learning users management\n")
 				.append("|  \\_ ").append(adb.getConnectionUrls().getMachineLearningUserManagementUrl()).append("\n")
-				.append("|- Graph Studio\n")
+				.append("| \\_ Graph Studio\n")
 				.append("   \\_ ").append(adb.getConnectionUrls().getGraphStudioUrl())
 				;
 
