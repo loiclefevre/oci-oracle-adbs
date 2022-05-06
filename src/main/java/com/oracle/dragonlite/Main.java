@@ -1,6 +1,8 @@
 package com.oracle.dragonlite;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oracle.bmc.database.DatabaseClient;
+import com.oracle.bmc.database.model.AutonomousDatabaseSummary;
 import com.oracle.bmc.database.model.CreateAutonomousDatabaseBase;
 import com.oracle.bmc.identity.IdentityClient;
 import com.oracle.bmc.limits.LimitsClient;
@@ -9,7 +11,11 @@ import com.oracle.bmc.limits.responses.GetResourceAvailabilityResponse;
 import com.oracle.dragonlite.configuration.ConfigurationFile;
 import com.oracle.dragonlite.configuration.ConfigurationFileAuthenticationDetailsProvider;
 import com.oracle.dragonlite.exception.DLException;
+import com.oracle.dragonlite.util.ADBConfiguration;
 import com.oracle.dragonlite.util.Utils;
+import com.oracle.dragonlite.work.Action;
+import com.oracle.dragonlite.work.CreateDatabaseUser;
+import com.oracle.dragonlite.work.DropDatabaseUser;
 import com.oracle.dragonlite.work.Start;
 import com.oracle.dragonlite.work.Terminate;
 import org.slf4j.Logger;
@@ -17,6 +23,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+
+import static com.oracle.dragonlite.work.Action.*;
 
 /**
  * Use cases:
@@ -45,6 +53,7 @@ public class Main {
 	static boolean stayAlive = true;
 
 	public static void main(String[] args) {
+		final long startTime = System.currentTimeMillis();
 		int exitStatus = 0;
 
 		final Main session = new Main(args);
@@ -69,34 +78,53 @@ public class Main {
 			}));
 */
 
-			if (session.terminate) {
-				Terminate.work(session);
-			}
-			else {
-				session.start();
+			switch (session.action) {
+				case TerminateDatabase:
+					if (!session.reuse) {
+						Terminate.work(session, startTime);
+					}
+					break;
 
-				while (stayAlive) {
-					Utils.sleep(1000L);
-				}
+				case CreateUser:
+					CreateDatabaseUser.work(session, startTime);
+					break;
+
+				case DropUser:
+					DropDatabaseUser.work(session, startTime);
+					break;
+
+				case StartDatabase:
+					Start.work(session, startTime);
+
+					while (stayAlive) {
+						Utils.sleep(1000L);
+					}
+					break;
 			}
 		}
 		catch (DLException e) {
 			exitStatus = e.getErrorCode();
-			System.out.printf("DATABASE %s FAILED (%d)!%nCHECK LOG OUTPUT FOR MORE INFORMATION!%n", session.terminate ? "TERMINATION" : "STARTUP", exitStatus);
+			switch (session.action) {
+				case TerminateDatabase:
+					System.out.printf("DATABASE TERMINATION FAILED (%d)!%nCHECK LOG OUTPUT FOR MORE INFORMATION!%n", exitStatus);
+					break;
+
+				case CreateUser:
+					System.out.printf("USER CREATION FAILED (%d)!%nCHECK LOG OUTPUT FOR MORE INFORMATION!%n", exitStatus);
+					break;
+
+				case DropUser:
+					System.out.printf("USER DELETION FAILED (%d)!%nCHECK LOG OUTPUT FOR MORE INFORMATION!%n", exitStatus);
+					break;
+
+				case StartDatabase:
+					System.out.printf("DATABASE STARTUP FAILED (%d)!%nCHECK LOG OUTPUT FOR MORE INFORMATION!%n", exitStatus);
+					break;
+			}
 			logger.error("Error: " + e.getMessage());
 		}
 
 		System.exit(exitStatus);
-	}
-
-	private void start() {
-		Start.work(this);
-	}
-
-	private void terminate() {
-		if (!reuse) {
-			Terminate.work(this);
-		}
 	}
 
 	private final File workingDirectory = new File(".");
@@ -114,7 +142,8 @@ public class Main {
 	private boolean byol;
 	private String invokerIPAddress;
 	private boolean reuse;
-	private boolean terminate;
+	private Action action = StartDatabase;
+	private String sqlDevWebURL;
 
 	private DatabaseClient dbClient;
 	private LimitsClient limitsClient;
@@ -126,17 +155,44 @@ public class Main {
 
 	private void loadConfiguration() {
 		try {
-			configurationFile = ConfigurationFile.parse(workingDirectory, "config", "DEFAULT");
+			configurationFile = ConfigurationFile.parse(workingDirectory, "config", profileName);
 			provider = new ConfigurationFileAuthenticationDetailsProvider(configurationFile);
 		}
 		catch (IOException e) {
 			throw new DLException(DLException.CANT_LOAD_CONFIGURATION_FILE, e);
 		}
+
+		try {
+			final File existingDatabaseConfiguration = new File("database.json");
+			if (existingDatabaseConfiguration.exists() && existingDatabaseConfiguration.isFile()) {
+				ADBConfiguration adbConfiguration = new ObjectMapper().readValue(existingDatabaseConfiguration, ADBConfiguration.class);
+				if (adbConfiguration.getSqlDevWebUrl() != null) {
+					sqlDevWebURL = adbConfiguration.getSqlDevWebUrl();
+				}
+			}
+		}
+		catch (IOException e) {
+			throw new DLException(DLException.INVALID_DATABASE_CONFIGURATION);
+		}
 	}
 
 	private void displayUsage() {
-		System.out.println("Usage: dragonlite -r [true|false*] -p <OCI configuration profile> -d <database name> -u <user name>" +
-				" -p <password> -sp <ADMIN password> -v <19c|21c> -w <json|oltp|dw|apex> -i <IPv4[,IPv4]*> [-b] [-nf] [-t]");
+		System.out.println("Usage: dragonlite -p <OCI configuration profile> -r [true|false*] -d <database name> -u <user name>" +
+				" -up <password> -sp <ADMIN password> -v <19c|21c> -w <json|oltp|dw> -i <IPv4[,IPv4]*> [-b] [-nf] [-t] [-cu] [-du]\n\n" +
+				"-p    Oracle Cloud Infrastructure configuration profile\n" +
+				"-r    reuse database instance, do not create a new one\n" +
+				"-d    database name\n" +
+				"-v    database version\n" +
+				"-w    database workload type\n" +
+				"-u    user name\n" +
+				"-up   user password\n" +
+				"-sp   ADMIN user password\n" +
+				"-i    comma separated list of IPv4 address to permit (no space)\n" +
+				"-b    bring your own license mode\n" +
+				"-nf   non Always Free Tiers deployment\n" +
+				"-t    ask to terminate the database\n" +
+				"-cu   create user only\n" +
+				"-du   drop user only");
 	}
 
 	private void analyzeCommandLineParameters(String[] args) {
@@ -207,7 +263,33 @@ public class Main {
 					break;
 
 				case "-t":
-					terminate = true;
+					if (action == StartDatabase) {
+						action = TerminateDatabase;
+					}
+					else {
+						displayUsage();
+						throw new DLException(DLException.MULTIPLE_ACTION_REQUESTED);
+					}
+					break;
+
+				case "-cu":
+					if (action == StartDatabase) {
+						action = CreateUser;
+					}
+					else {
+						displayUsage();
+						throw new DLException(DLException.MULTIPLE_ACTION_REQUESTED);
+					}
+					break;
+
+				case "-du":
+					if (action == StartDatabase) {
+						action = DropUser;
+					}
+					else {
+						displayUsage();
+						throw new DLException(DLException.MULTIPLE_ACTION_REQUESTED);
+					}
 					break;
 
 				default:
@@ -285,6 +367,22 @@ public class Main {
 		}
 	}
 
+	public AutonomousDatabaseSummary.DbWorkload getWorkloadTypeSummary() {
+		switch (workloadType.toLowerCase()) {
+			case "ajd":
+			case "json":
+				return AutonomousDatabaseSummary.DbWorkload.Ajd;
+			case "oltp":
+				return AutonomousDatabaseSummary.DbWorkload.Oltp;
+			case "dw":
+				return AutonomousDatabaseSummary.DbWorkload.Dw;
+			case "apex":
+				return AutonomousDatabaseSummary.DbWorkload.Apex;
+			default:
+				throw new DLException(DLException.UNKNOWN_WORKLOAD_TYPE);
+		}
+	}
+
 	public IdentityClient getIdentityClient() {
 		// initialize only in the case of database creation
 		if (identityClient == null) {
@@ -313,6 +411,10 @@ public class Main {
 
 	public String getInvokerIPAddress() {
 		return invokerIPAddress;
+	}
+
+	public String getSqlDevWebURL() {
+		return sqlDevWebURL;
 	}
 
 	@Override

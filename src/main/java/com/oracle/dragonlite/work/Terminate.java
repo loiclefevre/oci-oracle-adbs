@@ -26,7 +26,7 @@ import java.io.File;
 public class Terminate {
 	private static final Logger logger = LoggerFactory.getLogger("Dragon Lite");
 
-	public static void work(Main session) {
+	public static void work(Main session, final long processStartTime) {
 		final ListAutonomousDatabasesRequest listADB = ListAutonomousDatabasesRequest.builder().compartmentId(session.getConfigFile().get("compartment_id")).build();
 		final ListAutonomousDatabasesResponse listADBResponse = session.getDbClient().listAutonomousDatabases(listADB);
 

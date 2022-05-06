@@ -74,7 +74,9 @@ public class ADBRESTService {
 			final HttpRequest request = HttpRequest.newBuilder()
 					.uri(new URI(urlSQLService))
 					.headers("Content-Type", "application/sql",
-							"Authorization", basicAuth(user, password))
+							"Authorization", basicAuth(user, password),
+							"Pragma", "no-cache",
+							"Cache-Control", "no-store")
 					.POST(HttpRequest.BodyPublishers.ofString(command))
 					.build();
 
@@ -87,6 +89,7 @@ public class ADBRESTService {
 						.newBuilder()
 						.version(HttpClient.Version.HTTP_1_1)
 						.proxy(ProxySelector.getDefault())
+						.followRedirects(HttpClient.Redirect.NORMAL)
 						.build()
 						.send(request, HttpResponse.BodyHandlers.ofString());
 
@@ -96,15 +99,17 @@ public class ADBRESTService {
 
 				//System.out.println(response.statusCode());
 
-				// sleep 1 second
-				Utils.sleep(1000L);
+				// sleep 100ms
+				if (tries + 1 < retryNumber) {
+					Utils.sleep(100L);
+				}
 
 				tries++;
+			}
+			while (tries < retryNumber);
 
-			} while( tries < retryNumber );
-
-			if( tries >= retryNumber && response.statusCode() != 200) {
-				throw new RuntimeException("Request was not successful (" + response.statusCode() + ") after "+tries+" tries!");
+			if (tries >= retryNumber && response.statusCode() != 200) {
+				throw new RuntimeException("Request was not successful (" + response.statusCode() + ") after " + tries + (tries > 1 ? " tries!" : "try!"));
 			}
 
 			// parsing body response to check for any error!
@@ -116,27 +121,29 @@ public class ADBRESTService {
 
 				boolean atLeastOneError = false;
 				final StringBuilder errors = new StringBuilder();
-				for(ORDSSQLServiceResponseItems item:ORDSResponse.getItems()) {
-					if(item.getErrorCode() != 0) {
+				for (ORDSSQLServiceResponseItems item : ORDSResponse.getItems()) {
+					if (item.getErrorCode() != 0) {
 						atLeastOneError = true;
-						if(errors.length() > 0) {
+						if (errors.length() > 0) {
 							errors.append('\n');
 						}
 						errors.append("Error (Line ").append(item.getErrorLine()).append("): ").append(item.getErrorDetails());
 					}
 				}
 
-				if(atLeastOneError) {
+				if (atLeastOneError) {
 					logger.error(errors.toString());
 					throw new DLException(DLException.ORDS_ERROR);
 				}
 
 				return responseAsText;
-			} catch (IOException e) {
-				logger.error("Uparsable ORDS response: "+responseAsText,e);
-				throw new DLException(DLException.UNPARSABLE_ORDS_RESPONSE,e);
 			}
-		} catch (Exception e) {
+			catch (IOException e) {
+				logger.error("Uparsable ORDS response: " + responseAsText, e);
+				throw new DLException(DLException.UNPARSABLE_ORDS_RESPONSE, e);
+			}
+		}
+		catch (Exception e) {
 			throw new DLException(DLException.ORDS_ERROR, e);
 		}
 	}
@@ -144,25 +151,25 @@ public class ADBRESTService {
 	/**
 	 * BASIC authentication encoding in base 64.
 	 *
-	 * @param user  user to use for authentication
-	 * @param password  password to use for authentication
+	 * @param user     user to use for authentication
+	 * @param password password to use for authentication
 	 * @return the base 64 encoded authentication signature
 	 */
 	private String basicAuth(final String user, final String password) {
-		return String.format("Basic %s", Base64.getEncoder().encodeToString((String.format("%s:%s",user,  password)).getBytes()));
+		return String.format("Basic %s", Base64.getEncoder().encodeToString((String.format("%s:%s", user, password)).getBytes()));
 	}
 
 	/**
 	 * Creates a SODA collection.
 	 *
-	 * @param collectionName    the name of the SODA collection
+	 * @param collectionName the name of the SODA collection
 	 * @return the HTTPS response body
 	 */
-	public String createSODACollection(final String collectionName) {
+/*	public String createSODACollection(final String collectionName) {
 		try {
 			final HttpRequest request = HttpRequest.newBuilder()
 					.uri(new URI(urlSODAService + collectionName))
-					.headers( "Content-Type", "application/json", "Authorization", basicAuth(user, password))
+					.headers("Content-Type", "application/json", "Authorization", basicAuth(user, password))
 					// To support 21c
 					.PUT(HttpRequest.BodyPublishers.ofString("{\"contentColumn\":{\"name\":\"JSON_DOCUMENT\"}," + // ,"sqlType":"BLOB"
 							"\"versionColumn\":{\"name\":\"VERSION\", \"method\" : \"UUID\"}," +
@@ -182,12 +189,13 @@ public class ADBRESTService {
 			}
 
 			return response.body();
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new RuntimeException("REST SODA Service could not create collection " + collectionName, e);
 		}
-	}
+	} */
 
-	public String insertDocument(final String collectionName, final String document) {
+/*	public String insertDocument(final String collectionName, final String document) {
 		try {
 			final HttpRequest request = HttpRequest.newBuilder()
 					.uri(new URI(urlSODAService + collectionName))
@@ -207,8 +215,9 @@ public class ADBRESTService {
 			}
 
 			return response.body();
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new RuntimeException("REST SODA Service could not insert document " + document + " into collection " + collectionName, e);
 		}
-	}
+	} */
 }

@@ -30,29 +30,28 @@ import com.oracle.bmc.workrequests.responses.ListWorkRequestErrorsResponse;
 import com.oracle.dragonlite.Main;
 import com.oracle.dragonlite.exception.DLException;
 import com.oracle.dragonlite.rest.ADBRESTService;
+import com.oracle.dragonlite.util.PublicIPv4Retriever;
 import com.oracle.dragonlite.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.ProxySelector;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.oracle.dragonlite.Main.MAX_TRIES;
-
 public class Start {
 	private static final Logger logger = LoggerFactory.getLogger("Dragon Lite");
 
-	public static void work(Main session) {
+	public static void work(Main session, final long processStartTime) {
 		// -2- validate the database with the wanted name doesn't exist already inside the given compartment
-		final ListAutonomousDatabasesRequest listADB = ListAutonomousDatabasesRequest.builder().compartmentId(session.getConfigFile().get("compartment_id")).build();
+		final ListAutonomousDatabasesRequest listADB = ListAutonomousDatabasesRequest.builder()
+				.displayName(session.getDbName()+"_Database")
+				.dbVersion(session.getVersion())
+				.dbWorkload(session.getWorkloadTypeSummary())
+				.compartmentId(session.getConfigFile().get("compartment_id"))
+				.build();
 		final ListAutonomousDatabasesResponse listADBResponse = session.getDbClient().listAutonomousDatabases(listADB);
 		boolean dbNameAlreadyExists = false;
 
@@ -227,10 +226,10 @@ public class Start {
 				userORDS.execute("SELECT 1 FROM DUAL", 1);
 			}
 			catch (DLException dle) {
-				createApplicationUser(session, alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
+				CreateDatabaseUser.createApplicationUser(session, alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
 			}
 
-			generateDatabaseConfiguration(alreadyExistADB.getConnectionStrings());
+			generateDatabaseConfiguration(alreadyExistADB.getConnectionStrings(),alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
 		}
 		else {
 			if (session.isFreeTiersDatabaseResourceExhausted()) {
@@ -359,19 +358,19 @@ public class Start {
 				throw new DLException(DLException.WAIT_FOR_CREATION_FAILURE, e);
 			}
 
-			createApplicationUser(session, autonomousDatabase.getConnectionUrls().getSqlDevWebUrl());
+			CreateDatabaseUser.createApplicationUser(session, autonomousDatabase.getConnectionUrls().getSqlDevWebUrl());
 
-			generateDatabaseConfiguration(autonomousDatabase.getConnectionStrings());
+			generateDatabaseConfiguration(autonomousDatabase.getConnectionStrings(), autonomousDatabase.getConnectionUrls().getSqlDevWebUrl());
 		}
 
-		System.out.println("DATABASE IS READY TO USE!");
+		System.out.printf("DATABASE IS READY TO USE! [%s]%n", Utils.getDurationSince(processStartTime));
 	}
 
-	private static void generateDatabaseConfiguration(AutonomousDatabaseConnectionStrings connectionStrings) {
+	private static void generateDatabaseConfiguration(AutonomousDatabaseConnectionStrings connectionStrings, String SqlDevWebUrl) {
 		for (DatabaseConnectionStringProfile dcsp : connectionStrings.getProfiles()) {
 			if (dcsp.getDisplayName().toLowerCase().endsWith("_low") && dcsp.getTlsAuthentication() == DatabaseConnectionStringProfile.TlsAuthentication.Server) {
 				try (PrintWriter out = new PrintWriter("database.json")) {
-					out.printf("{\"connectionString\": \"%s\"}", dcsp.getValue().replaceAll("\"", "\\\\\""));
+					out.printf("{\"connectionString\": \"%s\", \"sqlDevWebUrl\": \"%s\"}", dcsp.getValue().replaceAll("\"", "\\\\\""), SqlDevWebUrl);
 				}
 				catch (IOException ioe) {
 					throw new DLException(DLException.CANT_WRITE_DATABASE_CONFIGURATION);
@@ -381,126 +380,54 @@ public class Start {
 		}
 	}
 
-	private static void createApplicationUser(Main session, String sqlDevWebURL) {
-		final ADBRESTService adminORDS = new ADBRESTService(sqlDevWebURL,
-				"ADMIN", session.getSystemPassword());
-
-		final String createUserScript = """
-				DECLARE
-					username varchar2(60) := '%s'; -- filled from calling code
-					password varchar2(60) := '%s'; -- filled from calling code
-				BEGIN
-					-- Create the user for Autonomous database
-					execute immediate 'create user ' || username || ' identified by "'|| password ||'" DEFAULT TABLESPACE DATA TEMPORARY TABLESPACE TEMP';
-					 
-					-- Grant unlimited quota on tablespace DATA
-					execute immediate 'alter user ' || username || ' quota unlimited on data';
-					 
-					-- Grant Autonomous Database roles, create session, SODA API, Property Graph, Oracle Machine Learning, Alter session, Select all objects from catalog
-					execute immediate 'grant dwrole, resource, connect, create session, soda_app, oml_developer, alter session, select_catalog_role to ' || username || ' with admin option';
-					execute immediate 'grant graph_developer to ' || username;
-					 
-					-- Privileges to connect to Property Graph and Oracle Machine Learning GUIs
-					execute immediate 'alter user ' || username || ' grant connect through GRAPH$PROXY_USER';
-					execute immediate 'alter user ' || username || ' grant connect through OML$PROXY';
-					 
-					-- Oracle Machine Learning for Python access
-					begin
-						execute immediate 'grant PYQADMIN to ' || username;
-					exception when others then null;
-					end;
-					 
-					-- Oracle Text configuration access (Full-Text indexes)
-					execute immediate 'grant execute on CTX_DDL to ' || username;
-					 
-					-- Allows the user to change its database service from the SQL Database Action GUI
-					execute immediate 'grant select on dba_rsrc_consumer_group_privs to ' || username;
-					execute immediate 'grant execute on DBMS_SESSION to ' || username;
-					execute immediate 'grant select on sys.v_$services to ' || username;
-					 
-					-- Can view objects
-					execute immediate 'grant select any dictionary to ' || username;
-					 
-					-- To get own session statistics
-					execute immediate 'grant select on sys.v_$mystat to ' || username;
-					 
-					-- Automatic Indexing control
-					execute immediate 'grant execute on DBMS_AUTO_INDEX to ' || username;
-					 
-					-- Used for demo #3 about User Locks, grant access to the PL/SQL package
-					execute immediate 'grant execute on DBMS_LOCK to ' || username;
-					 
-					-- Useful for Advance Queuing
-					execute immediate 'grant aq_administrator_role, aq_user_role to ' || username;
-					execute immediate 'grant execute on DBMS_AQ to ' || username;
-					 
-					-- Used for Application Continuity
-					execute immediate 'grant execute on DBMS_APP_CONT_ADMIN to ' || username;
-					 
-					-- Grant access to Database Actions online tools (Browsers GUI)
-					ords_metadata.ords_admin.enable_schema(p_enabled => TRUE, p_schema => upper(username), p_url_mapping_type => 'BASE_PATH', p_url_mapping_pattern => lower(username), p_auto_rest_auth => TRUE);
-				END;
-					 
-				/
-				""";
-
-		try {
-			logger.info(String.format("Creating application user %s",session.getUsername()));
-			adminORDS.execute(String.format(createUserScript, session.getUsername(), session.getUserPassword()), 1);
-		}
-		catch (DLException dle) {
-			// TODO destroy database in this case?
-			logger.warn("Can't create application user", dle);
-			throw dle;
-		}
-	}
-
 	private static String retrieveCurrentIPAddress() {
-		try {
-			final HttpRequest request = HttpRequest.newBuilder()
-					.uri(new URI("http://checkip.dyndns.org/"))
-					.headers("Accept", "*/*")
-					.headers("Keep-Alive", "timeout=5, max=100")
-					.GET()
-					.build();
+		return PublicIPv4Retriever.get();
 
-			HttpResponse<String> response;
-
-			int tries = 0;
-
-			do {
-				response = HttpClient
-						.newBuilder()
-//					.connectTimeout(Duration.ofSeconds(20))
-						.version(HttpClient.Version.HTTP_1_1)
-						.proxy(ProxySelector.getDefault())
-						.build()
-						.send(request, HttpResponse.BodyHandlers.ofString());
-
-				if (response.statusCode() == 200) {
-					break;
-				}
-
-				//System.out.println("retrieveCurrentIPAddress: "+response.statusCode());
-				// sleep 1 second
-				Utils.sleep(1000L);
-
-				tries++;
-
-				logger.debug("Get current IP address, try #" + (tries + 1));
-
-			}
-			while (tries < MAX_TRIES);
-
-			if (tries >= MAX_TRIES && response.statusCode() != 200) {
-				throw new RuntimeException("Request for self IP address was not successful (" + response.statusCode() + ")");
-			}
-			final String responseBody = response.body();
-
-			return responseBody.substring(76, responseBody.indexOf("</body>"));
-		}
-		catch (Exception e) {
-			throw new DLException(DLException.UNKNOWN_CURRENT_IP_ADDRESS, e);
-		}
+//		try {
+//			final HttpRequest request = HttpRequest.newBuilder()
+//					.uri(new URI("http://checkip.dyndns.org/"))
+//					.headers("Accept", "*/*")
+//					.headers("Keep-Alive", "timeout=5, max=100")
+//					.GET()
+//					.build();
+//
+//			HttpResponse<String> response;
+//
+//			int tries = 0;
+//
+//			do {
+//				response = HttpClient
+//						.newBuilder()
+////					.connectTimeout(Duration.ofSeconds(20))
+//						.version(HttpClient.Version.HTTP_1_1)
+//						.proxy(ProxySelector.getDefault())
+//						.build()
+//						.send(request, HttpResponse.BodyHandlers.ofString());
+//
+//				if (response.statusCode() == 200) {
+//					break;
+//				}
+//
+//				//System.out.println("retrieveCurrentIPAddress: "+response.statusCode());
+//				// sleep 1 second
+//				Utils.sleep(1000L);
+//
+//				tries++;
+//
+//				logger.debug("Get current IP address, try #" + (tries + 1));
+//
+//			}
+//			while (tries < MAX_TRIES);
+//
+//			if (tries >= MAX_TRIES && response.statusCode() != 200) {
+//				throw new RuntimeException("Request for self IP address was not successful (" + response.statusCode() + ")");
+//			}
+//			final String responseBody = response.body();
+//
+//			return responseBody.substring(76, responseBody.indexOf("</body>"));
+//		}
+//		catch (Exception e) {
+//			throw new DLException(DLException.UNKNOWN_CURRENT_IP_ADDRESS, e);
+//		}
 	}
 }

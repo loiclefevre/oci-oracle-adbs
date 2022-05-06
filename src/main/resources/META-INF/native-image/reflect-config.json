@@ -589,6 +589,17 @@
   "name":"com.oracle.dragonlite.rest.ORDSSQLServiceResponseItems[]"}
 ,
 {
+  "name":"com.oracle.dragonlite.util.ADBConfiguration",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true,
+  "methods":[
+    {"name":"<init>","parameterTypes":[] }, 
+    {"name":"setConnectionString","parameterTypes":["java.lang.String"] }, 
+    {"name":"setSqlDevWebUrl","parameterTypes":["java.lang.String"] }
+  ]}
+,
+{
   "name":"com.sun.crypto.provider.AESCipher$General",
   "methods":[{"name":"<init>","parameterTypes":[] }]}
 ,

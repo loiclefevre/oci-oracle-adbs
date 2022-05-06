@@ -22,6 +22,8 @@ public class DLException extends RuntimeException {
 	public static final int CANT_WRITE_DATABASE_CONFIGURATION = 19;
 	public static final int CANT_TERMINATE_ADBS = 20;
 	public static final int WAIT_FOR_TERMINATION_FAILURE = 21;
+	public static final int MULTIPLE_ACTION_REQUESTED = 22;
+	public static final int INVALID_DATABASE_CONFIGURATION = 23;
 
 
 	private final int errorCode;
