@@ -32,7 +32,7 @@ public class DropDatabaseUser {
 					ords_metadata.ords_admin.drop_rest_for_schema(p_schema => l_username);
 				
 					-- Drop the user for Autonomous database
-					for i in 1 .. 5
+					for i in 1 .. 10
 					loop
 						begin
 							execute immediate 'drop user ' || l_username || ' cascade';
@@ -42,10 +42,10 @@ public class DropDatabaseUser {
 							    if SQLCODE = -1918 then
 							        exit;
 							    else
-									if i = 5 then
+									if i = 10 then
 										raise;
 									end if;
-				                    sys.dbms_session.sleep(0.3);
+				                    sys.dbms_session.sleep(0.5);
 								end if;
 							end;	
 						end;
