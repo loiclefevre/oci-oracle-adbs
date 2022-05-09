@@ -94,7 +94,17 @@ public class Main {
 					break;
 
 				case StartDatabase:
-					Start.work(session, startTime);
+					try {
+						Start.work(session, startTime);
+					}
+					catch(DLException e) {
+						if(e.getErrorCode() == DLException.DATABASE_ALREADY_EXISTS) {
+							Utils.sleep(1000L);
+							Start.work(session, startTime);
+						} else {
+							throw e;
+						}
+					}
 
 					while (stayAlive) {
 						Utils.sleep(1000L);

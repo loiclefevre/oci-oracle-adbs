@@ -38,13 +38,16 @@ public class DropDatabaseUser {
 							execute immediate 'drop user ' || l_username || ' cascade';
 						exception when others then
 							begin
-			                    sys.dbms_session.sleep(0.5);
-								if i = 5 then
-									if SQLCODE != -1918 then
+							    -- if username doesn't exist then exit
+							    if SQLCODE = -1918 then
+							        exit;
+							    else
+									if i = 5 then
 										raise;
 									end if;
+				                    sys.dbms_session.sleep(0.3);
 								end if;
-							end;
+							end;	
 						end;
 					end loop;
 				END;
