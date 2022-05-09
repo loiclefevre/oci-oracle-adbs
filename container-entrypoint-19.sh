@@ -42,7 +42,11 @@ echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - starting up..."
 
 # Let's start the autonomous database management...
 touch /opt/oracle/dragonlite.log
-dragonlite -r ${REUSE} -d ${DATABASE_NAME} -p ${PROFILE_NAME} -sp ${SYSTEM_PASSWORD} -w ${WORKLOAD_TYPE} -v 19c -u ${USER} -up ${USER_PASSWORD} -i ${IP_ADDRESS} &
+if [[ "${FREE_TIERS}" == "true" ]]; then
+  dragonlite -r ${REUSE} -d ${DATABASE_NAME} -p ${PROFILE_NAME} -sp ${SYSTEM_PASSWORD} -w ${WORKLOAD_TYPE} -v 19c -u ${USER} -up ${USER_PASSWORD} -i ${IP_ADDRESS} &
+else
+  dragonlite -r ${REUSE} -d ${DATABASE_NAME} -p ${PROFILE_NAME} -sp ${SYSTEM_PASSWORD} -w ${WORKLOAD_TYPE} -v 19c -u ${USER} -up ${USER_PASSWORD} -i ${IP_ADDRESS} -nf &
+fi;
 
 tail -f /opt/oracle/dragonlite.log &
 

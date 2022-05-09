@@ -416,7 +416,7 @@ public class Start {
 				.append("| \\_ ").append(adb.getConnectionUrls().getApexUrl()).append("\n")
 				.append("|\\_ Machine Learning users management\n")
 				.append("| \\_ ").append(adb.getConnectionUrls().getMachineLearningUserManagementUrl()).append("\n")
-				.append("|\\_ Graph Studio\n")
+				.append(" \\_ Graph Studio\n")
 				.append("  \\_ ").append(adb.getConnectionUrls().getGraphStudioUrl())
 				;
 
@@ -448,7 +448,7 @@ public class Start {
 				.append("| \\_ ").append(adb.getConnectionUrls().getApexUrl()).append("\n")
 				.append("|\\_ Machine Learning users management\n")
 				.append("| \\_ ").append(adb.getConnectionUrls().getMachineLearningUserManagementUrl()).append("\n")
-				.append("|\\_ Graph Studio\n")
+				.append(" \\_ Graph Studio\n")
 				.append("  \\_ ").append(adb.getConnectionUrls().getGraphStudioUrl())
 				;
 
