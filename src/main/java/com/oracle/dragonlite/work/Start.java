@@ -70,6 +70,8 @@ public class Start {
 		String infoPanel = null;
 
 		if (dbNameAlreadyExists) {
+			boolean provisionedByAnotherSession = false;
+
 			logger.warn("database already exists");
 
 			// if it exists already, validate this matches the one wanted!
@@ -136,6 +138,7 @@ public class Start {
 					}
 					while (!exit);
 				} else {
+					provisionedByAnotherSession = true;
 					logger.warn("database is being provisioned...");
 				}
 
@@ -149,7 +152,18 @@ public class Start {
 				}
 			}
 
-			// database restarted!
+			// database restarted or provisioned by another sessions!
+			if(provisionedByAnotherSession) {
+				final ListAutonomousDatabasesResponse listADBResponse2 = session.getDbClient().listAutonomousDatabases(listADB);
+				for (AutonomousDatabaseSummary adb : listADBResponse2.getItems()) {
+					if (adb.getLifecycleState() != AutonomousDatabaseSummary.LifecycleState.Terminated) {
+						if (adb.getDbName().equals(session.getDbName())) {
+							alreadyExistADB = adb;
+							break;
+						}
+					}
+				}
+			}
 
 			final ADBRESTService adminORDS = new ADBRESTService(alreadyExistADB.getConnectionUrls().getSqlDevWebUrl(),
 					"ADMIN", session.getSystemPassword());
@@ -237,6 +251,7 @@ public class Start {
 					CreateDatabaseUser.createApplicationUser(session, alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
 				}
 			}
+
 			infoPanel = generateInfoPanel(alreadyExistADB);
 
 			generateDatabaseConfiguration(alreadyExistADB.getConnectionStrings(),alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
