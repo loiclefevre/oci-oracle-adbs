@@ -22,8 +22,8 @@ public class CreateDatabaseUser {
 
 		final String createUserScript = """
 				DECLARE
-					username varchar2(60) := '%s'; -- filled from calling code
-					password varchar2(60) := '%s'; -- filled from calling code
+					username varchar2(128) := '%s';
+					password varchar2(60) := '%s';
 				BEGIN
 					-- Create the user for Autonomous database
 					execute immediate 'create user ' || username || ' identified by "'|| password ||'" DEFAULT TABLESPACE DATA TEMPORARY TABLESPACE TEMP';

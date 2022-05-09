@@ -17,17 +17,22 @@ public class DropDatabaseUser {
 	}
 
 	public static void dropApplicationUser(Main session, String sqlDevWebURL) {
-		final ADBRESTService adminORDS = new ADBRESTService(sqlDevWebURL,
-				"ADMIN", session.getSystemPassword());
+		final ADBRESTService adminORDS = new ADBRESTService(sqlDevWebURL, "ADMIN", session.getSystemPassword());
 
 		final String dropUserScript = """
 				DECLARE
-					username varchar2(60) := '%s'; -- filled from calling code
+					l_username varchar2(128) := '%s';
 				BEGIN
-					ords_metadata.ords_admin.drop_rest_for_schema(p_schema => username);
+					for c in (select 'alter system kill session '''||sid||','||serial#||',@'||inst_id||'''' as kill_command from gv$session where username = upper(l_username))
+					loop
+					    execute immediate c.kill_command;
+					end loop;
+     				
+				
+					ords_metadata.ords_admin.drop_rest_for_schema(p_schema => l_username);
 
 					-- Drop the user for Autonomous database
-					execute immediate 'drop user ' || username || ' cascade';
+					execute immediate 'drop user ' || l_username || ' cascade';
 				END;
 					 
 				/
