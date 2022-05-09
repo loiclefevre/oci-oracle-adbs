@@ -135,6 +135,8 @@ public class Start {
 
 					}
 					while (!exit);
+				} else {
+					logger.warn("database is being provisioned...");
 				}
 
 				DatabaseWaiters waiter = session.getDbClient().getWaiters();
