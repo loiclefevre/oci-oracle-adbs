@@ -220,17 +220,18 @@ public class Start {
 			// - version
 			// - ADMIN password
 
-			// Test application user exists
-			final ADBRESTService userORDS = new ADBRESTService(alreadyExistADB.getConnectionUrls().getSqlDevWebUrl(),
-					session.getUsername().toUpperCase(), session.getUserPassword());
+			if(session.getUsername() != null) {
+				// Test application user exists
+				final ADBRESTService userORDS = new ADBRESTService(alreadyExistADB.getConnectionUrls().getSqlDevWebUrl(),
+						session.getUsername().toUpperCase(), session.getUserPassword());
 
-			try {
-				userORDS.execute("SELECT 1 FROM DUAL", 1);
+				try {
+					userORDS.execute("SELECT 1 FROM DUAL", 1);
+				}
+				catch (DLException dle) {
+					CreateDatabaseUser.createApplicationUser(session, alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
+				}
 			}
-			catch (DLException dle) {
-				CreateDatabaseUser.createApplicationUser(session, alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
-			}
-
 			infoPanel = generateInfoPanel(alreadyExistADB);
 
 			generateDatabaseConfiguration(alreadyExistADB.getConnectionStrings(),alreadyExistADB.getConnectionUrls().getSqlDevWebUrl());
@@ -364,7 +365,9 @@ public class Start {
 				throw new DLException(DLException.WAIT_FOR_CREATION_FAILURE, e);
 			}
 
-			CreateDatabaseUser.createApplicationUser(session, autonomousDatabase.getConnectionUrls().getSqlDevWebUrl());
+			if(session.getUsername() != null) {
+				CreateDatabaseUser.createApplicationUser(session, autonomousDatabase.getConnectionUrls().getSqlDevWebUrl());
+			}
 
 			infoPanel = generateInfoPanel(autonomousDatabase);
 
