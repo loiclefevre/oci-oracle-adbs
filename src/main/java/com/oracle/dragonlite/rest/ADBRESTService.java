@@ -14,6 +14,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 import java.util.Base64;
 
 import static com.oracle.dragonlite.Main.MAX_TRIES;
@@ -133,7 +134,7 @@ public class ADBRESTService {
 
 				if (atLeastOneError) {
 					logger.error(errors.toString());
-					throw new DLException(DLException.ORDS_ERROR);
+					throw new DLException(DLException.ORDS_ERROR, new SQLException(errors.toString()));
 				}
 
 				return responseAsText;
