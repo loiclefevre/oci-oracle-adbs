@@ -259,7 +259,7 @@ public class Start {
 		//--------------------------------------------------------------------------------------------------------------
 		// Database does not exist:
 		else {
-			if (session.isFreeTiersDatabaseResourceExhausted()) {
+			if (session.isFreeDatabase() && session.isFreeTiersDatabaseResourceExhausted()) {
 				logger.error("FREE_TIERS_DATABASE_RESOURCE_EXHAUSTED");
 				throw new DLException(DLException.FREE_TIERS_DATABASE_RESOURCE_EXHAUSTED);
 			}
