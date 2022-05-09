@@ -92,47 +92,50 @@ public class Start {
 			}
 
 			if (alreadyExistADB.getLifecycleState() != AutonomousDatabaseSummary.LifecycleState.Available) {
-				// Start!
-				WorkRequestClient workRequestClient = new WorkRequestClient(session.getProvider());
-				workRequestClient.setRegion(session.getProvider().getRegion());
-				StartAutonomousDatabaseResponse responseTerminate = session.getDbClient().startAutonomousDatabase(StartAutonomousDatabaseRequest.builder().autonomousDatabaseId(alreadyExistADB.getId()).build());
-				String workRequestId = responseTerminate.getOpcWorkRequestId();
 
-				GetWorkRequestRequest getWorkRequestRequest = GetWorkRequestRequest.builder().workRequestId(workRequestId).build();
-				boolean exit = false;
-				long startTime = System.currentTimeMillis();
-				float pendingProgressMove = 0f;
-				do {
-					GetWorkRequestResponse getWorkRequestResponse = workRequestClient.getWorkRequest(getWorkRequestRequest);
-					switch (getWorkRequestResponse.getWorkRequest().getStatus()) {
-						case Succeeded:
-							exit = true;
-							break;
-						case Failed:
-							final ListWorkRequestErrorsResponse response = workRequestClient.listWorkRequestErrors(ListWorkRequestErrorsRequest.builder().workRequestId(workRequestId).opcRequestId(getWorkRequestResponse.getOpcRequestId()).build());
-							final StringBuilder errors = new StringBuilder();
-							int i = 0;
-							for (WorkRequestError e : response.getItems()) {
-								if (i > 0) {
-									errors.append("\n");
+				if(alreadyExistADB.getLifecycleState() != AutonomousDatabaseSummary.LifecycleState.Provisioning) {
+					// Start!
+					WorkRequestClient workRequestClient = new WorkRequestClient(session.getProvider());
+					workRequestClient.setRegion(session.getProvider().getRegion());
+					StartAutonomousDatabaseResponse responseTerminate = session.getDbClient().startAutonomousDatabase(StartAutonomousDatabaseRequest.builder().autonomousDatabaseId(alreadyExistADB.getId()).build());
+					String workRequestId = responseTerminate.getOpcWorkRequestId();
+
+					GetWorkRequestRequest getWorkRequestRequest = GetWorkRequestRequest.builder().workRequestId(workRequestId).build();
+					boolean exit = false;
+					long startTime = System.currentTimeMillis();
+					float pendingProgressMove = 0f;
+					do {
+						GetWorkRequestResponse getWorkRequestResponse = workRequestClient.getWorkRequest(getWorkRequestRequest);
+						switch (getWorkRequestResponse.getWorkRequest().getStatus()) {
+							case Succeeded:
+								exit = true;
+								break;
+							case Failed:
+								final ListWorkRequestErrorsResponse response = workRequestClient.listWorkRequestErrors(ListWorkRequestErrorsRequest.builder().workRequestId(workRequestId).opcRequestId(getWorkRequestResponse.getOpcRequestId()).build());
+								final StringBuilder errors = new StringBuilder();
+								int i = 0;
+								for (WorkRequestError e : response.getItems()) {
+									if (i > 0) {
+										errors.append("\n");
+									}
+									errors.append(e.getMessage());
+									i++;
 								}
-								errors.append(e.getMessage());
-								i++;
-							}
-							logger.error(errors.toString());
-							throw new DLException(DLException.CANT_START_ADBS);
-						case Accepted:
-							logger.debug("Start accepted");
-							break;
-						case InProgress:
-							logger.debug("Start in progress: " + getWorkRequestResponse.getWorkRequest().getPercentComplete());
-							break;
+								logger.error(errors.toString());
+								throw new DLException(DLException.CANT_START_ADBS);
+							case Accepted:
+								logger.debug("Start accepted");
+								break;
+							case InProgress:
+								logger.debug("Start in progress: " + getWorkRequestResponse.getWorkRequest().getPercentComplete());
+								break;
+						}
+
+						Utils.sleep(1000L);
+
 					}
-
-					Utils.sleep(1000L);
-
+					while (!exit);
 				}
-				while (!exit);
 
 				DatabaseWaiters waiter = session.getDbClient().getWaiters();
 				try {
