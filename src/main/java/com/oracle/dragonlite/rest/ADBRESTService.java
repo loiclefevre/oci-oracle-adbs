@@ -109,7 +109,7 @@ public class ADBRESTService {
 			while (tries < retryNumber);
 
 			if (tries >= retryNumber && response.statusCode() != 200) {
-				throw new RuntimeException("Request was not successful (" + response.statusCode() + ") after " + tries + (tries > 1 ? " tries!" : "try!"));
+				throw new RuntimeException("Request was not successful (" + response.statusCode() + ") after " + tries + (tries > 1 ? " tries!" : " try!"));
 			}
 
 			// parsing body response to check for any error!

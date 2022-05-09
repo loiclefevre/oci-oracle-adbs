@@ -220,7 +220,7 @@ public class Start {
 			// - version
 			// - ADMIN password
 
-			if(session.getUsername() != null) {
+			if(!"sharedDatabase".equalsIgnoreCase(session.getUsername())) {
 				// Test application user exists
 				final ADBRESTService userORDS = new ADBRESTService(alreadyExistADB.getConnectionUrls().getSqlDevWebUrl(),
 						session.getUsername().toUpperCase(), session.getUserPassword());
@@ -365,7 +365,7 @@ public class Start {
 				throw new DLException(DLException.WAIT_FOR_CREATION_FAILURE, e);
 			}
 
-			if(session.getUsername() != null) {
+			if(!"sharedDatabase".equalsIgnoreCase(session.getUsername())) {
 				CreateDatabaseUser.createApplicationUser(session, autonomousDatabase.getConnectionUrls().getSqlDevWebUrl());
 			}
 
