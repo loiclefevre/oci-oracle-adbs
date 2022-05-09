@@ -23,19 +23,33 @@ public class DropDatabaseUser {
 				DECLARE
 					l_username varchar2(128) := '%s';
 				BEGIN
-					for c in (select sid,serial#,inst_id from gv$session where username = upper(l_username))
+					for c in (select 'alter system kill session '''||sid||','||serial#||',@'||inst_id||'''' as kill_command from gv$session where username = upper(l_username))
 					loop
-					    execute immediate 'alter system kill session '''||c.sid||','||c.serial#||',@'||c.inst_id||'''';
+						execute immediate c.kill_command;
 					end loop;
 				
+				
 					ords_metadata.ords_admin.drop_rest_for_schema(p_schema => l_username);
-
+				
 					-- Drop the user for Autonomous database
-					execute immediate 'drop user ' || l_username || ' cascade';
+					for i in 1 .. 5
+					loop
+						begin
+							execute immediate 'drop user ' || l_username || ' cascade';
+						exception when others then
+							begin
+			                    sys.dbms_session.sleep(0.5);
+								if i = 5 then
+									if SQLCODE != -1918 then
+										raise;
+									end if;
+								end if;
+							end;
+						end;
+					end loop;
 				END;
-					 
-				/
-				""";
+				
+				/""";
 
 		try {
 			logger.info(String.format("Dropping application user %s", session.getUsername()));
