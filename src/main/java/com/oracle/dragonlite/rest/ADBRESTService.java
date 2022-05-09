@@ -16,6 +16,7 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.Base64;
+import java.util.Collections;
 
 import static com.oracle.dragonlite.Main.MAX_TRIES;
 
@@ -96,6 +97,13 @@ public class ADBRESTService {
 
 				if (response.statusCode() == 200) {
 					break;
+				}
+
+				if(response.statusCode() == 503) {
+					for(String s : response.headers().allValues("Retry-After")) {
+						System.out.println("Retry-After: " + s);
+					}
+					Utils.sleep(900L);
 				}
 
 				//System.out.println(response.statusCode());
