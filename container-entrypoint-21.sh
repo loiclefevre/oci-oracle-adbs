@@ -29,7 +29,7 @@ function stop_database() {
   if [[ "${REUSE}" = "false" ]]; then
      # terminate database
      echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - terminating database."
-     dragonlite -t -r ${REUSE} -d ${DATABASE_NAME} -p ${PROFILE_NAME} -sp ${SYSTEM_PASSWORD} -w ${WORKLOAD_TYPE} -v 21c
+     dragonlite -t -r ${REUSE} -d ${DATABASE_NAME} -p ${PROFILE_NAME} -ap ${ADMIN_PASSWORD} -w ${WORKLOAD_TYPE} -v 21c
   fi;
 
   echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - shutting down container."
@@ -43,9 +43,9 @@ echo `date +"%H:%M:%S.000"`" INFO  🐳 Container - starting up..."
 # Let's start the autonomous database management...
 touch /opt/oracle/dragonlite.log
 if [[ "${FREE_TIERS}" == "true" ]]; then
-  dragonlite -r ${REUSE} -d ${DATABASE_NAME} -p ${PROFILE_NAME} -sp ${SYSTEM_PASSWORD} -w ${WORKLOAD_TYPE} -v 21c -u ${USER} -up ${USER_PASSWORD} -i ${IP_ADDRESS} &
+  dragonlite -r ${REUSE} -d ${DATABASE_NAME} -p ${PROFILE_NAME} -ap ${ADMIN_PASSWORD} -w ${WORKLOAD_TYPE} -v 21c -u ${USER} -up ${USER_PASSWORD} -i ${IP_ADDRESS} &
 else
-  dragonlite -r ${REUSE} -d ${DATABASE_NAME} -p ${PROFILE_NAME} -sp ${SYSTEM_PASSWORD} -w ${WORKLOAD_TYPE} -v 21c -u ${USER} -up ${USER_PASSWORD} -i ${IP_ADDRESS} -nf &
+  dragonlite -r ${REUSE} -d ${DATABASE_NAME} -p ${PROFILE_NAME} -ap ${ADMIN_PASSWORD} -w ${WORKLOAD_TYPE} -v 21c -u ${USER} -up ${USER_PASSWORD} -i ${IP_ADDRESS} -nf &
 fi;
 
 tail -f /opt/oracle/dragonlite.log &

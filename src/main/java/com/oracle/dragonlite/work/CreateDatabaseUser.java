@@ -18,7 +18,7 @@ public class CreateDatabaseUser {
 
 	public static void createApplicationUser(Main session, String sqlDevWebURL) {
 		final ADBRESTService adminORDS = new ADBRESTService(sqlDevWebURL,
-				"ADMIN", session.getSystemPassword());
+				"ADMIN", session.getAdminPassword());
 
 		final String createUserScript = """
 				DECLARE

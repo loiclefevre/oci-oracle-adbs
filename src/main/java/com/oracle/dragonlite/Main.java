@@ -144,7 +144,7 @@ public class Main {
 	private String dbName;
 	private String profileName;
 	private String userPassword;
-	private String systemPassword;
+	private String adminPassword;
 	private String version;
 	private String workloadType;
 	private String username;
@@ -188,7 +188,7 @@ public class Main {
 
 	private void displayUsage() {
 		System.out.println("Usage: dragonlite -p <OCI configuration profile> -r [true|false*] -d <database name> -u <user name>" +
-				" -up <password> -sp <ADMIN password> -v <19c|21c> -w <json|oltp|dw> -i <IPv4[,IPv4]*> [-b] [-nf] [-t] [-cu] [-du]\n\n" +
+				" -up <password> -ap <ADMIN password> -v <19c|21c> -w <json|oltp|dw> -i <IPv4[,IPv4]*> [-b] [-nf] [-t] [-cu] [-du]\n\n" +
 				"-p    Oracle Cloud Infrastructure configuration profile\n" +
 				"-r    reuse database instance, do not create a new one\n" +
 				"-d    database name\n" +
@@ -196,7 +196,7 @@ public class Main {
 				"-w    database workload type\n" +
 				"-u    user name\n" +
 				"-up   user password\n" +
-				"-sp   ADMIN user password\n" +
+				"-ap   ADMIN user password\n" +
 				"-i    comma separated list of IPv4 address to permit (no space)\n" +
 				"-b    bring your own license mode\n" +
 				"-nf   non Always Free Tiers deployment\n" +
@@ -222,9 +222,9 @@ public class Main {
 					}
 					break;
 
-				case "-sp":
+				case "-ap":
 					if (i + 1 < args.length) {
-						systemPassword = args[++i];
+						adminPassword = args[++i];
 					}
 					break;
 
@@ -353,8 +353,8 @@ public class Main {
 		return configurationFile;
 	}
 
-	public String getSystemPassword() {
-		return systemPassword;
+	public String getAdminPassword() {
+		return adminPassword;
 	}
 
 	public String getVersion() {
@@ -435,7 +435,7 @@ public class Main {
 				", profileName='" + profileName + '\'' +
 				", region='" + provider.getRegion() + '\'' +
 				", userPassword='" + userPassword + '\'' +
-				", systemPassword='" + systemPassword + '\'' +
+				", adminPassword='" + adminPassword + '\'' +
 				", version='" + version + '\'' +
 				", workloadType='" + workloadType + '\'' +
 				", username='" + username + '\'' +

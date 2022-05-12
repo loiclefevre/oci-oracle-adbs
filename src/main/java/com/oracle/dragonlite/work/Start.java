@@ -166,7 +166,7 @@ public class Start {
 			}
 
 			final ADBRESTService adminORDS = new ADBRESTService(alreadyExistADB.getConnectionUrls().getSqlDevWebUrl(),
-					"ADMIN", session.getSystemPassword());
+					"ADMIN", session.getAdminPassword());
 
 			try {
 				adminORDS.execute("SELECT 1 FROM DUAL", 30);
